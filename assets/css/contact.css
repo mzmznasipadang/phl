@@ -103,7 +103,7 @@
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s, filter 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, filter 0.2s, transform 0.12s;
 }
 
 .send-button button:hover {
@@ -117,8 +117,12 @@
     filter: saturate(0.6) brightness(1.15);
 }
 
+.form input,
+.form textarea { transition: border-color 0.15s; }
 .form input:focus,
 .form textarea:focus { border-color: var(--deep-harbor-blue); }
+
+.send-button button:active:not(:disabled) { transform: scale(0.98); }
 
 /* Inline result of a submit; replaces the old alert() pop-ups */
 .form-status {
@@ -129,6 +133,14 @@
     color: var(--harbor-depth);
 }
 .form-status:empty { display: none; }
+/* Restarts on every result: the element leaves display:none in between */
+@media (prefers-reduced-motion: no-preference) {
+    .form-status { animation: status-in 250ms var(--ease-out-quart) both; }
+}
+@keyframes status-in {
+    from { opacity: 0; transform: translateY(-0.25rem); }
+    to   { opacity: 1; transform: none; }
+}
 .form-status[data-state="error"] { font-weight: 600; }
 
 @media only screen and (max-width: 780px) {

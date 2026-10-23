@@ -65,6 +65,15 @@
   /* The hero overlay fade and section reveals are scroll-linked CSS
      (base.css); the customer marquee is a CSS animation (home.css). */
 
+  /* ---------- Pause the customer logo loop while it is offscreen ---------- */
+  const marquee = document.querySelector(".marquee-images");
+  if (marquee && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      // "" hands control back to the CSS (including its hover/focus pause)
+      marquee.style.animationPlayState = entries[0].isIntersecting ? "" : "paused";
+    }).observe(marquee.parentNode);
+  }
+
   /* ---------- Repairs gallery tabs ---------- */
   const galleryButtons = document.querySelectorAll(".boat-text button");
   if (galleryButtons.length) {

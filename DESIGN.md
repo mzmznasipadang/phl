@@ -154,7 +154,12 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 
 **The Stencil Width Rule.** Mona Sans is loaded as a variable font (`wdth` 75–125, `wght` 200–900). Page-level headings run condensed (`font-stretch: 88%`, hero display `80%`, tracking -0.01em, leading ~1.0), like a stencilled hull marking; body, labels and navigation stay at normal width. Width is the second lever after weight, still one family. Sizes come from the fluid tokens `--fs-display`, `--fs-headline`, `--fs-title` in base.css. Chinese pages fall back to PingFang SC / Noto Sans SC / Microsoft YaHei by name (`:root:lang(zh)`), since Mona Sans has no CJK glyphs.
 
-**The Waterline Motion Rule.** Motion has one signature: photographs rise into view through a clip that clears from the bottom, and the navy accent bars draw out of their title blocks, both scroll-linked in CSS (`animation-timeline: view()`). Pages cross-fade (`@view-transition`) with the navbar held still; the Repairs gallery cross-fades between categories. Everything is visible by default where unsupported and switched off under `prefers-reduced-motion`. Do not add per-section entrance variety on top of this.
+**The Waterline Motion Rule.** Motion has one material idea: things surface from below a fixed line.
+- *Focal moment (hero, every page):* the photo settles as a Harbor Depth dusk layer lifts, then the headline rises through a fixed waterline (translate and bottom clip move by the same amount), then the subtitle settles in. Under 1s, nothing waits on it.
+- *Supporting:* photographs rise into view through a clip that clears from the bottom and the navy accent bars draw out of their title blocks, both scroll-linked (`animation-timeline: view()`). Pages cross-fade (`@view-transition`) with the navbar held still; the Repairs gallery cross-fades between categories; the mobile menu slides on `transform` with a capped 40ms link stagger.
+- *Feedback:* underline draws, button press scale, form result fades in, input borders ease on focus.
+- *Budget:* the customer logo loop pauses offscreen; never animate `left`/`top`/size.
+- *Reduced motion:* keyframe animations are opt-in under `no-preference`; under `reduce`, movement goes (navbar stays put, menu fades instead of sliding, no hover lifts) but colour, opacity and underline feedback stay. Do not add per-section entrance variety on top of this.
 
 **The Eyebrow Exception.** The site uses a small navy eyebrow above the vessels and repairs descriptions. This is a single, deliberate, named pattern, not section scaffolding. Do not multiply it into a tracked uppercase kicker above every section; that is the AI-grammar tell this brand avoids.
 

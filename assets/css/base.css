@@ -31,6 +31,7 @@
     /* Motion: natural deceleration, no bounce */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
 
     /* Type: Mona Sans (variable wdth 75-125). Headings run
        condensed, like a stencilled hull marking; body stays at normal width. */
@@ -169,7 +170,10 @@ footer a:focus-visible,
     view-transition-name: navbar; /* stays put while pages cross-fade */
 }
 
-.navbar.is-hidden { transform: translateY(-100%); }
+.navbar.is-hidden {
+    transform: translateY(-100%);
+    transition-duration: 0.3s; /* leaves faster than it returns */
+}
 .navbar.is-hidden:focus-within { transform: none; } /* never hide a focused link */
 
 .navbar img {
@@ -247,19 +251,45 @@ footer a:focus-visible,
 /* ---------- Hero scaffold (positioning lives in page CSS) ---------- */
 .landing-page { position: relative; overflow: hidden; }
 
-/* One signature entrance: the hero photo settles, the headline rises.
-   Slow and confident, never bouncy. Skipped entirely under reduced motion. */
+/* The focal moment, "surfacing": the photo settles as the dusk over it lifts,
+   then the headline rises up through a fixed waterline (its bottom edge),
+   the same clip-from-below idea as the scrolled photo reveals. Under 1s,
+   nothing waits on it, and it is skipped under reduced motion. */
+.landing-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--harbor-depth);
+    opacity: 0;
+    pointer-events: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-    .landing-page img { animation: hero-settle 900ms var(--ease-out-expo) both; }
-    .landing-text { animation: hero-rise 800ms var(--ease-out-expo) 120ms both; }
+    .landing-page img { animation: hero-settle 1100ms var(--ease-out-expo) both; }
+    .landing-page::before { animation: dusk-lift 1100ms var(--ease-out-quart) both; }
+    /* Cubic, not expo: expo finishes the rise in ~150ms and reads as a snap */
+    .landing-text span { animation: surface 900ms var(--ease-out-cubic) 150ms both; }
+    .landing-text p,
+    .landing-tool > a { animation: settle-in 500ms var(--ease-out-quart) 480ms both; }
 }
 @keyframes hero-settle {
     from { transform: scale(1.06); }
     to   { transform: scale(1); }
 }
-@keyframes hero-rise {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+@keyframes dusk-lift {
+    from { opacity: 0.55; }
+    to   { opacity: 0; }
+}
+/* The text travels 125% while the bottom clip opens by the same 125%
+   (100% to -25%), so the visible edge stays fixed just below the
+   descenders: the headline emerges above a line instead of sliding in. */
+@keyframes surface {
+    from { transform: translateY(125%); clip-path: inset(-25% -10% 100% -10%); }
+    to   { transform: none; clip-path: inset(-25% -10% -25% -10%); }
+}
+@keyframes settle-in {
+    from { opacity: 0; transform: translateY(0.5rem); }
+    to   { opacity: 1; transform: none; }
 }
 
 .landing-page img {
@@ -382,22 +412,50 @@ footer img {
 @media only screen and (max-width: 980px) {
     .text {
         position: fixed;
-        left: -100%;
+        left: 0;
         top: 5rem;
         flex-direction: column;
         width: 100%;
         text-align: center;
-        /* visibility keeps closed-menu links out of the tab order */
+        /* Slide with transform, not `left`, so no layout runs per frame;
+           visibility keeps closed-menu links out of the tab order */
+        transform: translateX(-100%);
         visibility: hidden;
-        transition: left 0.3s, visibility 0s 0.3s;
+        transition: transform 0.3s var(--ease-out-quart), visibility 0s 0.3s;
         background: var(--hull-shadow);
         padding-bottom: 1rem;
     }
 
-    .text.active { left: 0; visibility: visible; transition-delay: 0s; }
+    .text.active {
+        transform: none;
+        visibility: visible;
+        transition: transform 0.45s var(--ease-out-expo), visibility 0s;
+    }
 
-    /* Full-width tappable rows in the slide-in menu */
-    .text a { display: block; padding: 0.85rem 1rem; }
+    /* Full-width tappable rows in the slide-in menu; the underline becomes a
+       short centred mark so it does not read as a row divider */
+    .text a {
+        display: block;
+        padding: 0.85rem 1rem;
+        background-position: 50% calc(100% - 0.55rem);
+    }
+    .text a:hover,
+    .text a[aria-current="page"] { background-size: 2.5rem 2px; }
+
+    /* The links arrive as a list: a short, capped stagger (160ms total) */
+    @media (prefers-reduced-motion: no-preference) {
+        .text.active a { animation: menu-link 380ms var(--ease-out-expo) both; }
+        .text.active a:nth-child(2) { animation-delay: 40ms; }
+        .text.active a:nth-child(3) { animation-delay: 80ms; }
+        .text.active a:nth-child(4) { animation-delay: 120ms; }
+        .text.active a:nth-child(5) { animation-delay: 160ms; }
+    }
+
+    /* Reduced motion: the menu fades in place instead of sliding */
+    @media (prefers-reduced-motion: reduce) {
+        .text { transform: none; opacity: 0; transition: opacity 0.2s, visibility 0s 0.2s; }
+        .text.active { opacity: 1; transition: opacity 0.2s, visibility 0s; }
+    }
 
     .hamburger { display: flex; cursor: pointer; }
 
@@ -482,15 +540,19 @@ footer img {
 @keyframes bar-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes bar-draw-down { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes overlay-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes menu-link {
+    from { opacity: 0; transform: translateX(-1.5rem); }
+    to   { opacity: 1; transform: none; }
+}
 
-/* Honor the OS-level reduced-motion preference everywhere. */
+/* Reduced motion: every keyframe animation above is already opt-in
+   (no-preference). Here the remaining movement goes; colour, opacity and
+   underline feedback stay, so actions are still visibly acknowledged. */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+    html { scroll-behavior: auto; }
+    .navbar.is-hidden { transform: none; } /* bar stays put instead of sliding away */
+    .floating-button:hover,
+    .floating-button:active,
+    .option:hover img,
+    .option:focus-within img { transform: none; }
 }

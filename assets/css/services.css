@@ -66,10 +66,11 @@
     border-radius: 0.4rem;
     width: 10rem;
     height: 3rem;
-    transition: filter 0.2s;
+    transition: filter 0.2s, transform 0.12s;
 }
 
 a:hover .contact-us { filter: brightness(1.12); }
+a:active .contact-us { transform: scale(0.97); }
 
 .boat-gallery {
     margin-left: 8%;
