@@ -3,37 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta property="og:image" content="/assets/og.png" />
+    <meta property="og:image" content="https://pahalashipyard.com/assets/og.jpg" />
     <title>Pahala Shipyard</title>
     <link rel="icon" href="/assets/webicon.png">
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/home.css">
+    <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- navigation bar -->
-    <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
-        <div class="text">
+    <header class="navbar">
+        <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
+        <nav class="text" id="primary-nav" aria-label="Main">
             <a href="">Home</a>
             <a href="vessels.html">Vessels</a>
             <a href="services.html">Repairs</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+            <div class="lang-switch" role="group" aria-label="Language">
+                <a href="/en/home.html" hreflang="en" lang="en" aria-label="English" aria-current="true">EN</a>
+                <a href="/id/home.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
+                <a href="/zh/home.html" hreflang="zh" lang="zh" aria-label="中文">中文</a>
+            </div>
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
     <div class="landing-page">
-        <img src="/assets/home/homebg.jpeg" alt="A PT. Pahala Harapan Lestari tugboat under way on the water" decoding="async" fetchpriority="high" width="4032" height="3024">
+        <img src="/assets/home/hero-poster.jpg" alt="Aerial view of the PT. Pahala Harapan Lestari shipyard, with tugs moored along the waterfront" decoding="async" fetchpriority="high" width="1920" height="1080">
+        <!-- The photo is the video's first frame; site.js loads the video unless reduced motion or Save-Data -->
+        <video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" data-src="/assets/home/hero-1080.mp4" data-src-small="/assets/home/hero-720.mp4"></video>
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-text">
             <h1><span>We Serve You.</span></h1>
@@ -45,16 +56,16 @@
     <!-- Option Container Start -->
     <div class="option-container">
         <div class="option"> <!-- service box -->
-            <a href="services.html"><img src="/assets/home/servicesoption.png" alt="Repairs" decoding="async" loading="lazy" width="525" height="864"></a>
+            <a href="services.html"><img src="/assets/home/servicesoption.jpg" alt="Repairs" decoding="async" loading="lazy" width="525" height="864"></a>
             <a href="services.html"><p>Repairs</p></a>
             <!-- sebuah workaround hehehehe :] displaynya hancur kalau a nya wrap ke div -->
         </div>
         <div class="option"> <!-- vessels box -->
-            <a href="vessels.html"><img src="/assets/home/vesselsoption.JPG" alt="Vessels" decoding="async" loading="lazy" width="6000" height="4000"></a>
+            <a href="vessels.html"><img src="/assets/home/vesselsoption.jpg" alt="Vessels" decoding="async" loading="lazy" width="1800" height="1012"></a>
             <a href="vessels.html"><p>Vessels</p></a>
         </div>
         <div class="option"> <!-- profile box -->
-            <a href="about.html"><img src="/assets/home/profileoption.jpeg" alt="Profile" decoding="async" loading="lazy" width="3024" height="2205"></a>
+            <a href="about.html"><img src="/assets/home/profileoption.jpg" alt="Profile" decoding="async" loading="lazy" width="1800" height="1200"></a>
             <a href="about.html"><p>Profile</p></a>
         </div>
     </div>
@@ -62,20 +73,20 @@
 
     <!-- Desc Container Start -->
     <div class="desc-container">
-        <h2><span>Forging the Future, Mastery in Every Vessel</span></h2>
+        <h2><span>Over 100 vessels, one family yard, since 1982.</span></h2>
         <div class="brief-desc">
             <div class="tiles-border"> <!-- images container, 1 big (top) - 2 small (bottom)-->
                 <div class="tiles">
                     <img src="/assets/home/hometile1.jpg" id="tile1" alt="" decoding="async" loading="lazy" width="4496" height="3000">
                     <div class="double-image">
-                        <img src="/assets/home/hometile2.JPG" alt="" decoding="async" loading="lazy" width="2992" height="2000">
-                        <img src="/assets/home/hometile3.JPG" alt="" decoding="async" loading="lazy" width="2992" height="2000">
+                        <img src="/assets/home/hometile2.jpg" alt="" decoding="async" loading="lazy" width="2992" height="2000">
+                        <img src="/assets/home/hometile3.jpg" alt="" decoding="async" loading="lazy" width="2992" height="2000">
                     </div>
                 </div>
                 <div class="border"></div> <!-- line -->
             </div>
-            <p>Pahala Harapan Lestari stands proud as a national shipyard icon in Indonesia since 1982. Operating wherever there's a chance to refine, pioneer, or invest, Pahala Harapan Lestari values the voices of its clients.<br><br>
-                Our inclusive, cooperative mindset has been instrumental in shaping our service offerings. Surpassing your aspirations remains our paramount objective; because, ultimately, we're constructing your future.
+            <p>PT. Pahala Harapan Lestari is a family shipyard in Pangkalpinang, Bangka Belitung, building and repairing ships since 1982. More than 100 vessels later, we still build by standardization and serial production.<br><br>
+                Our clients include Pertamina, Pelindo, Adaro and Sinarmas. Our quality, environmental and safety management follows ISO 9001, ISO 14001 and ISO 45001, and in 2021 we received the Paramakarya award from the President of the Republic of Indonesia.
             </p>
         </div>
     </div>
@@ -102,18 +113,20 @@
     </div>
     <!-- our customer section -->
 
+    </main>
+
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
+                <img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="293" height="58">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
-                        <p><span>Telephone</span>: +62 (0717) 4262 666 / 777, 435914</p>
+                        <p><span>Telephone</span>: <span class="data">+62 (0717) 4262 666 / 777, 435914</span></p>
                         <p><span>Address (Head Office)</span>:<br>Jalan Pasir Ketapang No. 5,<br>Pangkalpinang - Kepulauan Bangka Belitung,<br>Indonesia</p>
                         <p><span>Address (Representative Office)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
                     </div>
                     <div class="desc"> <!-- right section of information -->
-                        <p><span>Fax</span>: +62 (021) 439359, 4261743</p>
+                        <p><span>Fax</span>: <span class="data">+62 (021) 439359, 4261743</span></p>
                         <p><span>Email</span>:<br>office@pahalashipyard.com<br>phl_dockyard@yahoo.co.id</p>
                     </div>
                 </div>
@@ -129,8 +142,6 @@
         </div>
         <p class="copyright">Copyright PT. Pahala Harapan Lestari © 2023</p>
     </footer>
-    <button id="languageButton" class="floating-button">EN</button>
 </body>
-<script src="/assets/js/site.js" defer></script>
 
 </html>

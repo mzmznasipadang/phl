@@ -6,29 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Our Repairs</title>
     <link rel="icon" href="/assets/webicon.png">
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/services.css">
+    <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- navigation bar -->
-    <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
-        <div class="text">
+    <header class="navbar">
+        <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
+        <nav class="text" id="primary-nav" aria-label="Main">
             <a href="home.html">Home</a>
             <a href="vessels.html">Vessels</a>
             <a href="">Repairs</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+            <div class="lang-switch" role="group" aria-label="Language">
+                <a href="/en/services.html" hreflang="en" lang="en" aria-label="English" aria-current="true">EN</a>
+                <a href="/id/services.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
+                <a href="/zh/services.html" hreflang="zh" lang="zh" aria-label="中文">中文</a>
+            </div>
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
@@ -37,7 +46,7 @@
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-tool">
             <div class="landing-text">
-                <p>A Tool for Every Need</p>
+                <p>Ship repair and docking since 1982</p>
                 <h1><span>Repairs</span></h1>
             </div>
             <a href="contact.html"><div class="contact-us">
@@ -50,14 +59,12 @@
     <!-- Hero Desc Section Starts-->
     <div class="hero-desc">
         <div class="desc-container"> <!-- text above line -->
-            <div class="desc-title">CONQUEROR OF THE SEAS</div>
-            <h2 class="desc-title2">Maritime restoration excellence.</h2>
+            <h2 class="desc-title2">Repair and docking in Pangkalpinang.</h2>
             </div>
             <div class="line"></div>
             <div class="desc-container"> <!-- text under line -->
-            <div class="desc-text">Navigating the maritime domain for more than forty years, PT. Pahala Harapan Lestari has established itself as a leading force in Indonesia's ship-repairing and docking industry. Now, our expertly repaired and docked vessels are active in ports and terminals throughout Indonesia.
-                <br><br>
-                From restoring robust tugs to their prime condition after rigorous towing tasks, to refitting specialized ships for diverse marine functions, PT. Pahala Harapan Lestari prioritizes top-notch repairing and docking services, ensuring each vessel meets the multifaceted demands of the maritime sector.
+            <div class="desc-text">Alongside new construction, PT. Pahala Harapan Lestari repairs and docks vessels at its yard: tugs back from heavy towing work, oil and deck barges, navigation and defense vessels, and passenger ships. Repaired vessels return to service in ports and terminals throughout Indonesia.<br><br>
+                Repairs follow the same quality, environmental and occupational health and safety management as our new builds, in line with ISO 9001, ISO 14001 and ISO 45001.
             </div>
         </div>
         <div class="line"></div>
@@ -68,56 +75,56 @@
     <div class="boat-type">
         <!-- description -->
         <div class="boat-intro">
-            <h2 class="boat-title">Discover our<br><span>vessel</span><br>families.</h2>
+            <h2 class="boat-title">Vessels<br>we repair.</h2>
             <div class="line"></div>
-            <p class="boat-desc">A perfect fit for your every need.<br>Take a look at our variety of vessels,<br>tailored to your specific requirements.</p>
+            <p class="boat-desc">From tugs after heavy towing work<br>to refits of specialized ships.</p>
         </div>
         <!-- description -->
-        <!-- boat option  -->
-        <div class="boat-text">
-            <button data-boat-name="tug">Tug Boats</button>
-            <button data-boat-name="oil">Oil Barge</button>
-            <button data-boat-name="deck">Deck Barge</button>
-            <button data-boat-name="nav&def">Navigation & Defense</button>
-            <button data-boat-name="passenger">Passenger Ship</button>
-        </div>
-        <!-- boat option  -->
+        <ul class="boat-text" aria-label="Vessel types we repair">
+            <li>Tug boats</li>
+            <li>Oil barges</li>
+            <li>Deck barges</li>
+            <li>Navigation &amp; defense vessels</li>
+            <li>Passenger ships</li>
+        </ul>
     </div>
     <!-- boat type navigation -->
 
-    <!-- boat images according to chosen option -->
+    <!-- tug photo gallery -->
     <div class="boat-gallery">
         <div class="image-desc">
-            <img id="boat1" src="" alt="" decoding="async" loading="lazy"> <!-- image1 based on chosen option -->
+            <img id="boat1" src="/assets/services/tug/1.jpg" alt="Tug boat OSEANIK 02 on the water" decoding="async" loading="lazy" width="1600" height="1066">
             <div class="showcase-title"> <!-- title -->
                 <div class="title">
-                    <p><span>Vessel</span></p>
-                    <p><span>Showcase</span></p>
+                    <p><span>Tug</span></p>
+                    <p><span>boats</span></p>
                     <div class="line"></div>
-                    <p>A gallery of our greatest fleets,<br>crafted with care and excellence.<br>Masterpiece in its class.</p>
+                    <p>We restore tugs to working<br>condition after heavy towing work.</p>
                 </div>
             </div>
         </div>
         <div class="boat-double-image">
-            <img id="boat2" src="" alt="" decoding="async" loading="lazy"> <!-- image2 based on chosen option -->
-            <img id="boat3" src="" alt="" decoding="async" loading="lazy"> <!-- image3 based on chosen option -->
+            <img id="boat2" src="/assets/services/tug/2.jpg" alt="Tug boat JKW PELITA 1 under way at sea" decoding="async" loading="lazy" width="1024" height="576">
+            <img id="boat3" src="/assets/services/tug/3.jpg" alt="Tug boat MBP 2209 under way past a sandbank" decoding="async" loading="lazy" width="1600" height="1066">
         </div>
-        <img id="boat4" src="" alt="" decoding="async" loading="lazy"> <!-- image4 based on chosen option -->
+        <img id="boat4" src="/assets/services/tug/4.jpg" alt="Tug boat BAHAR 88 on the water" decoding="async" loading="lazy" width="1600" height="1066">
     </div>
-    <!-- boat images according to chosen option -->   
+    <!-- tug photo gallery -->   
+
+    </main>
 
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
+                <img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="293" height="58">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
-                        <p><span>Telephone</span>: +62 (0717) 4262 666 / 777, 435914</p>
+                        <p><span>Telephone</span>: <span class="data">+62 (0717) 4262 666 / 777, 435914</span></p>
                         <p><span>Address (Head Office)</span>:<br>Jalan Pasir Ketapang No. 5,<br>Pangkalpinang - Kepulauan Bangka Belitung,<br>Indonesia</p>
                         <p><span>Address (Representative Office)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
                     </div>
                     <div class="desc"> <!-- right section of information -->
-                        <p><span>Fax</span>: +62 (021) 439359, 4261743</p>
+                        <p><span>Fax</span>: <span class="data">+62 (021) 439359, 4261743</span></p>
                         <p><span>Email</span>:<br>office@pahalashipyard.com<br>phl_dockyard@yahoo.co.id</p>
                     </div>
                 </div>
@@ -133,8 +140,6 @@
         </div>
         <p class="copyright">Copyright PT. Pahala Harapan Lestari © 2023</p>
     </footer>
-    <button id="languageButton" class="floating-button">EN</button>
 </body>
-<script src="/assets/js/site.js" defer></script>
 
 </html>

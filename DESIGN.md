@@ -11,40 +11,45 @@ colors:
   hull-hairline: "#00000033"
 typography:
   display:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "clamp(3rem, 6vw, 4rem)"
     fontWeight: 700
     lineHeight: 1.05
     letterSpacing: "-0.01em"
   headline:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "clamp(2.3rem, 5vw, 3.5rem)"
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: "-0.005em"
   title:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "clamp(2rem, 3.5vw, 2.7rem)"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "normal"
   body:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "1.2rem"
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
   label:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "1.15rem"
     fontWeight: 500
     lineHeight: 1.4
+    letterSpacing: "normal"
+  data:
+    fontFamily: "'IBM Plex Mono', ui-monospace, Menlo, monospace"
+    fontSize: "0.92rem"
+    fontWeight: 500
+    lineHeight: 1.5
     letterSpacing: "normal"
 rounded:
   sharp: "0"
   micro: "2px"
   sm: "6px"
-  pill: "100%"
 spacing:
   gutter: "8%"
   xs: "0.5rem"
@@ -65,11 +70,10 @@ components:
     rounded: "{rounded.sm}"
     height: "3rem"
     width: "10rem"
-  language-toggle:
-    backgroundColor: "{colors.harbor-depth}"
+  language-switch:
     textColor: "{colors.signal-white}"
-    rounded: "{rounded.pill}"
-    padding: "1.5rem"
+    typography: "{typography.label}"
+    padding: "0.25rem 0.4rem"
   input-field:
     backgroundColor: "{colors.signal-white}"
     textColor: "{colors.harbor-depth}"
@@ -88,7 +92,7 @@ components:
 
 **Creative North Star: "The Harbor at Anchor"**
 
-This is the visual language of a yard that has been building and repairing ships since 1982. It should feel steady, weighty, and dependable, the way a large vessel sits at anchor in deep water: settled, unhurried, in no danger of drifting. The whole system orbits one deep maritime navy, set against a near-white dock and carried by a single industrial-grotesque voice with real heft. Nothing here is trying to look new. It is trying to look like it will still be standing in twenty years.
+This is the visual language of a yard that has been building and repairing ships since 1982. It should feel steady, weighty, and dependable, the way a large vessel sits at anchor in deep water: settled, unhurried, in no danger of drifting. The whole system orbits one deep maritime navy, set against a near-white dock and carried by one neo-grotesk voice with real heft, plus a quiet mono for engineering figures. Nothing here is trying to look new. It is trying to look like it will still be standing in twenty years.
 
 Authority comes from evidence, not decoration. Full-bleed photographs of real hulls, real cranes, and real launches do the talking; the chrome stays out of the way. Sections announce themselves with a solid navy accent bar and a blue-gray title block, a quiet, repeatable rhythm rather than a parade of effects. The industrial grotesque gives every heading a stamped, structural weight that reads as engineering rather than fashion.
 
@@ -96,7 +100,7 @@ This system explicitly rejects four things, carried directly from the brand's an
 
 **Key Characteristics:**
 - One deep navy carries the brand; everything else supports it.
-- A single industrial grotesque (Archivo) across the whole site, working through weight contrast.
+- One neo-grotesk (Mona Sans) for every word, working through weight and width; IBM Plex Mono only for engineering figures.
 - Flat surfaces. Depth comes from imagery and tonal layering, never from shadow.
 - Full-bleed 100vh hero photography on every page, dimmed so type can sit on it.
 - Asymmetric image showcases, not uniform card grids.
@@ -110,10 +114,10 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 - **Deep Harbor Blue** (#204782): The brand. It carries the fixed navbar, the footer, the primary call-to-action, every accent bar, and the section title blocks' companion line. When navy meets the eye, it is almost always this value. Its consistency is what makes the brand read as one institution across five pages and three languages.
 
 ### Secondary
-- **Harbor Depth** (#0D2954): The deepest navy, reserved for the floating language toggle so it reads as a persistent, slightly heavier control sitting above the page. Also the natural ink color for text set on the pale blue-gray surfaces.
+- **Harbor Depth** (#0D2954): The deepest navy, the natural ink color for text set on the pale blue-gray surfaces.
 
 ### Tertiary
-- **Sea Mist** (#CCD4E0): The lighter blue-gray surface. Backs the home description band, showcase title panels, and the vessels tab block. A calm, recessive ground that signals "supporting context" without competing with navy.
+- **Sea Mist** (#CCD4E0): The lighter blue-gray surface. Backs the home description band, showcase title panels, and the Repairs vessel-type list. A calm, recessive ground that signals "supporting context" without competing with navy.
 - **Tidal Gray** (#B7C2D4): The deeper blue-gray surface, used for the About section title blocks. One step more present than Sea Mist, for headings that need slightly more weight.
 
 ### Neutral
@@ -129,24 +133,33 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 
 ## 3. Typography
 
-**Display Font:** Archivo (with Helvetica Neue, then Arial / system sans fallback)
-**Body Font:** Archivo (same family)
-**Label/Mono Font:** none; the system is single-family
+**Display Font:** Mona Sans (with Helvetica Neue, then Arial / system sans fallback)
+**Body Font:** Mona Sans (same family)
+**Data Font:** IBM Plex Mono, for engineering figures only (vessel specs, phone and fax numbers)
 
-**Character:** One industrial grotesque, top to bottom, working entirely through weight. Archivo's rational, mechanical letterforms give headings a stamped, structural authority, like an engineering nameplate or a stencilled hull marking, while its regular weight stays plain and legible for long Indonesian, English, and Chinese passages. The personality is the weight jump from 400 to 700, not a second typeface.
+**Character:** One neo-grotesk, top to bottom, in the quiet-authority tradition of Neue Haas Grotesk (the face of Damen, PHL's closest peer: a family-owned yard). Condensed and bold, Mona Sans gives headings a stamped, structural authority, like an engineering nameplate or a stencilled hull marking; at regular weight and normal width it stays plain and legible for long Indonesian, English, and Chinese passages. IBM Plex Mono is the data voice: it marks a figure as measured fact, the way a spec sheet or a builder's plate does.
 
 ### Hierarchy
 - **Display** (700, clamp(3rem, 6vw, 4rem), line-height 1.05): The hero statement on each page's full-bleed image ("We Serve You.", "About PT. PHL"). Always Signal White over dimmed photography.
-- **Headline** (700, clamp(2.3rem, 5vw, 3.5rem), line-height 1.1): Major section title blocks set on Tidal Gray ("Craftsman in heart.", "Steadfast principles."). The heaviest type that appears on a light surface.
+- **Headline** (700, clamp(2.3rem, 5vw, 3.5rem), line-height 1.1): Major section title blocks set on Tidal Gray ("Craftsmen at heart.", "Steadfast principles."). The heaviest type that appears on a light surface.
 - **Title** (600, clamp(2rem, 3.5vw, 2.7rem), line-height 1.2): Subsection headings and band titles ("Our Customers", "Forging the Future").
 - **Body** (400, 1.2rem, line-height 1.6): Running prose. Hold to 65 to 75 characters per line; the current full-width paragraphs run long and should be constrained.
-- **Label** (500, 1.15rem, line-height 1.4): Navigation links, CTA labels, and the small navy eyebrow that introduces vessel and repair descriptions (the eyebrow runs at 400 weight in Deep Harbor Blue).
+- **Label** (500, 1.15rem, line-height 1.4): Navigation links and CTA labels.
 
 ### Named Rules
 
-**The Weight-Not-Family Rule.** Hierarchy is built from Archivo's weight range (400 to 700), never from a second typeface. If a heading needs more presence, go heavier or larger, do not reach for a display face.
+**The Words-Versus-Figures Rule.** Every word is Mona Sans: headings, body, labels, navigation, vessel names. IBM Plex Mono is reserved for engineering figures (spec values, phone and fax numbers), never for headings, labels, prose or decoration. In a spec list the label (LOA, Beam) stays in Mona Sans and only the value is mono. Hierarchy comes from Mona Sans weight and width, never from a display face.
 
-**The Eyebrow Exception.** The site uses a small navy eyebrow above the vessels and repairs descriptions. This is a single, deliberate, named pattern, not section scaffolding. Do not multiply it into a tracked uppercase kicker above every section; that is the AI-grammar tell this brand avoids.
+**The Stencil Width Rule.** Mona Sans is loaded as a variable font (`wdth` 75–125, `wght` 200–900). Page-level headings run condensed (`font-stretch: 88%`, hero display `80%`, tracking -0.01em, leading ~1.0), like a stencilled hull marking; body, labels and navigation stay at normal width. Width is the second lever after weight, still one family. Sizes come from the fluid tokens `--fs-display`, `--fs-headline`, `--fs-title` in base.css. Chinese pages fall back to PingFang SC / Noto Sans SC / Microsoft YaHei by name (`:root:lang(zh)`), since Mona Sans has no CJK glyphs.
+
+**The Waterline Motion Rule.** Motion has one material idea: things surface from below a fixed line.
+- *Focal moment (hero, every page):* the photo settles as a Harbor Depth dusk layer lifts, then the headline rises through a fixed waterline (translate and bottom clip move by the same amount), then the subtitle settles in. Under 1s, nothing waits on it. On the home page a muted 15s aerial loop of the yard (H.264 at 30 fps, 1920 px at 3.9 MB, 1280 px at 1.7 MB for phones) fades in over its own first frame; it pauses offscreen, has a Pause/Play text button, and is never loaded under reduced motion or Save-Data.
+- *Supporting:* photographs rise into view through a clip that clears from the bottom and the navy accent bars draw out of their title blocks, both scroll-linked (`animation-timeline: view()`). Browsers without scroll-driven CSS get the same reveals from `motion.js` (GSAP ScrollTrigger), which `site.js` loads only for them. On desktop the Vessels showcase pins while TB Patra, AME II and Sentana 4 rise in turn through the photo's bottom edge, the vessel list beside it marking the current one; phones keep the static showcase. Pages cross-fade (`@view-transition`) with the navbar held still; the mobile menu slides on `transform` with a capped 40ms link stagger.
+- *Feedback:* underline draws, button press scale, form result fades in, input borders ease on focus.
+- *Budget:* the customer logo loop pauses offscreen; never animate `left`/`top`/size. GSAP (about 46 KB compressed, self-hosted in `assets/js/vendor/`) loads only where CSS cannot do the job and never under reduced motion.
+- *Reduced motion:* keyframe animations are opt-in under `no-preference`; under `reduce`, movement goes (navbar stays put, menu fades instead of sliding, no hover lifts) but colour, opacity and underline feedback stay. Do not add per-section entrance variety on top of this.
+
+**No Eyebrows.** No small uppercase label or kicker above a heading, anywhere. The heading carries its own weight. (The old "CONQUEROR OF THE SEAS" label was removed in the 2026 audit: it said nothing about either page it sat on.)
 
 ## 4. Elevation
 
@@ -164,11 +177,11 @@ For each component, the character line comes first, then shape, color, and state
 
 ### Buttons
 - **Character:** Engineered and precise. Solid navy blocks with crisp edges, sized deliberately, no ornament.
-- **Shape:** Gently squared (6px radius, `{rounded.sm}`) on the primary CTA; the language toggle is a full circle (`{rounded.pill}`).
+- **Shape:** Gently squared (6px radius, `{rounded.sm}`) on the primary CTA.
 - **Primary CTA (`.contact-us`):** Deep Harbor Blue with the Hull Shadow treatment, Signal White label at weight 500, fixed footprint 10rem by 3rem, centered label. This is the page-level "Contact us" button on the Vessels and Repairs pages.
 - **Send button (form submit):** Same navy Hull Shadow fill, 6px radius. Currently undersized (about 3rem wide, 0.56rem type); it should be brought up to the primary CTA's weight and given a real hover and focus state.
-- **Language toggle:** Persistent circular control, bottom-right, Harbor Depth fill, Signal White two-letter label (EN / ID / ZH), cycles language on click.
-- **Tab buttons (Vessels):** Transparent, Signal White label, underline on hover, Deep Harbor Blue when focused. Used to switch boat categories.
+- **Language switch:** Plain text links in the navbar after Contact, behind a 1px hairline: EN · ID · 中文. Each goes straight to the same page in that language (no script). The current language is full Signal White with a short underline (`aria-current="true"`); the others sit at 72% white. On phones the row closes the menu panel under a hairline.
+- **Vessel-type list (Repairs):** A plain list of the vessel types PHL repairs, in Harbor Depth on Sea Mist. Not tabs: add a photo gallery per type only when real photos of that type exist.
 - **Hover / Focus:** Links and tabs underline on hover. Buttons currently lack a consistent hover and a visible focus ring; add a `:focus-visible` outline (2px Signal White or Deep Harbor Blue depending on background) across all interactive controls.
 
 ### Cards / Containers
@@ -187,13 +200,13 @@ For each component, the character line comes first, then shape, color, and state
 - **Mobile:** Below 980px the links collapse behind a hamburger that morphs into an X; the menu slides in from the left as a navy panel.
 
 ### Customer Marquee (signature component)
-A continuous horizontal auto-scroll of client logos (Pertamina, Pelindo, Adaro, and others) on the home page, driven by `requestAnimationFrame`. The duplicated logo set makes the loop seamless. This is proof-over-adjectives in motion: the clients speak for the company. It must honor `prefers-reduced-motion` by pausing or replacing the scroll with a static, wrapped logo row.
+A continuous horizontal auto-scroll of client logos (Pertamina, Pelindo, Adaro, and others) on the home page, driven by a CSS keyframe loop that pauses on hover and focus. The duplicated logo set makes the loop seamless. This is proof-over-adjectives in motion: the clients speak for the company. It must honor `prefers-reduced-motion` by pausing or replacing the scroll with a static, wrapped logo row.
 
 ## 6. Do's and Don'ts
 
 ### Do:
 - **Do** carry the navy **Hull Shadow** treatment (`linear-gradient(0deg, rgba(0,0,0,0.20), rgba(0,0,0,0.20)), #204782`) on every navy surface. It is the brand signature.
-- **Do** build type hierarchy from Archivo weight alone (400 to 700). One family, top to bottom.
+- **Do** set every word in Mona Sans and only engineering figures in IBM Plex Mono.
 - **Do** keep surfaces flat and earn depth from full-bleed photography and the two blue-grays.
 - **Do** lead with real evidence: actual vessels, real client logos, the awards, the ISO certifications. Proof over adjectives.
 - **Do** hold body copy to 65 to 75 characters per line and set a visible `:focus-visible` ring on every interactive control (the WCAG 2.1 AA bar).
@@ -209,4 +222,5 @@ A continuous horizontal auto-scroll of client logos (Pertamina, Pelindo, Adaro, 
 - **Don't** add a `box-shadow` to lift an element; use the Hull Shadow or a blue-gray ground instead.
 - **Don't** set body or structural text below ~0.85rem. The current footer text (0.7rem) and copyright (0.5rem, dropping to 0.3rem on mobile) fail WCAG AA and must be raised.
 - **Don't** use `background-clip: text` gradient headings, glassmorphism, or a `border-left` color stripe as an accent. None belong in this system.
-- **Don't** multiply the navy eyebrow into a tracked uppercase kicker above every section.
+- **Don't** put an eyebrow or kicker label above a heading.
+- **Don't** write in stock marketing phrasing: forging, mastery, conqueror, masterpiece, excellence, tailored, realm, paramount, journey, seamless, world-class, "for every need". Replace each with a fact the site can stand behind: a year, a vessel name, a client, a certificate, a capacity.

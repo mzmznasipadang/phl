@@ -11,7 +11,7 @@
     margin-left: 8%;
     margin-top: 4%;
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: var(--fs-title);
 }
 
 .card {
@@ -79,6 +79,11 @@
     width: 100%;
 }
 
+/* 16px text stops iOS zooming on focus; 44px rows are comfortable to tap */
+.form input,
+.form textarea { font-size: 1rem; font-family: inherit; }
+.form input { height: auto; min-height: 2.75rem; }
+
 .message textarea {
     padding-left: 0.625rem;
     padding-top: 0.5rem;
@@ -87,7 +92,6 @@
     background-color: var(--signal-white);
     border: 0.0625rem solid var(--hull-hairline);
     resize: none;
-    text-align: justify;
 }
 
 .send-button button {
@@ -104,7 +108,7 @@
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s, filter 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, filter 0.2s, transform 0.12s;
 }
 
 .send-button button:hover {
@@ -113,20 +117,55 @@
     border-color: var(--deep-harbor-blue);
 }
 
+.send-button button:disabled {
+    cursor: progress;
+    filter: saturate(0.6) brightness(1.15);
+}
+
+.form input,
+.form textarea { transition: border-color 0.15s; }
+.form input:focus,
+.form textarea:focus { border-color: var(--deep-harbor-blue); }
+
+.send-button button:active:not(:disabled) { transform: scale(0.98); }
+
+/* Inline result of a submit; replaces the old alert() pop-ups */
+.form-status {
+    margin-top: 0.75rem;
+    max-width: 40ch;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--harbor-depth);
+}
+.form-status:empty { display: none; }
+/* Restarts on every result: the element leaves display:none in between */
+@media (prefers-reduced-motion: no-preference) {
+    .form-status { animation: status-in 250ms var(--ease-out-quart) both; }
+}
+@keyframes status-in {
+    from { opacity: 0; transform: translateY(-0.25rem); }
+    to   { opacity: 1; transform: none; }
+}
+.form-status[data-state="error"] { font-weight: 600; }
+
 @media only screen and (max-width: 780px) {
     .card {
         flex-direction: column;
+        align-items: stretch;
         gap: 1rem;
-        padding: 2rem;
+        padding: 1rem;
     }
-    .map { height: 100%; }
-    .heading { font-size: 2rem; }
+    /* The card is content-height here, so give the map its own height */
+    .map { height: auto; }
+    .map iframe { min-height: 20rem; }
+    .form { padding: 0.5rem; }
+    .form form { width: 100%; }
+    .message textarea { height: 12rem; } /* 20 rows is a screen and a half on a phone */
     .send-button button { width: 100%; }
 }
 
 @media only screen and (max-width: 500px) {
-    .name-email input {
-        flex-direction: column;
-        width: 100%;
-    }
+    /* Stack Name and Email: the row is the flex container, not the inputs */
+    .name-email { flex-direction: column; align-items: stretch; }
+    .name-email input { width: 100%; }
 }

@@ -2,11 +2,11 @@
    Pahala Harapan Lestari — base.css
    Shared foundation linked by every page: design tokens, reset,
    and the components common to all pages (navbar, hero scaffold,
-   footer, language toggle). Page-specific styles live in
+   footer, language switch). Page-specific styles live in
    /assets/css/<page>.css. See DESIGN.md for the token system.
    ============================================================ */
 
-/* Archivo (industrial grotesque) is loaded via <link rel="preconnect"> +
+/* Mona Sans (neo-grotesk) is loaded via <link rel="preconnect"> +
    <link rel="stylesheet"> in each page <head> so it fetches in parallel,
    not via a render-blocking CSS @import waterfall. */
 
@@ -14,6 +14,7 @@
     /* Brand palette */
     --deep-harbor-blue: #204782;
     --harbor-depth: #0D2954;
+    --harbor-depth-rgb: 13 41 84; /* for translucent Harbor Depth: rgb(var(--harbor-depth-rgb) / .5) */
     --sea-mist: #CCD4E0;
     --tidal-gray: #B7C2D4;
     --dock-white: #F7F7F7;
@@ -26,15 +27,32 @@
     /* Radius scale */
     --r-micro: 2px;
     --r-sm: 6px;
-    --r-pill: 100%;
 
     /* Motion: natural deceleration, no bounce */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+
+    /* Type: Mona Sans (variable wdth 75-125). Headings run
+       condensed, like a stencilled hull marking; body stays at normal width. */
+    --font-sans: 'Mona Sans', 'Helvetica Neue', Arial, sans-serif;
+    /* Data voice: only for engineering figures (specs, phone/fax numbers) */
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --stretch-display: 80%;
+    --stretch-headline: 88%;
+    --fs-display: clamp(3.25rem, 1.6rem + 5.2vw, 6rem);
+    --fs-headline: clamp(2.3rem, 1.5rem + 2.8vw, 3.75rem);
+    --fs-title: clamp(2rem, 1.5rem + 1.6vw, 2.9rem);
+}
+
+/* Mona Sans has no CJK glyphs: name the platform Chinese faces explicitly so
+   zh pages get a deliberate fallback instead of whatever the OS picks. */
+:root:lang(zh) {
+    --font-sans: 'Mona Sans', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
 }
 
 * {
-    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-sans);
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
@@ -44,7 +62,49 @@
 
 a { color: var(--signal-white); }
 
-html { background-color: var(--dock-white); }
+html {
+    background-color: var(--dock-white);
+    color: var(--harbor-depth);
+    scrollbar-color: var(--deep-harbor-blue) var(--dock-white);
+    accent-color: var(--deep-harbor-blue);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+p { text-wrap: pretty; line-height: 1.55; }
+
+::selection {
+    background: var(--deep-harbor-blue);
+    color: var(--signal-white);
+}
+
+input, textarea { caret-color: var(--deep-harbor-blue); }
+
+/* Condensed display voice for every page-level heading */
+.landing-text span,
+.title-container h2,
+.desc-container h2 span,
+.customer-container h2,
+.boat-title,
+.title p span,
+.heading,
+.desc-title2,
+.steadfast-text span {
+    font-stretch: var(--stretch-headline);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+}
+/* Chinese falls back to a CJK face that has no width axis; give it room */
+:lang(zh) :is(.landing-text span, .title-container h2, .desc-container h2 span, .customer-container h2,
+    .boat-title, .title p span, .heading, .desc-title2, .steadfast-text span) {
+    letter-spacing: 0;
+    line-height: 1.25;
+}
 
 /* With intrinsic width/height attributes on <img> (for CLS), let height be
    derived from the aspect ratio. Images with an explicit CSS height
@@ -86,10 +146,23 @@ textarea:focus-visible,
 .navbar a:focus-visible,
 .navbar .hamburger:focus-visible,
 .directory a:focus-visible,
-footer a:focus-visible,
-.floating-button:focus-visible {
+footer a:focus-visible {
     outline-color: var(--signal-white);
 }
+
+/* Keyboard users can jump past the navigation; visible only when focused */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 30;
+    padding: 0.75rem 1rem;
+    background: var(--hull-shadow);
+    color: var(--signal-white);
+    font-weight: 600;
+    border-radius: var(--r-sm);
+}
+.skip-link:focus { top: 1rem; outline: 3px solid var(--signal-white); outline-offset: 2px; }
 
 /* ---------- Navbar ---------- */
 .navbar {
@@ -102,14 +175,23 @@ footer a:focus-visible,
     align-items: center;
     justify-content: space-between;
     position: fixed;
-    z-index: 2;
-    transition: top 0.3s;
+    z-index: 20; /* above the hero layers (scrim 0, overlay 1, text 2) */
+    transform: translateY(0);
+    transition: transform 0.45s var(--ease-out-expo);
+    view-transition-name: navbar; /* stays put while pages cross-fade */
 }
 
+.navbar.is-hidden {
+    transform: translateY(-100%);
+    transition-duration: 0.3s; /* leaves faster than it returns */
+}
+.navbar.is-hidden:focus-within { transform: none; } /* never hide a focused link */
+
+/* Vector lockup (emblem + wordmark): sized by height, width follows */
 .navbar img {
-    width: 21.25rem;
-    height: 2.5rem;
-    object-fit: contain;
+    display: block;
+    width: auto;
+    height: 3rem;
 }
 
 .text {
@@ -121,64 +203,123 @@ footer a:focus-visible,
     gap: 3.375vw;
 }
 
-.text a:hover { text-decoration: underline; }
-.text a:active { color: var(--signal-white); }
-.text a:visited { color: var(--signal-white); }
+/* Underline that draws in from the left; the current page keeps it drawn */
+.text a,
+.directory a {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+    padding-bottom: 0.15em;
+    transition: background-size 0.35s var(--ease-out-quart);
+}
+.text a:hover,
+.text a[aria-current="page"],
+.directory a:hover,
+.directory a[aria-current="page"] { background-size: 100% 2px; }
 
+/* Three 2px bars 6px apart: opening moves the outer two 8px (gap + bar)
+   onto the centre line, so they cross exactly into an X */
 .hamburger {
     display: none;
+    padding: 0;
+    border: 0;
+    background: none;
     width: 2.75rem;
     height: 2.75rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 6px;
 }
 
 .bar {
     display: block;
-    border-radius: 0.1rem;
-    width: 1.2rem;
-    height: 2.7px;
-    margin: 5px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 1px;
     background-color: var(--signal-white);
+    transition: transform 0.3s var(--ease-out-quart), opacity 0.2s;
 }
 
-/* ---------- Floating language toggle ---------- */
-.floating-button {
-    position: fixed;
-    bottom: max(0.5rem, env(safe-area-inset-bottom));
-    right: max(0.5rem, env(safe-area-inset-right));
-    background-color: var(--harbor-depth);
-    color: var(--signal-white);
-    font-size: 1rem;
-    padding: 1.5rem;
-    z-index: 5;
-    border-radius: var(--r-pill);
-    border-style: none;
-    cursor: pointer;
-    transition: filter 0.2s;
+/* ---------- Language switch: EN · ID · 中文, direct links ---------- */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.35);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
 }
-
-.floating-button:hover { filter: brightness(1.2); }
+.text .lang-switch a {
+    padding: 0.25rem 0.4rem;
+    color: rgba(255, 255, 255, 0.72); /* 7.8:1 on hull-navy */
+    background-position: 50% 100%;
+}
+.text .lang-switch a:hover,
+.text .lang-switch a[aria-current="true"] { color: var(--signal-white); background-size: 1.25rem 2px; }
 
 /* ---------- Hero scaffold (positioning lives in page CSS) ---------- */
 .landing-page { position: relative; overflow: hidden; }
 
-/* One signature entrance: the hero photo settles, the headline rises.
-   Slow and confident, never bouncy. Skipped entirely under reduced motion. */
+/* The focal moment, "surfacing": the photo settles as the dusk over it lifts,
+   then the headline rises up through a fixed waterline (its bottom edge),
+   the same clip-from-below idea as the scrolled photo reveals. Under 1s,
+   nothing waits on it, and it is skipped under reduced motion. */
+.landing-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1; /* above the hero video too, if it starts during the intro */
+    background: var(--harbor-depth);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Legibility scrim: Harbor Depth at 50% through the band where hero text
+   sits (35–75% down), so white type holds 4.5:1 even over bright sky
+   (75% brightness + 50% navy keeps pure white below luminance 0.18). */
+.landing-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+        rgb(var(--harbor-depth-rgb) / 0.15) 0%,
+        rgb(var(--harbor-depth-rgb) / 0.5) 35%,
+        rgb(var(--harbor-depth-rgb) / 0.5) 75%,
+        rgb(var(--harbor-depth-rgb) / 0.2) 100%);
+}
+/* Hero text and CTA sit above the scrim */
+.landing-text,
+.landing-tool { z-index: 2; }
+
 @media (prefers-reduced-motion: no-preference) {
-    .landing-page img { animation: hero-settle 900ms var(--ease-out-expo) both; }
-    .landing-text { animation: hero-rise 800ms var(--ease-out-expo) 120ms both; }
+    .landing-page img { animation: hero-settle 1100ms var(--ease-out-expo) both; }
+    .landing-page::before { animation: dusk-lift 1100ms var(--ease-out-quart) both; }
+    /* Cubic, not expo: expo finishes the rise in ~150ms and reads as a snap */
+    .landing-text span { animation: surface 900ms var(--ease-out-cubic) 150ms both; }
+    .landing-text p,
+    .landing-tool > a { animation: settle-in 500ms var(--ease-out-quart) 480ms both; }
 }
 @keyframes hero-settle {
     from { transform: scale(1.06); }
     to   { transform: scale(1); }
 }
-@keyframes hero-rise {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+@keyframes dusk-lift {
+    from { opacity: 0.55; }
+    to   { opacity: 0; }
+}
+/* The text travels 125% while the bottom clip opens by the same 125%
+   (100% to -25%), so the visible edge stays fixed just below the
+   descenders: the headline emerges above a line instead of sliding in. */
+@keyframes surface {
+    from { transform: translateY(125%); clip-path: inset(-25% -10% 100% -10%); }
+    to   { transform: none; clip-path: inset(-25% -10% -25% -10%); }
+}
+@keyframes settle-in {
+    from { opacity: 0; transform: translateY(0.5rem); }
+    to   { opacity: 1; transform: none; }
 }
 
 .landing-page img {
@@ -188,6 +329,41 @@ footer a:focus-visible,
     object-fit: cover;
     filter: brightness(75%);
 }
+
+/* Home hero video: sits on its first-frame photo and fades in once it
+   plays, so the swap does not show (site.js decides whether it loads) */
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(75%);
+    opacity: 0;
+    transition: opacity 0.6s var(--ease-out-quart);
+}
+.hero-video.is-playing { opacity: 1; }
+
+/* Pause / Play for the hero video (WCAG 2.2.2: motion over 5s) */
+.hero-pause {
+    position: absolute;
+    right: 8%;
+    bottom: 2rem;
+    z-index: 2;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    background: rgb(var(--harbor-depth-rgb) / 0.55);
+    color: var(--signal-white);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.12s;
+}
+.hero-pause:hover { background: rgb(var(--harbor-depth-rgb) / 0.8); }
+.hero-pause:active { transform: scale(0.97); }
+.hero-pause:focus-visible { outline-color: var(--signal-white); }
 
 .landing-overlay {
     position: absolute;
@@ -205,138 +381,299 @@ footer a:focus-visible,
 .landing-text {
     color: var(--signal-white);
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.35rem);
+    letter-spacing: 0.01em;
 }
 
 .landing-text span {
+    display: inline-block;
     font-weight: 700;
-    font-size: 4rem;
+    font-size: var(--fs-display);
+    font-stretch: var(--stretch-display);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    margin-block: 0.1em;
 }
 
 /* ---------- Footer ---------- */
 footer {
     background: var(--hull-shadow);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-left: 8%;
-    padding-right: 8%;
-    padding-top: 4%;
+    color: var(--signal-white);
+    padding: 4rem 8% 0;
 }
 
 footer img {
-    width: 27.5rem;
-    height: 3.438rem;
-    object-fit: contain;
+    display: block;
+    width: auto;
+    height: 3.5rem;
 }
 
 .before-copyright {
     display: flex;
     justify-content: space-between;
+    gap: 3rem 4rem;
 }
 
-.desc {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vw;
-    background: var(--hull-shadow);
-}
+.logo-desc { flex: 1 1 auto; min-width: 0; }
+
+/* The two .desc wrappers dissolve so their five paragraphs (telephone,
+   head office, representative office, fax, email) become grid cells:
+   the two addresses side by side, the contact lines stacked beside them. */
+.desc { display: contents; }
+.desc:first-child > p:nth-child(1) { grid-area: tel; }
+.desc:first-child > p:nth-child(2) { grid-area: head; }
+.desc:first-child > p:nth-child(3) { grid-area: rep; }
+.desc:last-child > p:nth-child(1) { grid-area: fax; }
+.desc:last-child > p:nth-child(2) { grid-area: email; }
 
 .footer-desc {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: first baseline;
-    justify-content: space-between;
+    display: grid;
+    /* Addresses may wrap; the contact column keeps each number on one line */
+    grid-template-columns: minmax(0, auto) minmax(0, auto) max-content;
+    /* The last 1fr row soaks up the addresses' extra height, so the three
+       contact lines stay together instead of spreading apart */
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+        "head rep tel"
+        "head rep fax"
+        "head rep email"
+        "head rep .";
+    justify-content: start;
+    align-items: start;
+    gap: 0.75rem 2.5rem;
+    margin-top: 2rem;
     color: var(--signal-white);
     font-weight: 400;
-    font-size: 0.85rem;
-    gap: 1rem 1.5rem;
-    width: 38vw;
-    margin-top: 0.7rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    font-variant-numeric: tabular-nums;
 }
 
 .footer-desc span { font-weight: 700; }
+.footer-desc .data {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.92em; /* mono runs wide: keeps the phone line on one line */
+}
 
 .directory {
     color: var(--signal-white);
-    font-weight: 300;
-    font-size: 0.9rem;
-    margin-top: 2%;
-    margin-right: 10%;
+    font-weight: 400;
+    font-size: 1rem;
     display: flex;
+    flex: none;
     flex-direction: column;
-    gap: 1.7vh;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 5.5rem; /* logo 3.5rem + 2rem: level with the first contact row */
 }
 
-.directory a:hover { text-decoration: underline; }
-.directory a:active { color: var(--signal-white); }
-.directory a:visited { color: var(--signal-white); }
-.directory span { font-weight: 900; font-size: 1.1rem; }
+.directory span {
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.72);
+}
 
 .copyright {
+    margin-top: 3rem;
+    padding: 1.25rem 0 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
     text-align: center;
     color: var(--signal-white);
     font-weight: 500;
-    font-size: 0.8rem;
-    margin-bottom: 2%;
-    margin-top: 4%;
-    background: var(--hull-shadow);
+    font-size: 0.875rem;
 }
 
 /* ---------- Responsive (shared) ---------- */
+/* Below 1280px three contact columns get too narrow: two columns instead */
+@media only screen and (max-width: 1279px) {
+    .footer-desc {
+        grid-template-columns: repeat(2, minmax(0, max-content));
+        grid-template-rows: none;
+        grid-template-areas:
+            "head rep"
+            "tel email"
+            "fax email";
+        gap: 1.25rem 3rem;
+    }
+}
+
 @media only screen and (max-width: 980px) {
+    .navbar { height: 4.5rem; }
+
     .text {
         position: fixed;
-        left: -100%;
-        top: 5rem;
+        left: 0;
+        top: 100%; /* directly under the bar (the navbar is the containing block) */
         flex-direction: column;
+        gap: 0;
         width: 100%;
+        padding-top: 0.5rem;
         text-align: center;
-        transition: 0.3s;
+        /* Slide with transform, not `left`, so no layout runs per frame;
+           visibility keeps closed-menu links out of the tab order */
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition: transform 0.3s var(--ease-out-quart), visibility 0s 0.3s;
         background: var(--hull-shadow);
         padding-bottom: 1rem;
     }
 
-    .text.active { left: 0; }
+    .text.active {
+        transform: none;
+        visibility: visible;
+        transition: transform 0.45s var(--ease-out-expo), visibility 0s;
+    }
 
-    /* Full-width tappable rows in the slide-in menu */
-    .text a { display: block; padding: 0.85rem 1rem; }
+    /* Full-width tappable rows in the slide-in menu; the underline becomes a
+       short centred mark so it does not read as a row divider */
+    .text a {
+        display: block;
+        padding: 0.6rem 1rem;
+        background-position: 50% calc(100% - 0.4rem);
+    }
+    .text a:hover,
+    .text a[aria-current="page"] { background-size: 2.5rem 2px; }
+
+    /* Language row closes the panel, under a hairline */
+    .lang-switch {
+        justify-content: center;
+        margin: 0.5rem 8% 0;
+        padding: 0.75rem 0 0;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .text .lang-switch a { display: inline-block; padding: 0.4rem 0.7rem; background-position: 50% calc(100% - 0.15rem); }
+
+    /* The links arrive as a list: a short, capped stagger (160ms total) */
+    @media (prefers-reduced-motion: no-preference) {
+        .text.active a { animation: menu-link 380ms var(--ease-out-expo) both; }
+        .text.active a:nth-child(2) { animation-delay: 40ms; }
+        .text.active a:nth-child(3) { animation-delay: 80ms; }
+        .text.active a:nth-child(4) { animation-delay: 120ms; }
+        .text.active a:nth-child(5) { animation-delay: 160ms; }
+    }
+
+    /* Reduced motion: the menu fades in place instead of sliding */
+    @media (prefers-reduced-motion: reduce) {
+        .text { transform: none; opacity: 0; transition: opacity 0.2s, visibility 0s 0.2s; }
+        .text.active { opacity: 1; transition: opacity 0.2s, visibility 0s; }
+    }
 
     .hamburger { display: flex; cursor: pointer; }
 
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(7.8px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-7.8px) rotate(-45deg); }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Footer: contacts in two columns, Explore links as a row beneath */
+    .before-copyright { flex-direction: column; gap: 2.5rem; }
+    .footer-desc {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "head rep"
+            "tel email"
+            "fax email";
+        gap: 1.25rem 2rem;
+    }
+    .directory {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.75rem;
+        margin-top: 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .directory p { flex-basis: 100%; }
 }
 
-@media only screen and (max-width: 780px) {
-    .directory { display: none; }
-    .landing-text { font-size: 1rem; }
-    .landing-text span { font-size: 3rem; }
-
-    /* Footer contact details: full width, stacked, legible */
+@media only screen and (max-width: 560px) {
     .footer-desc {
-        width: 100%;
-        flex-direction: column;
-        gap: 1.25rem;
-        font-size: 0.95rem;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "head" "rep" "tel" "fax" "email";
     }
 }
 
 @media only screen and (max-width: 500px) {
-    .navbar img { width: 55vw; height: 7vh; }
-    footer img { width: 70vw; height: 9vh; }
+    .navbar img { height: 2.5rem; }
+    footer img { height: 3rem; }
 }
 
-/* Honor the OS-level reduced-motion preference everywhere. */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+/* ---------- Motion ----------
+   One signature: evidence surfaces from the waterline. Photographs rise
+   into view through a clip from below as they scroll in, and the navy
+   accent bars draw across. Pages cross-fade with the navbar held still.
+   Everything is scroll-linked CSS and visible by default when the visitor
+   prefers reduced motion. Browsers without scroll-driven animations get
+   the same reveals from motion.js (GSAP), loaded by site.js. */
+/* Bars grow out of their title block (CSS and GSAP alike) */
+.craftsman-title .line,
+.outstanding-title .line { transform-origin: right center; }
+.steadfast-title .line { transform-origin: left center; }
+.border { transform-origin: center top; }
+
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: 200ms var(--ease-out-quart) both vt-fade-out; }
+    ::view-transition-new(root) { animation: 380ms var(--ease-out-expo) both vt-fade-in; }
+
+    @supports (animation-timeline: view()) {
+        .option,
+        .tiles-border img,
+        .boat-gallery img,
+        .showcase-container img,
+        .craftsman-content img,
+        .vision img,
+        .mission img,
+        .policy-gallery img,
+        .outstanding-image,
+        .card {
+            animation: waterline var(--ease-out-quart) both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 45%;
+        }
+
+        .line,
+        .border {
+            animation: bar-draw var(--ease-out-quart) both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 35%;
+        }
+        .border { animation-name: bar-draw-down; }
     }
+
+    @supports (animation-timeline: scroll()) {
+        .landing-overlay {
+            animation: overlay-fade linear both;
+            animation-timeline: scroll(root);
+            animation-range: 0 800px;
+        }
+    }
+}
+
+@keyframes vt-fade-out { to { opacity: 0; } }
+@keyframes vt-fade-in { from { opacity: 0; } }
+@keyframes waterline {
+    /* Rises out of the water: the top is seen first, the bottom clears last */
+    from { clip-path: inset(0 0 22% 0); transform: translateY(2.5rem); opacity: 0.6; }
+    to   { clip-path: inset(0); transform: none; opacity: 1; }
+}
+@keyframes bar-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes bar-draw-down { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes overlay-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes menu-link {
+    from { opacity: 0; transform: translateX(-1.5rem); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* Reduced motion: every keyframe animation above is already opt-in
+   (no-preference). Here the remaining movement goes; colour, opacity and
+   underline feedback stay, so actions are still visibly acknowledged. */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .navbar.is-hidden { transform: none; } /* bar stays put instead of sliding away */
+    .option:hover img,
+    .option:focus-within img { transform: none; }
 }

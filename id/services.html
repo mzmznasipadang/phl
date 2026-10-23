@@ -6,29 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Perbaikan</title>
     <link rel="icon" href="/assets/webicon.png">
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/services.css">
+    <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Langsung ke konten</a>
     <!-- navigation bar -->
-    <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
-        <div class="text">
+    <header class="navbar">
+        <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
+        <nav class="text" id="primary-nav" aria-label="Utama">
             <a href="home.html">Beranda</a>
             <a href="vessels.html">Kapal</a>
             <a href="">Perbaikan</a>
             <a href="about.html">Tentang Kami</a>
             <a href="contact.html">Kontak</a>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+            <div class="lang-switch" role="group" aria-label="Bahasa">
+                <a href="/en/services.html" hreflang="en" lang="en" aria-label="English">EN</a>
+                <a href="/id/services.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia" aria-current="true">ID</a>
+                <a href="/zh/services.html" hreflang="zh" lang="zh" aria-label="中文">中文</a>
+            </div>
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
@@ -37,7 +46,7 @@
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-tool">
             <div class="landing-text">
-                <p>Peralatan untuk Seluruh Kebutuhan</p>
+                <p>Perbaikan dan pengedokan kapal sejak 1982</p>
                 <h1><span>Perbaikan</span></h1>
             </div>
             <a href="contact.html"><div class="contact-us">
@@ -50,14 +59,12 @@
     <!-- Hero Desc Section Starts-->
     <div class="hero-desc">
         <div class="desc-container"> <!-- text above line -->
-            <div class="desc-title">PENGUASA LAUTAN</div>
-            <h2 class="desc-title2">Keunggulan restorasi maritim.</h2> <!-- Artinya Beneran ini? b-->
+            <h2 class="desc-title2">Perbaikan dan pengedokan di Pangkalpinang.</h2>
             </div>
             <div class="line"></div>
             <div class="desc-container"> <!-- text under line -->
-            <div class="desc-text">Menavigasi ranah maritim selama lebih dari empat puluh tahun, PT. Pahala Harapan Lestari telah menegaskan dirinya sebagai kekuatan terdepan di industri perbaikan dan dok kapal Indonesia. Kini, kapal-kapal kami yang telah diperbaiki dan didok dengan ahli aktif di pelabuhan dan terminal di seluruh Indonesia
-                <br><br>
-                Dari memulihkan kapal tunda yang kuat ke kondisi prima setelah tugas, hingga memodifikasi kapal khusus untuk berbagai fungsi maritim, PT. Pahala Harapan Lestari memberikan prioritas pada layanan perbaikan dan pendokan berkualitas tinggi, memastikan setiap kapal memenuhi tuntutan beragam dari sektor maritim.
+            <div class="desc-text">Selain membangun kapal baru, PT. Pahala Harapan Lestari melayani perbaikan dan pengedokan kapal di galangannya: kapal tunda setelah pekerjaan penarikan berat, tongkang minyak dan tongkang geladak, kapal navigasi dan pertahanan, serta kapal penumpang. Kapal yang telah diperbaiki kembali beroperasi di pelabuhan dan terminal di seluruh Indonesia.<br><br>
+                Pekerjaan perbaikan mengikuti sistem manajemen mutu, lingkungan, serta keselamatan dan kesehatan kerja yang sama dengan pembangunan kapal baru, sesuai ISO 9001, ISO 14001, dan ISO 45001.
             </div>
         </div>
         <div class="line"></div>
@@ -68,56 +75,56 @@
     <div class="boat-type">
         <!-- description -->
         <div class="boat-intro">
-            <h2 class="boat-title">Eksplorasi<br><span>kapal</span><br>customer kami.</h2>
+            <h2 class="boat-title">Kapal yang<br>kami perbaiki.</h2>
             <div class="line"></div>
-            <p class="boat-desc">Solusi sempurna untuk setiap kebutuhan Anda.<br>Lihatlah berbagai jenis kapal kami,<br>yang disesuaikan dengan kebutuhan spesifik Anda.</p>
+            <p class="boat-desc">Dari kapal tunda setelah penarikan berat<br>hingga modifikasi kapal khusus.</p>
         </div>
         <!-- description -->
-        <!-- boat option  -->
-        <div class="boat-text">
-            <button data-boat-name="tug">Kapal Tunda</button>
-            <button data-boat-name="oil">Tongkang Minyak</button>
-            <button data-boat-name="deck">Tongkang</button>
-            <button data-boat-name="nav&def">Navigasi & Pertahanan</button>
-            <button data-boat-name="passenger">Kapal Penumpang</button>
-        </div>
-        <!-- boat option  -->
+        <ul class="boat-text" aria-label="Jenis kapal yang kami perbaiki">
+            <li>Kapal tunda</li>
+            <li>Tongkang minyak</li>
+            <li>Tongkang geladak</li>
+            <li>Kapal navigasi &amp; pertahanan</li>
+            <li>Kapal penumpang</li>
+        </ul>
     </div>
     <!-- boat type navigation -->
 
-    <!-- boat images according to chosen option -->
+    <!-- tug photo gallery -->
     <div class="boat-gallery">
         <div class="image-desc">
-            <img id="boat1" src="" alt="" decoding="async" loading="lazy"> <!-- image1 based on chosen option -->
+            <img id="boat1" src="/assets/services/tug/1.jpg" alt="Kapal tunda OSEANIK 02 di perairan" decoding="async" loading="lazy" width="1600" height="1066">
             <div class="showcase-title"> <!-- title -->
                 <div class="title">
-                    <p><span>Galeri</span></p>
                     <p><span>Kapal</span></p>
+                    <p><span>Tunda</span></p>
                     <div class="line"></div>
-                    <p>Galeri kapal pelanggan kami,<br>direparasi secara presisi.<br>Mahakarya dalam kelasnya.</p>
+                    <p>Kami memulihkan kapal tunda<br>ke kondisi kerja setelah penarikan berat.</p>
                 </div>
             </div>
         </div>
         <div class="boat-double-image">
-            <img id="boat2" src="" alt="" decoding="async" loading="lazy"> <!-- image2 based on chosen option -->
-            <img id="boat3" src="" alt="" decoding="async" loading="lazy"> <!-- image3 based on chosen option -->
+            <img id="boat2" src="/assets/services/tug/2.jpg" alt="Kapal tunda JKW PELITA 1 berlayar di laut" decoding="async" loading="lazy" width="1024" height="576">
+            <img id="boat3" src="/assets/services/tug/3.jpg" alt="Kapal tunda MBP 2209 berlayar melewati gosong pasir" decoding="async" loading="lazy" width="1600" height="1066">
         </div>
-        <img id="boat4" src="" alt="" decoding="async" loading="lazy"> <!-- image4 based on chosen option -->
+        <img id="boat4" src="/assets/services/tug/4.jpg" alt="Kapal tunda BAHAR 88 di perairan" decoding="async" loading="lazy" width="1600" height="1066">
     </div>
-    <!-- boat images according to chosen option -->   
+    <!-- tug photo gallery -->   
+
+    </main>
 
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
+                <img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="293" height="58">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
-                        <p><span>Telepon</span>: +62 (0717) 4262 666 / 777, 435914</p>
+                        <p><span>Telepon</span>: <span class="data">+62 (0717) 4262 666 / 777, 435914</span></p>
                         <p><span>Alamat (Kantor Utama)</span>:<br>Jalan Pasir Ketapang No. 5,<br>Pangkalpinang - Kepulauan Bangka Belitung,<br>Indonesia</p>
-                        <p><span>Alamat (Kantor Cabang)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
+                        <p><span>Alamat (Kantor Perwakilan)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
                     </div>
                     <div class="desc"> <!-- right section of information -->
-                        <p><span>Fax</span>: +62 (021) 439359, 4261743</p>
+                        <p><span>Fax</span>: <span class="data">+62 (021) 439359, 4261743</span></p>
                         <p><span>Email</span>:<br>office@pahalashipyard.com<br>phl_dockyard@yahoo.co.id</p>
                     </div>
                 </div>
@@ -133,8 +140,6 @@
         </div>
         <p class="copyright">Copyright PT. Pahala Harapan Lestari © 2023</p>
     </footer>
-    <button id="languageButton" class="floating-button">ID</button>
 </body>
-<script src="/assets/js/site.js" defer></script>
 
 </html>

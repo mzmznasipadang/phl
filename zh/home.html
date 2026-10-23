@@ -3,37 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta property="og:image" content="/assets/og.png" />
+    <meta property="og:image" content="https://pahalashipyard.com/assets/og.jpg" />
     <title>Pahala船厂</title>
     <link rel="icon" href="/assets/webicon.png">
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/home.css">
+    <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
     <!-- navigation bar -->
-    <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
-        <div class="text">
+    <header class="navbar">
+        <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
+        <nav class="text" id="primary-nav" aria-label="主导航">
             <a href="#">首页</a>
-            <a href="vessels.html">舰只</a>
+            <a href="vessels.html">船舶</a>
             <a href="services.html">维修</a>
             <a href="about.html">关于Pahala船厂</a>
             <a href="contact.html">联系</a>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+            <div class="lang-switch" role="group" aria-label="语言">
+                <a href="/en/home.html" hreflang="en" lang="en" aria-label="English">EN</a>
+                <a href="/id/home.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
+                <a href="/zh/home.html" hreflang="zh" lang="zh" aria-label="中文" aria-current="true">中文</a>
+            </div>
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="菜单">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
     <div class="landing-page">
-        <img src="/assets/home/homebg.jpeg" alt="PT. Pahala Harapan Lestari 的拖船在水面上航行" decoding="async" fetchpriority="high" width="4032" height="3024">
+        <img src="/assets/home/hero-poster.jpg" alt="航拍：PT. Pahala Harapan Lestari 船厂，拖船停靠在岸边" decoding="async" fetchpriority="high" width="1920" height="1080">
+        <!-- The photo is the video's first frame; site.js loads the video unless reduced motion or Save-Data -->
+        <video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" data-src="/assets/home/hero-1080.mp4" data-src-small="/assets/home/hero-720.mp4"></video>
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-text">
             <h1><span>我们为您服务</span></h1>
@@ -45,16 +56,16 @@
     <!-- Option Container Start -->
     <div class="option-container">
         <div class="option"> <!-- service box -->
-            <a href="services.html"><img src="/assets/home/servicesoption.png" alt="维修" decoding="async" loading="lazy" width="525" height="864"></a>
+            <a href="services.html"><img src="/assets/home/servicesoption.jpg" alt="维修" decoding="async" loading="lazy" width="525" height="864"></a>
             <a href="services.html"><p>我们的维修</p></a>
             <!-- sebuah workaround hehehehe :] displaynya hancur kalau a nya wrap ke div -->
         </div>
         <div class="option"> <!-- vessels box -->
-            <a href="vessels.html"><img src="/assets/home/vesselsoption.JPG" alt="舰只" decoding="async" loading="lazy" width="6000" height="4000"></a>
-            <a href="vessels.html"><p>舰只</p></a>
+            <a href="vessels.html"><img src="/assets/home/vesselsoption.jpg" alt="船舶" decoding="async" loading="lazy" width="1800" height="1012"></a>
+            <a href="vessels.html"><p>船舶</p></a>
         </div>
         <div class="option"> <!-- profile box -->
-            <a href="about.html"><img src="/assets/home/profileoption.jpeg" alt="公司简介" decoding="async" loading="lazy" width="3024" height="2205"></a>
+            <a href="about.html"><img src="/assets/home/profileoption.jpg" alt="公司简介" decoding="async" loading="lazy" width="1800" height="1200"></a>
             <a href="about.html"><p>侧影</p></a>
         </div>
     </div>
@@ -62,20 +73,20 @@
 
     <!-- Desc Container Start -->
     <div class="desc-container">
-        <h2><span>铸就未来，融会贯通</span></h2>
+        <h2><span>百余艘船舶，一座家族船厂，始于1982年</span></h2>
         <div class="brief-desc">
             <div class="tiles-border"> <!-- images container, 1 big (top) - 2 small (bottom)-->
                 <div class="tiles">
                     <img src="/assets/home/hometile1.jpg" id="tile1" alt="" decoding="async" loading="lazy" width="4496" height="3000">
                     <div class="double-image">
-                        <img src="/assets/home/hometile2.JPG" alt="" decoding="async" loading="lazy" width="2992" height="2000">
-                        <img src="/assets/home/hometile3.JPG" alt="" decoding="async" loading="lazy" width="2992" height="2000">
+                        <img src="/assets/home/hometile2.jpg" alt="" decoding="async" loading="lazy" width="2992" height="2000">
+                        <img src="/assets/home/hometile3.jpg" alt="" decoding="async" loading="lazy" width="2992" height="2000">
                     </div>
                 </div>
                 <div class="border"></div> <!-- line -->
             </div>
-            <p>自 1982 年以来,Pahala Harapan Lestari 一直作为印度尼西亚国家造船厂的标志而自豪。只要有机会精炼、开拓或投资,Pahala Harapan Lestari 就会重视客户的声音。<br><br>
-                我们的包容、合作心态对于塑造我们的服务产品发挥了重要作用。 超越您的愿望仍然是我们的首要目标； 因为最终，我们正在构建您的未来。
+            <p>PT. Pahala Harapan Lestari 是位于邦加-勿里洞省槟港的家族船厂，自1982年起从事船舶建造与修理。至今已建造100多艘船舶，我们始终坚持标准化和系列化生产。<br><br>
+                我们的客户包括 Pertamina、Pelindo、Adaro 和 Sinarmas。我们的质量、环境和职业健康安全管理遵循 ISO 9001、ISO 14001 和 ISO 45001 标准。2021年，我们荣获印度尼西亚共和国总统颁发的 Paramakarya 奖。
             </p>
         </div>
     </div>
@@ -102,18 +113,20 @@
     </div>
     <!-- our customer section -->
 
+    </main>
+
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
+                <img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="293" height="58">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
-                        <p><span>电话</span>: +62 (0717) 4262 666 / 777, 435914</p>
+                        <p><span>电话</span>: <span class="data">+62 (0717) 4262 666 / 777, 435914</span></p>
                         <p><span>地址（总公司）</span>:<br>Jalan Pasir Ketapang No. 5,<br>Pangkalpinang - Kepulauan Bangka Belitung,<br>Indonesia</p>
                         <p><span>地址（代表处）</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
                     </div>
                     <div class="desc"> <!-- right section of information -->
-                        <p><span>传真</span>: +62 (021) 439359, 4261743</p>
+                        <p><span>传真</span>: <span class="data">+62 (021) 439359, 4261743</span></p>
                         <p><span>电子邮件</span>:<br>office@pahalashipyard.com<br>phl_dockyard@yahoo.co.id</p>
                     </div>
                 </div>
@@ -121,7 +134,7 @@
             <div class="directory"> <!-- bottom navigation -->
                <p><span>探索更多</span></p>
                <a href="#">首页</a>
-               <a href="vessels.html">舰只</a>
+               <a href="vessels.html">船舶</a>
                <a href="services.html">维修</a>
                <a href="about.html">关于Pahala船厂</a>
                <a href="contact.html">联系</a>
@@ -129,8 +142,6 @@
         </div>
         <p class="copyright">版权所有 Pahala Harapan Lestari © 2023</p>
     </footer>
-    <button id="languageButton" class="floating-button">ZH</button>
 </body>
-<script src="/assets/js/site.js" defer></script>
 
 </html>

@@ -3,37 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta property="og:image" content="/assets/ogvessels.png" />
+    <meta property="og:image" content="https://pahalashipyard.com/assets/ogvessels.jpg" />
     <title>Our Vessels</title>
     <link rel="icon" href="/assets/webicon.png">
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/vessels.css">
+    <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
-    <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
-        <div class="text">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="navbar">
+        <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
+        <nav class="text" id="primary-nav" aria-label="Main">
             <a href="home.html">Home</a>
             <a href="">Vessels</a>
             <a href="services.html">Repairs</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-        </div>
-        <div class="hamburger">
+            <div class="lang-switch" role="group" aria-label="Language">
+                <a href="/en/vessels.html" hreflang="en" lang="en" aria-label="English" aria-current="true">EN</a>
+                <a href="/id/vessels.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
+                <a href="/zh/vessels.html" hreflang="zh" lang="zh" aria-label="中文">中文</a>
+            </div>
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <div class="landing-page">
         <img src="/assets/vessels/vesselsbg.jpeg" alt="A vessel built by PT. Pahala Harapan Lestari at sea" decoding="async" fetchpriority="high" width="4000" height="2250">
         <div class="landing-overlay"></div> <!-- The white overlay -->
         <div class="landing-tool">
             <div class="landing-text">
-                <p>A Fleet for Every Need</p>
+                <p>Tugs and barges, built since 1982</p>
                 <h1><span>Vessels</span></h1>
             </div>
             <a href="contact.html"><div class="contact-us">
@@ -46,13 +55,12 @@
     <!-- Hero Desc Section Starts-->
     <div class="hero-desc">
         <div class="desc-container"> <!-- text above line -->
-            <div class="desc-title">CONQUEROR OF THE SEAS</div>
-            <h2 class="desc-title2">Leader in national ship industry.</h2>
+            <h2 class="desc-title2">Built in series, to a standard.</h2>
             </div>
             <div class="line"></div>
             <div class="desc-container"> <!-- text under line -->
-                <div class="text-desc">Sailing the seas for over four decades, PT. Pahala Harapan Lestari has carved its name as a formidable player in the ship-building sector of Indonesia. Today, our vessels, built with precision and excellence, are operational in ports and terminals across Indonesia.<br><br>
-                    From durable tugs designed for the most demanding towing operations to specialized crafts tailored to various marine applications, PT. Pahala Harapan Lestari crafts each vessel to meet the diverse needs of the maritime world.
+                <div class="text-desc">PT. Pahala Harapan Lestari has built ships in Indonesia since 1982: more than 100 vessels to date, among them tugs such as TB Patra and oil barges such as AME II and Sentana 4. Our vessels operate in ports and terminals across Indonesia.<br><br>
+                    We introduced standardization and serial production to our yard decades ago, and we still build that way.
                 </div>
         </div>
         <div class="line"></div>
@@ -66,47 +74,82 @@
                 <p><span>Vessel</span></p>
                 <p><span>Showcase</span></p>
                 <div class="line"></div>
-                <p>A gallery of our greatest fleets,<br>crafted with care and excellence.<br>Masterpiece in its class.</p>
+                <p>A tug and two oil barges<br>from our yard: TB Patra,<br>AME II and Sentana 4.</p>
             </div>
-            <img src="/assets/vessels/patra1.JPG" title="TB Patra" alt="TB Patra" decoding="async" loading="lazy" width="6000" height="4000">
+            <img src="/assets/vessels/patra1.jpg" alt="Two tug hulls under construction at the PT. Pahala Harapan Lestari yard" decoding="async" loading="lazy" width="1800" height="1350">
         </div>
         <!-- images -->
-        <div class="showcase-content">
-            <img class="long" src="/assets/vessels/patra2.JPG" title="TB Patra" alt="TB Patra" decoding="async" loading="lazy" width="2992" height="2000"> <!-- image ratio -->
-            <img class="short" src="/assets/vessels/patra3.JPG" title="TB Patra" alt="TB Patra" decoding="async" loading="lazy" width="2992" height="2000">
+        <div class="vessel-caption">
+            <h3 class="vessel-name">TB Patra</h3>
+            <p class="vessel-type">Tug Boat</p>
+            <!-- Fill in the values, then delete `hidden` to show the specs -->
+            <dl class="vessel-specs" hidden>
+                <dt>LOA</dt><dd></dd>
+                <dt>Beam</dt><dd></dd>
+                <dt>Power</dt><dd></dd>
+                <dt>Class</dt><dd></dd>
+            </dl>
         </div>
         <div class="showcase-content">
-            <img class="short" src="/assets/vessels/ame1.JPG" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
-            <img class="long" src="/assets/vessels/ame2.JPG" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
+            <img class="long" src="/assets/vessels/patra2.jpg" title="TB Patra" alt="TB Patra" decoding="async" loading="lazy" width="2992" height="2000"> <!-- image ratio -->
+            <img class="short" src="/assets/vessels/patra3.jpg" title="TB Patra" alt="TB Patra" decoding="async" loading="lazy" width="2992" height="2000">
+        </div>
+        <div class="vessel-caption">
+            <h3 class="vessel-name">AME II</h3>
+            <p class="vessel-type">Oil Barge</p>
+            <!-- Fill in the values, then delete `hidden` to show the specs -->
+            <dl class="vessel-specs" hidden>
+                <dt>LOA</dt><dd></dd>
+                <dt>Beam</dt><dd></dd>
+                <dt>Capacity</dt><dd></dd>
+                <dt>Class</dt><dd></dd>
+            </dl>
         </div>
         <div class="showcase-content">
-            <img class="long" src="/assets/vessels/ame3.JPG" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
-            <img class="short" src="/assets/vessels/ame4.JPG" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
+            <img class="short" src="/assets/vessels/ame1.jpg" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
+            <img class="long" src="/assets/vessels/ame2.jpg" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
         </div>
         <div class="showcase-content">
-            <img class="short" src="/assets/vessels/sentana1.JPG" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
-            <img class="long" src="/assets/vessels/sentana2.JPG" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
+            <img class="long" src="/assets/vessels/ame3.jpg" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
+            <img class="short" src="/assets/vessels/ame4.jpg" title="AME II Oil Barge" alt="AME II Oil Barge" decoding="async" loading="lazy" width="4496" height="3000">
+        </div>
+        <div class="vessel-caption">
+            <h3 class="vessel-name">Sentana 4</h3>
+            <p class="vessel-type">Oil Barge</p>
+            <!-- Fill in the values, then delete `hidden` to show the specs -->
+            <dl class="vessel-specs" hidden>
+                <dt>LOA</dt><dd></dd>
+                <dt>Beam</dt><dd></dd>
+                <dt>Capacity</dt><dd></dd>
+                <dt>Class</dt><dd></dd>
+            </dl>
         </div>
         <div class="showcase-content">
-            <img class="long" src="/assets/vessels/sentana3.JPG" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
-            <img class="short" src="/assets/vessels/sentana4.JPG" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
+            <img class="short" src="/assets/vessels/sentana1.jpg" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
+            <img class="long" src="/assets/vessels/sentana2.jpg" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
+        </div>
+        <div class="showcase-content">
+            <img class="long" src="/assets/vessels/sentana3.jpg" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
+            <img class="short" src="/assets/vessels/sentana4.jpg" title="Oil Barge Sentana 4" alt="Oil Barge Sentana 4" decoding="async" loading="lazy" width="2992" height="2000">
         </div>
         <!-- images -->
     </div>
     <!-- showcase section --> 
 
+    </main>
+
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
+                <img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="293" height="58">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
-                        <p><span>Telephone</span>: +62 (0717) 4262 666 / 777, 435914</p>
+                        <p><span>Telephone</span>: <span class="data">+62 (0717) 4262 666 / 777, 435914</span></p>
                         <p><span>Address (Head Office)</span>:<br>Jalan Pasir Ketapang No. 5,<br>Pangkalpinang - Kepulauan Bangka Belitung,<br>Indonesia</p>
                         <p><span>Address (Representative Office)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
                     </div>
                     <div class="desc"> <!-- right section of information -->
-                        <p><span>Fax</span>: +62 (021) 439359, 4261743</p>
+                        <p><span>Fax</span>: <span class="data">+62 (021) 439359, 4261743</span></p>
                         <p><span>Email</span>:<br>office@pahalashipyard.com<br>phl_dockyard@yahoo.co.id</p>
                     </div>
                 </div>
@@ -122,8 +165,6 @@
         </div>
         <p class="copyright">Copyright PT. Pahala Harapan Lestari © 2023</p>
     </footer>
-    <button id="languageButton" class="floating-button">EN</button>
 </body>
-<script src="/assets/js/site.js" defer></script>
 
 </html>

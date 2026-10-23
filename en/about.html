@@ -5,29 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>About Us</title>
     <link rel="icon" href="/assets/webicon.png">
+    <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/about.css">
+    <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- navigation bar -->
-    <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
-        <div class="text">
+    <header class="navbar">
+        <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
+        <nav class="text" id="primary-nav" aria-label="Main">
             <a href="home.html">Home</a>
             <a href="vessels.html">Vessels</a>
             <a href="services.html">Repairs</a>
             <a href="">About</a>
             <a href="contact.html">Contact</a>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+            <div class="lang-switch" role="group" aria-label="Language">
+                <a href="/en/about.html" hreflang="en" lang="en" aria-label="English" aria-current="true">EN</a>
+                <a href="/id/about.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
+                <a href="/zh/about.html" hreflang="zh" lang="zh" aria-label="中文">中文</a>
+            </div>
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
@@ -35,7 +44,7 @@
         <img src="/assets/about/aboutbg.jpg" alt="The PT. Pahala Harapan Lestari shipyard" decoding="async" fetchpriority="high" width="5472" height="3648">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-text">
-            <p>Providing the best since 1982.</p>
+            <p>Family shipyard, Pangkalpinang, since 1982.</p>
             <h1><span>About PT. PHL</span></h1>
         </div>
     </div>
@@ -46,15 +55,15 @@
         <div class="craftsman-title"> <!-- title box -->
             <div class="line"></div> <!-- trailing line to fill remaining space -->
             <div class="title-container">
-                <h2>Craftsman in heart.</h2>
+                <h2>Craftsmen at heart.</h2>
             </div>
         </div>
         <div class="craftsman-content"> <!-- craftsman images -->
             <div class="craftsman-top-content"> <!-- craftsman images top section -->
                 <img class="craftsman-image" src="/assets/about/craftsman/craftsmanportrait.jpeg" alt="" decoding="async" loading="lazy" width="793" height="1603"> <!-- left image -->
                 <div class="desc-image">
-                    <p>Pahala Harapan Lestari is a nationally acclaimed  family shipyard company, rooted in Indonesia since 1982. As specialists in ship-building and ship-repairing, we embody the values of unity, skill, innovation, and responsibility. To harness these potentials, we offer maritime solutions through our expertise in design, shipbuilding, ship repair, and associated services.<br><br>
-                        Over the past decades, we have transformed the realm of shipbuilding by introducing standardization and serial production. Fast forward to today, after crafting over 100 vessels, these core principles remain unaltered. Striving forward, we aim to blend our established standardization techniques with the advancements of digitalization, positioning ourselves as Indonesia's most eco-friendly shipbuilder.
+                    <p>PT. Pahala Harapan Lestari is a family shipyard, building and repairing ships in Indonesia since 1982. We design, build and repair vessels and provide the services that go with them. Our values are unity, skill, innovation and responsibility.<br><br>
+                        We introduced standardization and serial production to our yard decades ago, and after more than 100 vessels we still build that way. Next, we are bringing digital tools into the same process, with the aim of becoming Indonesia's most eco-friendly shipbuilder.
                     </p>
                     <img src="/assets/about/craftsman/craftsmanland1.jpeg" alt="" decoding="async" loading="lazy" width="1600" height="900"> <!-- image under text -->
                 </div>
@@ -138,18 +147,20 @@
         <div class="outstanding-title">
             <div class="line"></div> <!-- trailing line to fill remaining space -->
             <div class="title-container">
-                <h2>Outstanding Remarks.</h2> <!-- title box -->
+                <h2>Awards and certificates.</h2> <!-- title box -->
             </div>
         </div>
         <div class="outstanding-content">
             <img src="/assets/about/certif&award/trophy.png" class="outstanding-image" title="Paramakarya Trophy" alt="Paramakarya Trophy" decoding="async" loading="lazy" width="375" height="666"> <!-- left image -->
             <div class="desc-award">
-                <p>PENGHARGAAN PARAMAKARYA TAHUN 2021 DENGAN KUALIFIKASI “PEMIMPIN DALAM INDUSTRI” DARI PRESIDEN REPUBLIK INDONESIA<br><br><br>
-                    PENGHARGAAN SIDHAKARYA TAHUN 2020 DALAM KATEGORI “EMERGING LEADER” DARI GUBERNUR KEP. BANGKA BELITUNG<br><br><br>
-                    PENGHARGAAN PROGRAM PENCEGAHAN DAN PENANGGULANGAN COVID-19 DARI KATEGORI “SILVER” KEMENTERIAN KETENAGAKERJAAN REPUBLIK INDONESIA<br><br><br>                    
-                    PENGHARGAAN DARI BIRO KLASIFIKASI INDONESIA DALAM KATEGORI KONTRIBUSI MITRA KERJA<br><br><br>
-                    PENGHARGAAN PROGRAM PENILAIAN PERINGKAT KINERJA PERUSAHAAN DALAM PENGELOLAAN LINGKUNGAN HIDUP (PROPER) TAHUN 2021 DENGAN KATEGORI “BIRU”<br><br><br>               
-                    PENGHARGAAAN PERUSAHAAN MANAJEMEN K3 TERBAIK DARI WALIKOTA PANGKALPINANG</p>
+                <ul class="award-list" lang="en">
+                    <li><strong>Paramakarya Award 2021</strong>, “Leader in Industry” qualification, from the President of the Republic of Indonesia</li>
+                    <li><strong>Sidhakarya Award 2020</strong>, “Emerging Leader” category, from the Governor of the Bangka Belitung Islands</li>
+                    <li><strong>COVID-19 Prevention and Control Program Award</strong>, “Silver” category, from the Ministry of Manpower of the Republic of Indonesia</li>
+                    <li><strong>Biro Klasifikasi Indonesia (BKI) Award</strong>, Partner Contribution category</li>
+                    <li><strong>PROPER 2021</strong>, Company Environmental Performance Rating Program, “Blue” category</li>
+                    <li><strong>Best Occupational Health and Safety (K3) Management Company</strong>, from the Mayor of Pangkalpinang</li>
+                </ul>
                 <div class="award"> <!-- award images under text -->
                     <img src="/assets/about/certif&award/isoukas.jpeg" alt="ISO certification (UKAS accredited)" decoding="async" loading="lazy" width="1024" height="768">
                     <img src="/assets/about/certif&award/paramakarya.png" alt="Paramakarya award" decoding="async" loading="lazy" width="357" height="409">
@@ -161,18 +172,20 @@
     </div>
     <!-- outstanding remarks section -->
 
+    </main>
+
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
+                <img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="293" height="58">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
-                        <p><span>Telephone</span>: +62 (0717) 4262 666 / 777, 435914</p>
+                        <p><span>Telephone</span>: <span class="data">+62 (0717) 4262 666 / 777, 435914</span></p>
                         <p><span>Address (Head Office)</span>:<br>Jalan Pasir Ketapang No. 5,<br>Pangkalpinang - Kepulauan Bangka Belitung,<br>Indonesia</p>
                         <p><span>Address (Representative Office)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
                     </div>
                     <div class="desc"> <!-- right section of information -->
-                        <p><span>Fax</span>: +62 (021) 439359, 4261743</p>
+                        <p><span>Fax</span>: <span class="data">+62 (021) 439359, 4261743</span></p>
                         <p><span>Email</span>:<br>office@pahalashipyard.com<br>phl_dockyard@yahoo.co.id</p>
                     </div>
                 </div>
@@ -188,8 +201,6 @@
         </div>
         <p class="copyright">Copyright PT. Pahala Harapan Lestari © 2023</p>
     </footer>
-    <button id="languageButton" class="floating-button">EN</button>
 </body>
-<script src="/assets/js/site.js" defer></script>
 
 </html>
