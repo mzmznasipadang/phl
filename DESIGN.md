@@ -50,7 +50,6 @@ rounded:
   sharp: "0"
   micro: "2px"
   sm: "6px"
-  pill: "100%"
 spacing:
   gutter: "8%"
   xs: "0.5rem"
@@ -71,11 +70,10 @@ components:
     rounded: "{rounded.sm}"
     height: "3rem"
     width: "10rem"
-  language-toggle:
-    backgroundColor: "{colors.harbor-depth}"
+  language-switch:
     textColor: "{colors.signal-white}"
-    rounded: "{rounded.pill}"
-    padding: "1.5rem"
+    typography: "{typography.label}"
+    padding: "0.25rem 0.4rem"
   input-field:
     backgroundColor: "{colors.signal-white}"
     textColor: "{colors.harbor-depth}"
@@ -116,7 +114,7 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 - **Deep Harbor Blue** (#204782): The brand. It carries the fixed navbar, the footer, the primary call-to-action, every accent bar, and the section title blocks' companion line. When navy meets the eye, it is almost always this value. Its consistency is what makes the brand read as one institution across five pages and three languages.
 
 ### Secondary
-- **Harbor Depth** (#0D2954): The deepest navy, reserved for the floating language toggle so it reads as a persistent, slightly heavier control sitting above the page. Also the natural ink color for text set on the pale blue-gray surfaces.
+- **Harbor Depth** (#0D2954): The deepest navy, the natural ink color for text set on the pale blue-gray surfaces.
 
 ### Tertiary
 - **Sea Mist** (#CCD4E0): The lighter blue-gray surface. Backs the home description band, showcase title panels, and the vessels tab block. A calm, recessive ground that signals "supporting context" without competing with navy.
@@ -179,10 +177,10 @@ For each component, the character line comes first, then shape, color, and state
 
 ### Buttons
 - **Character:** Engineered and precise. Solid navy blocks with crisp edges, sized deliberately, no ornament.
-- **Shape:** Gently squared (6px radius, `{rounded.sm}`) on the primary CTA; the language toggle is a full circle (`{rounded.pill}`).
+- **Shape:** Gently squared (6px radius, `{rounded.sm}`) on the primary CTA.
 - **Primary CTA (`.contact-us`):** Deep Harbor Blue with the Hull Shadow treatment, Signal White label at weight 500, fixed footprint 10rem by 3rem, centered label. This is the page-level "Contact us" button on the Vessels and Repairs pages.
 - **Send button (form submit):** Same navy Hull Shadow fill, 6px radius. Currently undersized (about 3rem wide, 0.56rem type); it should be brought up to the primary CTA's weight and given a real hover and focus state.
-- **Language toggle:** Persistent circular control, bottom-right, Harbor Depth fill, Signal White two-letter label (EN / ID / ZH), cycles language on click.
+- **Language switch:** Plain text links in the navbar after Contact, behind a 1px hairline: EN · ID · 中文. Each goes straight to the same page in that language (no script). The current language is full Signal White with a short underline (`aria-current="true"`); the others sit at 72% white. On phones the row closes the menu panel under a hairline.
 - **Tab buttons (Vessels):** Transparent, Signal White label, underline on hover, Deep Harbor Blue when focused. Used to switch boat categories.
 - **Hover / Focus:** Links and tabs underline on hover. Buttons currently lack a consistent hover and a visible focus ring; add a `:focus-visible` outline (2px Signal White or Deep Harbor Blue depending on background) across all interactive controls.
 

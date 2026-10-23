@@ -2,7 +2,7 @@
    Pahala Harapan Lestari — base.css
    Shared foundation linked by every page: design tokens, reset,
    and the components common to all pages (navbar, hero scaffold,
-   footer, language toggle). Page-specific styles live in
+   footer, language switch). Page-specific styles live in
    /assets/css/<page>.css. See DESIGN.md for the token system.
    ============================================================ */
 
@@ -26,7 +26,6 @@
     /* Radius scale */
     --r-micro: 2px;
     --r-sm: 6px;
-    --r-pill: 100%;
 
     /* Motion: natural deceleration, no bounce */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -146,12 +145,9 @@ textarea:focus-visible,
 .navbar a:focus-visible,
 .navbar .hamburger:focus-visible,
 .directory a:focus-visible,
-footer a:focus-visible,
-.floating-button:focus-visible {
+footer a:focus-visible {
     outline-color: var(--signal-white);
 }
-/* The toggle floats over light pages: draw its ring inside the navy disc */
-.floating-button:focus-visible { outline-offset: -6px; }
 
 /* ---------- Navbar ---------- */
 .navbar {
@@ -192,9 +188,6 @@ footer a:focus-visible,
     gap: 3.375vw;
 }
 
-.text a:active { color: var(--signal-white); }
-.text a:visited { color: var(--signal-white); }
-
 /* Underline that draws in from the left; the current page keeps it drawn */
 .text a,
 .directory a {
@@ -207,6 +200,8 @@ footer a:focus-visible,
 .directory a:hover,
 .directory a[aria-current="page"] { background-size: 100% 2px; }
 
+/* Three 2px bars 6px apart: opening moves the outer two 8px (gap + bar)
+   onto the centre line, so they cross exactly into an X */
 .hamburger {
     display: none;
     width: 2.75rem;
@@ -214,40 +209,36 @@ footer a:focus-visible,
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 6px;
 }
 
 .bar {
     display: block;
-    border-radius: 0.1rem;
-    width: 1.2rem;
-    height: 2.7px;
-    margin: 5px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 1px;
     background-color: var(--signal-white);
+    transition: transform 0.3s var(--ease-out-quart), opacity 0.2s;
 }
 
-/* ---------- Floating language toggle ---------- */
-.floating-button {
-    position: fixed;
-    bottom: max(0.5rem, env(safe-area-inset-bottom));
-    right: max(0.5rem, env(safe-area-inset-right));
-    background-color: var(--harbor-depth);
-    color: var(--signal-white);
-    font-size: 1rem;
-    padding: 1.5rem;
-    z-index: 5;
-    border-radius: var(--r-pill);
-    border-style: none;
-    cursor: pointer;
+/* ---------- Language switch: EN · ID · 中文, direct links ---------- */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.35);
+    font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    transition: filter 0.2s, transform 0.3s var(--ease-out-quart);
-    view-transition-name: lang-toggle;
+    letter-spacing: 0.06em;
 }
-
-.floating-button:hover { filter: brightness(1.2); transform: translateY(-2px); }
-.floating-button:active { transform: scale(0.96); }
+.text .lang-switch a {
+    padding: 0.25rem 0.4rem;
+    color: rgba(255, 255, 255, 0.72); /* 7.8:1 on hull-navy */
+    background-position: 50% 100%;
+}
+.text .lang-switch a:hover,
+.text .lang-switch a[aria-current="true"] { color: var(--signal-white); background-size: 1.25rem 2px; }
 
 /* ---------- Hero scaffold (positioning lives in page CSS) ---------- */
 .landing-page { position: relative; overflow: hidden; }
@@ -334,12 +325,8 @@ footer a:focus-visible,
 /* ---------- Footer ---------- */
 footer {
     background: var(--hull-shadow);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-left: 8%;
-    padding-right: 8%;
-    padding-top: 4%;
+    color: var(--signal-white);
+    padding: 4rem 8% 0;
 }
 
 footer img {
@@ -351,29 +338,42 @@ footer img {
 .before-copyright {
     display: flex;
     justify-content: space-between;
+    gap: 3rem 4rem;
 }
 
-.desc {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vw;
-    background: var(--hull-shadow);
-}
+.logo-desc { flex: 1 1 auto; min-width: 0; }
+
+/* The two .desc wrappers dissolve so their five paragraphs (telephone,
+   head office, representative office, fax, email) become grid cells:
+   the two addresses side by side, the contact lines stacked beside them. */
+.desc { display: contents; }
+.desc:first-child > p:nth-child(1) { grid-area: tel; }
+.desc:first-child > p:nth-child(2) { grid-area: head; }
+.desc:first-child > p:nth-child(3) { grid-area: rep; }
+.desc:last-child > p:nth-child(1) { grid-area: fax; }
+.desc:last-child > p:nth-child(2) { grid-area: email; }
 
 .footer-desc {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: first baseline;
-    justify-content: space-between;
+    display: grid;
+    /* Addresses may wrap; the contact column keeps each number on one line */
+    grid-template-columns: minmax(0, auto) minmax(0, auto) max-content;
+    /* The last 1fr row soaks up the addresses' extra height, so the three
+       contact lines stay together instead of spreading apart */
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+        "head rep tel"
+        "head rep fax"
+        "head rep email"
+        "head rep .";
+    justify-content: start;
+    align-items: start;
+    gap: 0.75rem 2.5rem;
+    margin-top: 2rem;
     color: var(--signal-white);
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.55;
     font-variant-numeric: tabular-nums;
-    gap: 1rem 1.5rem;
-    width: 38vw;
-    margin-top: 0.7rem;
 }
 
 .footer-desc span { font-weight: 700; }
@@ -387,36 +387,57 @@ footer img {
     color: var(--signal-white);
     font-weight: 400;
     font-size: 1rem;
-    align-items: flex-start;
-    margin-top: 2%;
-    margin-right: 10%;
     display: flex;
+    flex: none;
     flex-direction: column;
-    gap: 1.7vh;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 5.5rem; /* logo 3.5rem + 2rem: level with the first contact row */
 }
 
-.directory a:active { color: var(--signal-white); }
-.directory a:visited { color: var(--signal-white); }
-.directory span { font-weight: 900; font-size: 1.1rem; }
+.directory span {
+    white-space: nowrap;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.72);
+}
 
 .copyright {
+    margin-top: 3rem;
+    padding: 1.25rem 0 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
     text-align: center;
     color: var(--signal-white);
     font-weight: 500;
     font-size: 0.875rem;
-    margin-bottom: 2%;
-    margin-top: 4%;
-    background: var(--hull-shadow);
 }
 
 /* ---------- Responsive (shared) ---------- */
+/* Below 1280px three contact columns get too narrow: two columns instead */
+@media only screen and (max-width: 1279px) {
+    .footer-desc {
+        grid-template-columns: repeat(2, minmax(0, max-content));
+        grid-template-rows: none;
+        grid-template-areas:
+            "head rep"
+            "tel email"
+            "fax email";
+        gap: 1.25rem 3rem;
+    }
+}
+
 @media only screen and (max-width: 980px) {
+    .navbar { height: 4.5rem; }
+
     .text {
         position: fixed;
         left: 0;
-        top: 5rem;
+        top: 100%; /* directly under the bar (the navbar is the containing block) */
         flex-direction: column;
+        gap: 0;
         width: 100%;
+        padding-top: 0.5rem;
         text-align: center;
         /* Slide with transform, not `left`, so no layout runs per frame;
            visibility keeps closed-menu links out of the tab order */
@@ -437,11 +458,21 @@ footer img {
        short centred mark so it does not read as a row divider */
     .text a {
         display: block;
-        padding: 0.85rem 1rem;
-        background-position: 50% calc(100% - 0.55rem);
+        padding: 0.6rem 1rem;
+        background-position: 50% calc(100% - 0.4rem);
     }
     .text a:hover,
     .text a[aria-current="page"] { background-size: 2.5rem 2px; }
+
+    /* Language row closes the panel, under a hairline */
+    .lang-switch {
+        justify-content: center;
+        margin: 0.5rem 8% 0;
+        padding: 0.75rem 0 0;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .text .lang-switch a { display: inline-block; padding: 0.4rem 0.7rem; background-position: 50% calc(100% - 0.15rem); }
 
     /* The links arrive as a list: a short, capped stagger (160ms total) */
     @media (prefers-reduced-motion: no-preference) {
@@ -461,19 +492,34 @@ footer img {
     .hamburger { display: flex; cursor: pointer; }
 
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(7.8px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-7.8px) rotate(-45deg); }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Footer: contacts in two columns, Explore links as a row beneath */
+    .before-copyright { flex-direction: column; gap: 2.5rem; }
+    .footer-desc {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "head rep"
+            "tel email"
+            "fax email";
+        gap: 1.25rem 2rem;
+    }
+    .directory {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.75rem;
+        margin-top: 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .directory p { flex-basis: 100%; }
 }
 
-@media only screen and (max-width: 780px) {
-    .directory { display: none; }
-
-    /* Footer contact details: full width, stacked, legible */
+@media only screen and (max-width: 560px) {
     .footer-desc {
-        width: 100%;
-        flex-direction: column;
-        gap: 1.25rem;
-        font-size: 0.95rem;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "head" "rep" "tel" "fax" "email";
     }
 }
 
@@ -552,8 +598,6 @@ footer img {
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .navbar.is-hidden { transform: none; } /* bar stays put instead of sliding away */
-    .floating-button:hover,
-    .floating-button:active,
     .option:hover img,
     .option:focus-within img { transform: none; }
 }

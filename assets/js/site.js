@@ -44,7 +44,8 @@
 
   /* ---------- Mark the current page in the navbar and footer ---------- */
   const here = window.location.pathname.split("/").pop() || "home.html";
-  document.querySelectorAll(".text a, .directory a").forEach(function (a) {
+  // Direct children only: the language links point at this same file name
+  document.querySelectorAll(".text > a, .directory a").forEach(function (a) {
     const target = new URL(a.getAttribute("href") || "", window.location.href).pathname.split("/").pop() || "home.html";
     if (target === here) a.setAttribute("aria-current", "page");
   });
@@ -174,24 +175,7 @@
     });
   }
 
-  /* ---------- Language switcher ---------- */
-  const languageButton = document.getElementById("languageButton");
-  if (languageButton) {
-    const languages = ["EN", "ID", "ZH"]; // cycle order
-    const pathname = window.location.pathname;
-    let currentLanguage = "EN";
-    if (pathname.includes("/id/")) currentLanguage = "ID";
-    else if (pathname.includes("/zh/")) currentLanguage = "ZH";
-    languageButton.textContent = currentLanguage;
-
-    languageButton.addEventListener("click", function () {
-      // On the site root the last path segment is empty: that page is home
-      const currentPage = window.location.pathname.split("/").pop() || "home.html";
-      const nextIndex = (languages.indexOf(currentLanguage) + 1) % languages.length;
-      const nextLanguage = languages[nextIndex].toLowerCase();
-      window.location.href = window.location.origin + "/" + nextLanguage + "/" + currentPage;
-    });
-  }
+  /* The language switch is plain links in each page's navbar (no script). */
 
   /* ---------- Keep the footer copyright year current ----------
      Replace only the year so each language keeps its own translated text. */
