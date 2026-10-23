@@ -146,6 +146,10 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 
 **The Weight-Not-Family Rule.** Hierarchy is built from Archivo's weight range (400 to 700), never from a second typeface. If a heading needs more presence, go heavier or larger, do not reach for a display face.
 
+**The Stencil Width Rule.** Archivo is loaded as a variable font (`wdth` 62–125, `wght` 300–900). Page-level headings run condensed (`font-stretch: 86%`, hero display `78%`, tracking -0.01em, leading ~1.0), like a stencilled hull marking; body, labels and navigation stay at normal width. Width is the second lever after weight, still one family. Sizes come from the fluid tokens `--fs-display`, `--fs-headline`, `--fs-title` in base.css. Chinese pages fall back to PingFang SC / Noto Sans SC / Microsoft YaHei by name (`:root:lang(zh)`), since Archivo has no CJK glyphs.
+
+**The Waterline Motion Rule.** Motion has one signature: photographs rise into view through a clip that clears from the bottom, and the navy accent bars draw out of their title blocks, both scroll-linked in CSS (`animation-timeline: view()`). Pages cross-fade (`@view-transition`) with the navbar held still; the Repairs gallery cross-fades between categories. Everything is visible by default where unsupported and switched off under `prefers-reduced-motion`. Do not add per-section entrance variety on top of this.
+
 **The Eyebrow Exception.** The site uses a small navy eyebrow above the vessels and repairs descriptions. This is a single, deliberate, named pattern, not section scaffolding. Do not multiply it into a tracked uppercase kicker above every section; that is the AI-grammar tell this brand avoids.
 
 ## 4. Elevation
@@ -187,7 +191,7 @@ For each component, the character line comes first, then shape, color, and state
 - **Mobile:** Below 980px the links collapse behind a hamburger that morphs into an X; the menu slides in from the left as a navy panel.
 
 ### Customer Marquee (signature component)
-A continuous horizontal auto-scroll of client logos (Pertamina, Pelindo, Adaro, and others) on the home page, driven by `requestAnimationFrame`. The duplicated logo set makes the loop seamless. This is proof-over-adjectives in motion: the clients speak for the company. It must honor `prefers-reduced-motion` by pausing or replacing the scroll with a static, wrapped logo row.
+A continuous horizontal auto-scroll of client logos (Pertamina, Pelindo, Adaro, and others) on the home page, driven by a CSS keyframe loop that pauses on hover and focus. The duplicated logo set makes the loop seamless. This is proof-over-adjectives in motion: the clients speak for the company. It must honor `prefers-reduced-motion` by pausing or replacing the scroll with a static, wrapped logo row.
 
 ## 6. Do's and Don'ts
 

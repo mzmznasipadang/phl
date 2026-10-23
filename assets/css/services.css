@@ -31,7 +31,7 @@
 }
 
 .desc-title2 {
-    font-size: 2.3rem;
+    font-size: var(--fs-title);
     text-align: center;
     font-weight: 700;
     margin-top: 1rem;
@@ -41,6 +41,9 @@
     text-align: center;
     font-weight: 400;
     font-size: 1.25rem;
+    line-height: 1.6;
+    max-width: 68ch;
+    margin-inline: auto;
 }
 
 .line {
@@ -92,7 +95,7 @@ a:hover .contact-us { filter: brightness(1.12); }
 
 .boat-title {
     font-weight: 600;
-    font-size: 2.4rem;
+    font-size: var(--fs-title);
 }
 
 .boat-desc {
@@ -128,13 +131,18 @@ a:hover .contact-us { filter: brightness(1.12); }
     cursor: pointer;
     font-weight: 500;
     font-size: 1.4rem;
-    color: var(--signal-white);
+    color: rgba(13, 41, 84, 0.72); /* Harbor Depth: white on Sea Mist failed AA */
     padding: 0.5rem 0.25rem;
 }
 
-.boat-text button:hover { text-decoration: underline; }
+.boat-text button {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+    transition: background-size 0.35s var(--ease-out-quart), color 0.25s;
+}
+.boat-text button:hover,
+.boat-text button.focused { background-size: 100% 2px; }
 
-.boat-text button.focused { color: var(--deep-harbor-blue); }
+.boat-text button.focused { color: var(--deep-harbor-blue); font-weight: 650; }
 
 .image-desc {
     display: flex;
@@ -167,7 +175,7 @@ a:hover .contact-us { filter: brightness(1.12); }
 
 .title p span {
     font-weight: 600;
-    font-size: 3rem;
+    font-size: var(--fs-headline);
 }
 
 .title p {
@@ -194,8 +202,9 @@ a:hover .contact-us { filter: brightness(1.12); }
         align-items: center;
         gap: 3.5rem;
     }
+    .boat-intro { width: 100%; padding-left: 2rem; }
     .boat-image { width: 80%; }
-    .boat-text { align-items: center; width: 55vw; }
+    .boat-text { align-items: center; width: 100%; }
 }
 
 @media only screen and (max-width: 780px) {
@@ -210,7 +219,7 @@ a:hover .contact-us { filter: brightness(1.12); }
 }
 
 @media only screen and (max-width: 500px) {
-    .title p span { font-size: 2.5rem; }
-    .boat-title { font-size: 1.5rem; }
+    .title p span { font-size: 2rem; }
+    .boat-title { font-size: 1.9rem; }
     #boat1, #boat4 { height: 30vh; }
 }

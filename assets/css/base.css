@@ -31,10 +31,25 @@
     /* Motion: natural deceleration, no bounce */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Type: one family (Archivo, variable wdth 62-125). Headings run
+       condensed, like a stencilled hull marking; body stays at normal width. */
+    --font-sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --stretch-display: 78%;
+    --stretch-headline: 86%;
+    --fs-display: clamp(3.25rem, 1.6rem + 5.2vw, 6rem);
+    --fs-headline: clamp(2.3rem, 1.5rem + 2.8vw, 3.75rem);
+    --fs-title: clamp(2rem, 1.5rem + 1.6vw, 2.9rem);
+}
+
+/* Archivo has no CJK glyphs: name the platform Chinese faces explicitly so
+   zh pages get a deliberate fallback instead of whatever the OS picks. */
+:root:lang(zh) {
+    --font-sans: 'Archivo', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
 }
 
 * {
-    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-sans);
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
@@ -44,7 +59,49 @@
 
 a { color: var(--signal-white); }
 
-html { background-color: var(--dock-white); }
+html {
+    background-color: var(--dock-white);
+    color: var(--harbor-depth);
+    scrollbar-color: var(--deep-harbor-blue) var(--dock-white);
+    accent-color: var(--deep-harbor-blue);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+p { text-wrap: pretty; line-height: 1.55; }
+
+::selection {
+    background: var(--deep-harbor-blue);
+    color: var(--signal-white);
+}
+
+input, textarea { caret-color: var(--deep-harbor-blue); }
+
+/* Condensed display voice for every page-level heading */
+.landing-text span,
+.title-container h2,
+.desc-container h2 span,
+.customer-container h2,
+.boat-title,
+.title p span,
+.heading,
+.desc-title2,
+.steadfast-text span {
+    font-stretch: var(--stretch-headline);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+}
+/* Chinese falls back to a CJK face that has no width axis; give it room */
+:lang(zh) :is(.landing-text span, .title-container h2, .desc-container h2 span, .customer-container h2,
+    .boat-title, .title p span, .heading, .desc-title2, .steadfast-text span) {
+    letter-spacing: 0;
+    line-height: 1.25;
+}
 
 /* With intrinsic width/height attributes on <img> (for CLS), let height be
    derived from the aspect ratio. Images with an explicit CSS height
@@ -90,6 +147,8 @@ footer a:focus-visible,
 .floating-button:focus-visible {
     outline-color: var(--signal-white);
 }
+/* The toggle floats over light pages: draw its ring inside the navy disc */
+.floating-button:focus-visible { outline-offset: -6px; }
 
 /* ---------- Navbar ---------- */
 .navbar {
@@ -103,8 +162,13 @@ footer a:focus-visible,
     justify-content: space-between;
     position: fixed;
     z-index: 2;
-    transition: top 0.3s;
+    transform: translateY(0);
+    transition: transform 0.45s var(--ease-out-expo);
+    view-transition-name: navbar; /* stays put while pages cross-fade */
 }
+
+.navbar.is-hidden { transform: translateY(-100%); }
+.navbar.is-hidden:focus-within { transform: none; } /* never hide a focused link */
 
 .navbar img {
     width: 21.25rem;
@@ -121,9 +185,20 @@ footer a:focus-visible,
     gap: 3.375vw;
 }
 
-.text a:hover { text-decoration: underline; }
 .text a:active { color: var(--signal-white); }
 .text a:visited { color: var(--signal-white); }
+
+/* Underline that draws in from the left; the current page keeps it drawn */
+.text a,
+.directory a {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+    padding-bottom: 0.15em;
+    transition: background-size 0.35s var(--ease-out-quart);
+}
+.text a:hover,
+.text a[aria-current="page"],
+.directory a:hover,
+.directory a[aria-current="page"] { background-size: 100% 2px; }
 
 .hamburger {
     display: none;
@@ -158,10 +233,14 @@ footer a:focus-visible,
     border-radius: var(--r-pill);
     border-style: none;
     cursor: pointer;
-    transition: filter 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: filter 0.2s, transform 0.3s var(--ease-out-quart);
+    view-transition-name: lang-toggle;
 }
 
-.floating-button:hover { filter: brightness(1.2); }
+.floating-button:hover { filter: brightness(1.2); transform: translateY(-2px); }
+.floating-button:active { transform: scale(0.96); }
 
 /* ---------- Hero scaffold (positioning lives in page CSS) ---------- */
 .landing-page { position: relative; overflow: hidden; }
@@ -205,12 +284,18 @@ footer a:focus-visible,
 .landing-text {
     color: var(--signal-white);
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.35rem);
+    letter-spacing: 0.01em;
 }
 
 .landing-text span {
+    display: inline-block;
     font-weight: 700;
-    font-size: 4rem;
+    font-size: var(--fs-display);
+    font-stretch: var(--stretch-display);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    margin-block: 0.1em;
 }
 
 /* ---------- Footer ---------- */
@@ -250,7 +335,9 @@ footer img {
     justify-content: space-between;
     color: var(--signal-white);
     font-weight: 400;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    font-variant-numeric: tabular-nums;
     gap: 1rem 1.5rem;
     width: 38vw;
     margin-top: 0.7rem;
@@ -260,8 +347,9 @@ footer img {
 
 .directory {
     color: var(--signal-white);
-    font-weight: 300;
-    font-size: 0.9rem;
+    font-weight: 400;
+    font-size: 1rem;
+    align-items: flex-start;
     margin-top: 2%;
     margin-right: 10%;
     display: flex;
@@ -269,7 +357,6 @@ footer img {
     gap: 1.7vh;
 }
 
-.directory a:hover { text-decoration: underline; }
 .directory a:active { color: var(--signal-white); }
 .directory a:visited { color: var(--signal-white); }
 .directory span { font-weight: 900; font-size: 1.1rem; }
@@ -278,7 +365,7 @@ footer img {
     text-align: center;
     color: var(--signal-white);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     margin-bottom: 2%;
     margin-top: 4%;
     background: var(--hull-shadow);
@@ -293,12 +380,14 @@ footer img {
         flex-direction: column;
         width: 100%;
         text-align: center;
-        transition: 0.3s;
+        /* visibility keeps closed-menu links out of the tab order */
+        visibility: hidden;
+        transition: left 0.3s, visibility 0s 0.3s;
         background: var(--hull-shadow);
         padding-bottom: 1rem;
     }
 
-    .text.active { left: 0; }
+    .text.active { left: 0; visibility: visible; transition-delay: 0s; }
 
     /* Full-width tappable rows in the slide-in menu */
     .text a { display: block; padding: 0.85rem 1rem; }
@@ -312,8 +401,6 @@ footer img {
 
 @media only screen and (max-width: 780px) {
     .directory { display: none; }
-    .landing-text { font-size: 1rem; }
-    .landing-text span { font-size: 3rem; }
 
     /* Footer contact details: full width, stacked, legible */
     .footer-desc {
@@ -328,6 +415,66 @@ footer img {
     .navbar img { width: 55vw; height: 7vh; }
     footer img { width: 70vw; height: 9vh; }
 }
+
+/* ---------- Motion ----------
+   One signature: evidence surfaces from the waterline. Photographs rise
+   into view through a clip from below as they scroll in, and the navy
+   accent bars draw across. Pages cross-fade with the navbar held still.
+   Everything is scroll-linked CSS (no JS) and visible by default where
+   unsupported or when the visitor prefers reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: 200ms var(--ease-out-quart) both vt-fade-out; }
+    ::view-transition-new(root) { animation: 380ms var(--ease-out-expo) both vt-fade-in; }
+
+    @supports (animation-timeline: view()) {
+        .option,
+        .tiles-border img,
+        .boat-gallery img,
+        .showcase-container img,
+        .craftsman-content img,
+        .vision img,
+        .mission img,
+        .policy-gallery img,
+        .outstanding-image,
+        .card {
+            animation: waterline var(--ease-out-quart) both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 45%;
+        }
+
+        .line,
+        .border {
+            animation: bar-draw var(--ease-out-quart) both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 35%;
+        }
+        /* Bars grow out of their title block */
+        .craftsman-title .line,
+        .outstanding-title .line { transform-origin: right center; }
+        .steadfast-title .line { transform-origin: left center; }
+        .border { animation-name: bar-draw-down; transform-origin: center top; }
+    }
+
+    @supports (animation-timeline: scroll()) {
+        .landing-overlay {
+            animation: overlay-fade linear both;
+            animation-timeline: scroll(root);
+            animation-range: 0 800px;
+        }
+    }
+}
+
+@keyframes vt-fade-out { to { opacity: 0; } }
+@keyframes vt-fade-in { from { opacity: 0; } }
+@keyframes waterline {
+    /* Rises out of the water: the top is seen first, the bottom clears last */
+    from { clip-path: inset(0 0 22% 0); transform: translateY(2.5rem); opacity: 0.6; }
+    to   { clip-path: inset(0); transform: none; opacity: 1; }
+}
+@keyframes bar-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes bar-draw-down { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes overlay-fade { from { opacity: 0; } to { opacity: 1; } }
 
 /* Honor the OS-level reduced-motion preference everywhere. */
 @media (prefers-reduced-motion: reduce) {
