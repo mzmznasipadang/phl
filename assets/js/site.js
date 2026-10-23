@@ -72,6 +72,40 @@
     }).observe(marquee.parentNode);
   }
 
+  /* ---------- Home hero video ----------
+     The photo under it is the video's first frame, so visitors with reduced
+     motion or Save-Data keep the photo and never download the video.
+     It pauses offscreen; the Pause/Play button covers WCAG 2.2.2. */
+  const heroVideo = document.querySelector(".hero-video");
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (heroVideo && motionOK && !saveData && "IntersectionObserver" in window) {
+    const labels = { en: ["Pause", "Play"], id: ["Jeda", "Putar"], zh: ["暂停", "播放"] }[lang] || ["Pause", "Play"];
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "hero-pause";
+    heroVideo.after(toggle);
+    let userPaused = false;
+
+    function setLabel() { toggle.textContent = heroVideo.paused ? labels[1] : labels[0]; }
+    // A blocked autoplay (e.g. iOS Low Power Mode) leaves the photo and a Play button
+    function play() { heroVideo.play().catch(setLabel); }
+
+    heroVideo.addEventListener("play", setLabel);
+    heroVideo.addEventListener("pause", setLabel);
+    heroVideo.addEventListener("playing", function () { heroVideo.classList.add("is-playing"); }, { once: true });
+    toggle.addEventListener("click", function () {
+      userPaused = !heroVideo.paused;
+      if (userPaused) heroVideo.pause(); else play();
+    });
+
+    heroVideo.src = heroVideo.dataset[window.matchMedia("(max-width: 980px)").matches ? "srcSmall" : "src"];
+    setLabel();
+    new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) heroVideo.pause();
+      else if (!userPaused) play();
+    }).observe(heroVideo);
+  }
+
   /* ---------- Contact form ----------
      Field rules live in the HTML (required, type=email, minlength, pattern),
      so the browser checks them in the visitor's own language before this runs. */
