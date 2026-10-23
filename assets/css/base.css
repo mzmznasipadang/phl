@@ -176,10 +176,11 @@ footer a:focus-visible,
 }
 .navbar.is-hidden:focus-within { transform: none; } /* never hide a focused link */
 
+/* Vector lockup (emblem + wordmark): sized by height, width follows */
 .navbar img {
-    width: 21.25rem;
-    height: 2.5rem;
-    object-fit: contain;
+    display: block;
+    width: auto;
+    height: 3rem;
 }
 
 .text {
@@ -342,9 +343,9 @@ footer {
 }
 
 footer img {
-    width: 27.5rem;
-    height: 3.438rem;
-    object-fit: contain;
+    display: block;
+    width: auto;
+    height: 3.5rem;
 }
 
 .before-copyright {
@@ -477,8 +478,8 @@ footer img {
 }
 
 @media only screen and (max-width: 500px) {
-    .navbar img { width: 55vw; height: 7vh; }
-    footer img { width: 70vw; height: 9vh; }
+    .navbar img { height: 2.5rem; }
+    footer img { height: 3rem; }
 }
 
 /* ---------- Motion ----------
