@@ -3,15 +3,19 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>我们的服务 - PHL</title>
     <link rel="icon" href="/assets/webicon.png">
-    <link rel="stylesheet" href="services.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/services.css">
 </head>
 <body>
     <!-- navigation bar -->
     <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png"></a>
+        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
         <div class="text">
             <a href="home.html">首页</a>
             <a href="vessels.html">舰只</a>
@@ -29,12 +33,12 @@
 
     <!-- landing page section -->
     <div class="landing-page">
-        <img src="/assets/services/servicebg.jpeg">
+        <img src="/assets/services/servicebg.jpeg" alt="PT. Pahala Harapan Lestari 船厂的船舶维修作业" decoding="async" fetchpriority="high" width="1920" height="1080">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-tool">
             <div class="landing-text">
                 <p>满足各种需求的工具</p>
-                <p><span>我们的服务</span></p>
+                <h1><span>我们的服务</span></h1>
             </div>
             <a href="contact.html"><div class="contact-us">
                 <p>联系我们 </p>
@@ -47,7 +51,7 @@
     <div class="hero-desc">
         <div class="desc-container"> <!-- text above line -->
             <div class="desc-title">海洋征服者</div>
-            <div class="desc-title2">卓越的海事修复</div>
+            <h2 class="desc-title2">卓越的海事修复</h2>
             </div>
             <div class="line"></div>
             <div class="desc-container"> <!-- text under line -->
@@ -64,18 +68,18 @@
     <div class="boat-type">
         <!-- description -->
         <div class="boat-intro">
-            <p class="boat-title">了解我们<br><span>的船舶</span><br>系列。</p>
+            <h2 class="boat-title">了解我们<br><span>的船舶</span><br>系列。</h2>
             <div class="line"></div>
             <p class="boat-desc">完美满足您的各种需求。<br>看看我们的各种船只，<br>根据您的具体要求量身定制。</p>
         </div>
         <!-- description -->
         <!-- boat option  -->
         <div class="boat-text">
-            <button boat-name="tug">拖船</button>
-            <button boat-name="oil">油驳船</button>
-            <button boat-name="deck">甲板驳船</button>
-            <button boat-name="nav&def">导航与防御</button>
-            <button boat-name="passenger">客船</button>
+            <button data-boat-name="tug">拖船</button>
+            <button data-boat-name="oil">油驳船</button>
+            <button data-boat-name="deck">甲板驳船</button>
+            <button data-boat-name="nav&def">导航与防御</button>
+            <button data-boat-name="passenger">客船</button>
         </div>
         <!-- boat option  -->
     </div>
@@ -84,7 +88,7 @@
     <!-- boat images according to chosen option -->
     <div class="boat-gallery">
         <div class="image-desc">
-            <img id="boat1" src=""> <!-- image1 based on chosen option -->
+            <img id="boat1" src="" alt="" decoding="async" loading="lazy"> <!-- image1 based on chosen option -->
             <div class="showcase-title"> <!-- title -->
                 <div class="title">
                     <p><span>舰只</span></p>
@@ -95,17 +99,17 @@
             </div>
         </div>
         <div class="boat-double-image">
-            <img id="boat2" src=""> <!-- image2 based on chosen option -->
-            <img id="boat3" src=""> <!-- image3 based on chosen option -->
+            <img id="boat2" src="" alt="" decoding="async" loading="lazy"> <!-- image2 based on chosen option -->
+            <img id="boat3" src="" alt="" decoding="async" loading="lazy"> <!-- image3 based on chosen option -->
         </div>
-        <img id="boat4" src=""> <!-- image4 based on chosen option -->
+        <img id="boat4" src="" alt="" decoding="async" loading="lazy"> <!-- image4 based on chosen option -->
     </div>
     <!-- boat images according to chosen option -->   
 
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png">
+                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
                         <p><span>电话</span>: +62 (0717) 4262 666 / 777, 435914</p>
@@ -132,6 +136,6 @@
     </footer>
     <button id="languageButton" class="floating-button">ZH</button>
 </body>
-<script src="services.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 
 </html>

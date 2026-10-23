@@ -2,16 +2,20 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta property="og:image" content="/assets/og.png" />
     <title>Pahala船厂</title>
     <link rel="icon" href="/assets/webicon.png">
-    <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
 </head>
 <body>
     <!-- navigation bar -->
     <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png"></a>
+        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
         <div class="text">
             <a href="#">首页</a>
             <a href="vessels.html">舰只</a>
@@ -29,10 +33,10 @@
 
     <!-- landing page section -->
     <div class="landing-page">
-        <img src="/assets/home/homebg.jpeg">
+        <img src="/assets/home/homebg.jpeg" alt="PT. Pahala Harapan Lestari 的拖船在水面上航行" decoding="async" fetchpriority="high" width="4032" height="3024">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-text">
-            <p><span>我们为您服务</span></p>
+            <h1><span>我们为您服务</span></h1>
             <p>自1982年的船舶和码头公司</p>
         </div>
     </div>
@@ -41,16 +45,16 @@
     <!-- Option Container Start -->
     <div class="option-container">
         <div class="option"> <!-- service box -->
-            <a href="services.html"><img src="/assets/home/servicesoption.png"></a>
+            <a href="services.html"><img src="/assets/home/servicesoption.png" alt="维修" decoding="async" loading="lazy" width="525" height="864"></a>
             <a href="services.html"><p>我们的维修</p></a>
             <!-- sebuah workaround hehehehe :] displaynya hancur kalau a nya wrap ke div -->
         </div>
         <div class="option"> <!-- vessels box -->
-            <a href="vessels.html"><img src="/assets/home/vesselsoption.JPG"></a>
+            <a href="vessels.html"><img src="/assets/home/vesselsoption.JPG" alt="舰只" decoding="async" loading="lazy" width="6000" height="4000"></a>
             <a href="vessels.html"><p>舰只</p></a>
         </div>
         <div class="option"> <!-- profile box -->
-            <a href="about.html"><img src="/assets/home/profileoption.jpeg"></a>
+            <a href="about.html"><img src="/assets/home/profileoption.jpeg" alt="公司简介" decoding="async" loading="lazy" width="3024" height="2205"></a>
             <a href="about.html"><p>侧影</p></a>
         </div>
     </div>
@@ -58,14 +62,14 @@
 
     <!-- Desc Container Start -->
     <div class="desc-container">
-        <p><span>铸就未来，融会贯通</span></p>
+        <h2><span>铸就未来，融会贯通</span></h2>
         <div class="brief-desc">
             <div class="tiles-border"> <!-- images container, 1 big (top) - 2 small (bottom)-->
                 <div class="tiles">
-                    <img src="/assets/home/hometile1.jpg" id="tile1">
+                    <img src="/assets/home/hometile1.jpg" id="tile1" alt="" decoding="async" loading="lazy" width="4496" height="3000">
                     <div class="double-image">
-                        <img src="/assets/home/hometile2.JPG">
-                        <img src="/assets/home/hometile3.JPG">
+                        <img src="/assets/home/hometile2.JPG" alt="" decoding="async" loading="lazy" width="2992" height="2000">
+                        <img src="/assets/home/hometile3.JPG" alt="" decoding="async" loading="lazy" width="2992" height="2000">
                     </div>
                 </div>
                 <div class="border"></div> <!-- line -->
@@ -79,20 +83,20 @@
 
     <!-- our customer section -->
     <div class="customer-container">
-        <p>我们的顾客</p>
-        <div class="marquee-container"> <!--marquee section-->
+        <h2>我们的顾客</h2>
+        <div class="marquee-container" tabindex="0" aria-label="我们的顾客"> <!--marquee section-->
             <div class="marquee-images">
-                <img src="/assets/home/customers/pertamina.png">
-                <img src="/assets/home/customers/pelindo1.png">
-                <img src="/assets/home/customers/pelindo2.png">
-                <img src="/assets/home/customers/adaro.png">
-                <img src="/assets/home/customers/sinarmassukses.png">
+                <img src="/assets/home/customers/pertamina.png" alt="Pertamina" decoding="async" loading="lazy" width="624" height="177">
+                <img src="/assets/home/customers/pelindo1.png" alt="Pelindo" decoding="async" loading="lazy" width="624" height="136">
+                <img src="/assets/home/customers/pelindo2.png" alt="Pelindo" decoding="async" loading="lazy" width="414" height="200">
+                <img src="/assets/home/customers/adaro.png" alt="Adaro" decoding="async" loading="lazy" width="624" height="164">
+                <img src="/assets/home/customers/sinarmassukses.png" alt="Sinarmas" decoding="async" loading="lazy" width="279" height="200">
                 <!-- harus diduplicate, mencegah delay pas start marquee + css diset 50% -->
-                <img src="/assets/home/customers/pertamina.png">
-                <img src="/assets/home/customers/pelindo1.png">
-                <img src="/assets/home/customers/pelindo2.png">
-                <img src="/assets/home/customers/adaro.png">
-                <img src="/assets/home/customers/sinarmassukses.png">
+                <img src="/assets/home/customers/pertamina.png" alt="" aria-hidden="true" decoding="async" loading="lazy" width="624" height="177">
+                <img src="/assets/home/customers/pelindo1.png" alt="" aria-hidden="true" decoding="async" loading="lazy" width="624" height="136">
+                <img src="/assets/home/customers/pelindo2.png" alt="" aria-hidden="true" decoding="async" loading="lazy" width="414" height="200">
+                <img src="/assets/home/customers/adaro.png" alt="" aria-hidden="true" decoding="async" loading="lazy" width="624" height="164">
+                <img src="/assets/home/customers/sinarmassukses.png" alt="" aria-hidden="true" decoding="async" loading="lazy" width="279" height="200">
             </div>
         </div>
     </div>
@@ -101,7 +105,7 @@
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png">
+                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
                         <p><span>电话</span>: +62 (0717) 4262 666 / 777, 435914</p>
@@ -127,6 +131,6 @@
     </footer>
     <button id="languageButton" class="floating-button">ZH</button>
 </body>
-<script src="home.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 
 </html>

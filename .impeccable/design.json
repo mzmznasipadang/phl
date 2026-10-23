@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-20T00:00:00.000Z",
+  "title": "Design System: Pahala Harapan Lestari",
+  "extensions": {
+    "colorMeta": {
+      "deep-harbor-blue": {
+        "role": "primary",
+        "displayName": "Deep Harbor Blue",
+        "canonical": "oklch(0.41 0.105 263)",
+        "tonalRamp": ["#081429", "#0D2954", "#163566", "#1D3F78", "#204782", "#3D63A0", "#7E93C0", "#CCD4E0"]
+      },
+      "harbor-depth": {
+        "role": "secondary",
+        "displayName": "Harbor Depth",
+        "canonical": "oklch(0.28 0.082 264)",
+        "tonalRamp": ["#06101F", "#0A1C39", "#0D2954", "#143667", "#1D447B", "#3B62A0", "#7A91C0", "#C6D0E2"]
+      },
+      "sea-mist": {
+        "role": "tertiary",
+        "displayName": "Sea Mist",
+        "canonical": "oklch(0.86 0.024 257)",
+        "tonalRamp": ["#2A3647", "#3C4D66", "#566683", "#7081A0", "#9AA8C2", "#B7C2D4", "#CCD4E0", "#E8EDF3"]
+      },
+      "tidal-gray": {
+        "role": "tertiary",
+        "displayName": "Tidal Gray",
+        "canonical": "oklch(0.79 0.031 261)",
+        "tonalRamp": ["#262F3D", "#37435A", "#4F5E7B", "#69799A", "#909EBC", "#B7C2D4", "#C9D2E0", "#E6EAF1"]
+      },
+      "dock-white": {
+        "role": "neutral",
+        "displayName": "Dock White",
+        "canonical": "oklch(0.975 0 0)",
+        "tonalRamp": ["#1A1A1A", "#333333", "#595959", "#808080", "#A6A6A6", "#CCCCCC", "#F7F7F7", "#FFFFFF"]
+      },
+      "signal-white": {
+        "role": "neutral",
+        "displayName": "Signal White",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": ["#1A1A1A", "#404040", "#666666", "#8C8C8C", "#B3B3B3", "#D9D9D9", "#F2F2F2", "#FFFFFF"]
+      },
+      "hull-hairline": {
+        "role": "neutral",
+        "displayName": "Hull Hairline",
+        "canonical": "rgba(0, 0, 0, 0.2)",
+        "tonalRamp": ["#000000", "#00000033"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero statement on full-bleed imagery. Signal White over dimmed photography only." },
+      "headline": { "displayName": "Headline", "purpose": "Major section title blocks on blue-gray panels. The heaviest type on a light surface." },
+      "title": { "displayName": "Title", "purpose": "Subsection and band headings." },
+      "body": { "displayName": "Body", "purpose": "Running prose. Hold to 65-75 characters per line." },
+      "label": { "displayName": "Label", "purpose": "Nav links, CTA labels, and the navy description eyebrow." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "nav-slide", "value": "top 0.3s", "purpose": "Navbar hides on scroll-down and reappears on scroll-up." },
+      { "name": "menu-morph", "value": "all 0.3s ease-in-out", "purpose": "Hamburger bars morph into an X; mobile menu slides in from the left." },
+      { "name": "hero-fade", "value": "opacity (scroll-driven)", "purpose": "A Dock White overlay fades in over the hero as the user scrolls past it." },
+      { "name": "marquee", "value": "linear, requestAnimationFrame", "purpose": "Continuous customer-logo auto-scroll on the home page. Needs a reduced-motion fallback." }
+    ],
+    "breakpoints": [
+      { "name": "lg", "value": "980px" },
+      { "name": "md", "value": "780px" },
+      { "name": "sm", "value": "500px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Fixed full-width navy bar with logo and links; hides on scroll-down.",
+      "html": "<nav class=\"ds-navbar\"><span class=\"ds-navbar__brand\">PAHALA HARAPAN LESTARI</span><div class=\"ds-navbar__links\"><a href=\"#\">Home</a><a href=\"#\">Vessels</a><a href=\"#\">Repairs</a><a href=\"#\">About</a><a href=\"#\">Contact</a></div></nav>",
+      "css": ".ds-navbar { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 0 8%; height: 5.938rem; background: linear-gradient(0deg, rgba(0,0,0,0.20), rgba(0,0,0,0.20)), #204782; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; } .ds-navbar__brand { color: #fff; font-weight: 700; letter-spacing: 0.02em; font-size: 1rem; } .ds-navbar__links { display: flex; gap: 2rem; } .ds-navbar__links a { color: #fff; text-decoration: none; font-weight: 500; font-size: 1.15rem; } .ds-navbar__links a:hover { text-decoration: underline; } .ds-navbar__links a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }"
+    },
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Page-level contact call-to-action. Navy Hull Shadow fill, fixed footprint.",
+      "html": "<button class=\"ds-btn-primary\">Contact us</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; width: 10rem; height: 3rem; background: linear-gradient(0deg, rgba(0,0,0,0.20), rgba(0,0,0,0.20)), #204782; color: #fff; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 1.1rem; border: none; border-radius: 6px; cursor: pointer; transition: filter 0.2s; } .ds-btn-primary:hover { filter: brightness(1.12); } .ds-btn-primary:focus-visible { outline: 2px solid #0D2954; outline-offset: 3px; }"
+    },
+    {
+      "name": "Language Toggle",
+      "kind": "button",
+      "refersTo": "language-toggle",
+      "description": "Persistent circular control, bottom-right, cycles EN / ID / ZH.",
+      "html": "<button class=\"ds-lang-toggle\">EN</button>",
+      "css": ".ds-lang-toggle { width: 4rem; height: 4rem; border-radius: 100%; background: #0D2954; color: #fff; border: none; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: filter 0.2s; } .ds-lang-toggle:hover { filter: brightness(1.2); } .ds-lang-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Contact-form field. White ground, 1px hairline, square corners.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Company Name\" />",
+      "css": ".ds-input { height: 2rem; width: 100%; padding: 0 0.625rem; background: #fff; color: #0D2954; border: 1px solid rgba(0,0,0,0.2); border-radius: 0; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; } .ds-input::placeholder { color: #5a6a82; } .ds-input:focus-visible { outline: none; border-color: #204782; box-shadow: 0 0 0 2px rgba(32,71,130,0.25); }"
+    },
+    {
+      "name": "Section Title Block",
+      "kind": "custom",
+      "refersTo": "section-title-block",
+      "description": "The brand's section signature: a blue-gray title panel paired with a navy accent bar.",
+      "html": "<div class=\"ds-section-title\"><div class=\"ds-section-title__panel\">Steadfast principles.</div><div class=\"ds-section-title__line\"></div></div>",
+      "css": ".ds-section-title { display: flex; align-items: center; gap: 1rem; width: 100%; } .ds-section-title__panel { background: #B7C2D4; color: #0D2954; padding: 1.25rem 2rem; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); white-space: nowrap; } .ds-section-title__line { flex: 1; height: 0.5rem; border-radius: 2px; background: linear-gradient(0deg, rgba(0,0,0,0.20), rgba(0,0,0,0.20)), #204782; }"
+    },
+    {
+      "name": "Customer Marquee",
+      "kind": "custom",
+      "refersTo": "customer-marquee",
+      "description": "Continuous client-logo scroll. Proof-over-adjectives in motion; pauses under reduced motion.",
+      "html": "<div class=\"ds-marquee\"><div class=\"ds-marquee__track\"><span>PERTAMINA</span><span>PELINDO</span><span>ADARO</span><span>BAKAMLA</span><span>KEMENHUB</span><span>PERTAMINA</span><span>PELINDO</span><span>ADARO</span><span>BAKAMLA</span><span>KEMENHUB</span></div></div>",
+      "css": ".ds-marquee { overflow: hidden; width: 100%; padding: 1.5rem 0; } .ds-marquee__track { display: inline-flex; gap: 3rem; white-space: nowrap; animation: ds-marquee-scroll 18s linear infinite; } .ds-marquee__track span { font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 1.25rem; color: #204782; letter-spacing: 0.04em; } @keyframes ds-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } } @media (prefers-reduced-motion: reduce) { .ds-marquee__track { animation: none; flex-wrap: wrap; white-space: normal; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Harbor at Anchor",
+    "overview": "This is the visual language of a yard that has been building and repairing ships since 1982. It should feel steady, weighty, and dependable, the way a large vessel sits at anchor in deep water. The whole system orbits one deep maritime navy, set against a near-white dock and carried by a single industrial-grotesque voice with real heft. Authority comes from evidence, not decoration: full-bleed photographs of real hulls do the talking while the chrome stays out of the way. It rejects generic corporate brochureware, the flashy consumer-tech startup look, the cold purely-industrial spec sheet, and cluttered busy layouts.",
+    "keyCharacteristics": [
+      "One deep navy carries the brand; everything else supports it.",
+      "A single industrial grotesque (Archivo) across the whole site, working through weight contrast.",
+      "Flat surfaces. Depth comes from imagery and tonal layering, never from shadow.",
+      "Full-bleed 100vh hero photography on every page, dimmed so type can sit on it.",
+      "Asymmetric image showcases, not uniform card grids.",
+      "A repeating section signature: navy accent bar plus blue-gray title block."
+    ],
+    "rules": [
+      { "name": "The Hull Shadow Rule", "body": "Navy surfaces carry a 20% black multiply layered over #204782 (linear-gradient(0deg, rgba(0,0,0,0.20), rgba(0,0,0,0.20)), #204782). This recurring treatment on the navbar, footer, CTAs, accent bars, and map panel is the brand signature. Do not swap in a flat fill or a decorative multi-stop gradient.", "section": "colors" },
+      { "name": "The One Navy Rule", "body": "Exactly one brand navy (Deep Harbor Blue) and one deeper variant (Harbor Depth). No second blue, no teal, no accent hue. The restraint is the seriousness.", "section": "colors" },
+      { "name": "The Weight-Not-Family Rule", "body": "Hierarchy is built from Archivo's weight range (400 to 700), never from a second typeface.", "section": "typography" },
+      { "name": "The Eyebrow Exception", "body": "The small navy eyebrow above vessel and repair descriptions is a single deliberate pattern, not section scaffolding. Do not multiply it into a tracked uppercase kicker above every section.", "section": "typography" },
+      { "name": "The Flat Hull Rule", "body": "Surfaces are flat at rest. Never add a decorative box-shadow to lift an element; use the navy Hull Shadow treatment or a contrasting blue-gray ground instead.", "section": "elevation" },
+      { "name": "The Brightness-Filter Rule", "body": "Hero photographs are dimmed to roughly 75% brightness so Signal White display type stays legible. Verify contrast on the brightest region of the photo, not the average.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do carry the navy Hull Shadow treatment on every navy surface. It is the brand signature.",
+      "Do build type hierarchy from Archivo weight alone (400 to 700). One family, top to bottom.",
+      "Do keep surfaces flat and earn depth from full-bleed photography and the two blue-grays.",
+      "Do lead with real evidence: actual vessels, real client logos, the awards, the ISO certifications. Proof over adjectives.",
+      "Do hold body copy to 65 to 75 characters per line and set a visible :focus-visible ring on every interactive control.",
+      "Do give the customer marquee, the hide-on-scroll navbar, and the hero scroll-fade a prefers-reduced-motion alternative.",
+      "Do keep the EN / ID / ZH versions at visual and accessibility parity; a fix on one is a fix on all three."
+    ],
+    "donts": [
+      "Don't ship generic corporate brochureware: no stock-business photography, no interchangeable icon-and-text card grids, no template layout.",
+      "Don't drift toward a flashy consumer-tech startup: no decorative multi-stop gradients, no playful illustration, no oversized rounded-everything.",
+      "Don't go cold and purely industrial: keep the family-craft story and the people visible.",
+      "Don't get cluttered and busy: one clear idea per view, generous spacing, an obvious path to contact.",
+      "Don't introduce a second brand hue beyond Deep Harbor Blue, Harbor Depth, and the blue-grays.",
+      "Don't add a box-shadow to lift an element; use the Hull Shadow or a blue-gray ground instead.",
+      "Don't set body or structural text below ~0.85rem. The current footer text (0.7rem) and copyright (0.5rem, 0.3rem on mobile) fail WCAG AA.",
+      "Don't use background-clip: text gradient headings, glassmorphism, or a border-left color stripe as an accent.",
+      "Don't multiply the navy eyebrow into a tracked uppercase kicker above every section."
+    ]
+  }
+}

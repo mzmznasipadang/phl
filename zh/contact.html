@@ -2,15 +2,19 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Contact Us</title>
     <link rel="icon" href="/assets/webicon.png">
-    <link rel="stylesheet" href="contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/contact.css">
 </head>
 <body>
     <!-- navigation bar -->
     <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png"></a>
+        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
         <div class="text">
             <a href="home.html">首页</a>
             <a href="vessels.html">舰只</a>
@@ -28,35 +32,40 @@
 
     <!-- landing page section -->
     <div class="landing-page">
-        <img src="/assets/contact/contactbg.jpg">
+        <img src="/assets/contact/contactbg.jpg" alt="从水面看 PT. Pahala Harapan Lestari 船厂" decoding="async" fetchpriority="high" width="2973" height="1964">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-text">
             <p>随时准备起航</p>
-            <p><span>联系我们</span></p>
+            <h1><span>联系我们</span></h1>
         </div>
     </div>
     <!-- landing page section -->
 
-    <p class="heading">来自你，为你</p>
+    <h2 class="heading">来自你，为你</h2>
     <!-- contact form -->
     <div class="card">
         <div class="map"> <!-- map -->
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.144613767445!2d106.1398239!3d-2.0976943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e22c061c0b07c15%3A0x555948479ddeebdb!2sPT.%20Pahala%20Harapan%20Lestari%20Shipyard!5e0!3m2!1sen!2sid!4v1691746119952!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="form">
-            <form method="post" name="contact-form" action=""> <!-- form submitted via post method, recorded in google sheets -->
+            <form method="post" name="contact-form" action="" novalidate aria-label="联系表单"> <!-- submitted via POST, recorded in Google Sheets -->
                 <div class="name-email">
-                    <input type="text" placeholder="姓名" id="name" name="Name"/>
-                    <input type="email" inputmode="邮箱" placeholder="Email" id="email" name="Email"/>
+                    <label class="visually-hidden" for="name">姓名</label>
+                    <input type="text" placeholder="姓名" id="name" name="Name" required autocomplete="name" maxlength="100"/>
+                    <label class="visually-hidden" for="email">Email</label>
+                    <input type="email" inputmode="email" placeholder="Email" id="email" name="Email" required autocomplete="email" maxlength="100"/>
                 </div>
                 <div class="company-name">
-                    <input type="text" placeholder="公司名" id="company-name" name="CompanyName"/>
+                    <label class="visually-hidden" for="company-name">公司名</label>
+                    <input type="text" placeholder="公司名" id="company-name" name="CompanyName" autocomplete="organization" maxlength="150"/>
                 </div>
                 <div class="phone-number">
-                    <input type="text" inputmode="numeric" placeholder="电话号码" id="phone" name="Phone"/>
+                    <label class="visually-hidden" for="phone">电话号码</label>
+                    <input type="text" inputmode="numeric" placeholder="电话号码" id="phone" name="Phone" required autocomplete="tel" maxlength="30"/>
                 </div>
                 <div class="message">
-                    <textarea rows="20" cols="20"  placeholder="信息" id="message" name="Message"></textarea>
+                    <label class="visually-hidden" for="message">信息</label>
+                    <textarea rows="20" cols="20" placeholder="信息" id="message" name="Message" required maxlength="2000"></textarea>
                 </div>
                 <div class="send-button">
                     <button type="submit" id="button" value="submit">提交</button>
@@ -69,7 +78,7 @@
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png">
+                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
                         <p><span>电话</span>: +62 (0717) 4262 666 / 777, 435914</p>
@@ -96,6 +105,6 @@
     </footer>
     <button id="languageButton" class="floating-button">ZH</button>
 </body>
-<script src="contact.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 
 </html>

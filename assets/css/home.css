@@ -1,0 +1,201 @@
+/* Pahala Harapan Lestari — home page (loaded with base.css) */
+
+.landing-text {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 45%;
+}
+
+.option-container {
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.option {
+    width: 30%;
+    height: 75vh;
+    background: var(--hull-shadow);
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.option img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out-quart), filter 0.4s var(--ease-out-quart);
+}
+
+.option:hover img,
+.option:focus-within img {
+    filter: brightness(0.7);
+    transform: scale(1.05);
+}
+
+.option p {
+    color: var(--signal-white);
+    font-weight: 600;
+    font-size: 1.6rem;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 85%;
+}
+
+.desc-container {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    background: var(--sea-mist);
+}
+
+.desc-container span {
+    font-weight: 600;
+    font-size: 2.7rem;
+}
+
+.brief-desc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 4%;
+    width: 100%;
+}
+
+.brief-desc img { border-radius: 2px; }
+
+.brief-desc p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    width: 40%;
+    padding: 3%;
+}
+
+.tiles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.border {
+    display: flex;
+    flex-grow: 1;
+    width: 0.5rem;
+    border-radius: 2px;
+    background: var(--hull-shadow);
+}
+
+.tiles-border {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    gap: 1rem;
+}
+
+.double-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.double-image img {
+    height: 40vh;
+    width: 48%;
+    object-fit: cover;
+}
+
+#tile1 {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+}
+
+.customer-container {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.customer-container h2 {
+    font-weight: 600;
+    font-size: 2.7rem;
+}
+
+.marquee-container {
+    margin-top: 3.3rem;
+    margin-bottom: 4.5rem;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-images {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee-scroll 32s linear infinite;
+    will-change: transform;
+}
+
+/* Pause so a visitor can read a client logo, by mouse or keyboard */
+.marquee-container:hover .marquee-images,
+.marquee-container:focus-within .marquee-images {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.marquee-images img {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: auto;
+}
+
+/* Reduced motion: a calm, static, wrapped row of the real logos */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-container { white-space: normal; }
+    .marquee-images {
+        animation: none;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    .marquee-images img[aria-hidden="true"] { display: none; }
+}
+
+@media only screen and (max-width: 980px) {
+    .brief-desc { flex-direction: column; }
+    .brief-desc p { width: 100%; text-align: justify; }
+    .tiles-border { flex-direction: column; align-items: center; }
+    .border {
+        width: 100%;
+        height: 0.5rem;
+        margin: 1rem 0;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .option-container { flex-direction: column; }
+    .option { height: 30vh; width: 100%; }
+    .option p { top: 70%; }
+}

@@ -3,15 +3,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Our Repairs</title>
     <link rel="icon" href="/assets/webicon.png">
-    <link rel="stylesheet" href="services.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/services.css">
 </head>
 <body>
     <!-- navigation bar -->
     <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png"></a>
+        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
         <div class="text">
             <a href="home.html">Home</a>
             <a href="vessels.html">Vessels</a>
@@ -29,12 +33,12 @@
 
     <!-- landing page section -->
     <div class="landing-page">
-        <img src="/assets/services/servicebg.jpeg">
+        <img src="/assets/services/servicebg.jpeg" alt="Ship repair work at the PT. Pahala Harapan Lestari yard" decoding="async" fetchpriority="high" width="1920" height="1080">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-tool">
             <div class="landing-text">
                 <p>A Tool for Every Need</p>
-                <p><span>Repairs</span></p>
+                <h1><span>Repairs</span></h1>
             </div>
             <a href="contact.html"><div class="contact-us">
                 <p>Contact Us</p>
@@ -47,7 +51,7 @@
     <div class="hero-desc">
         <div class="desc-container"> <!-- text above line -->
             <div class="desc-title">CONQUEROR OF THE SEAS</div>
-            <div class="desc-title2">Maritime restoration excellence.</div>
+            <h2 class="desc-title2">Maritime restoration excellence.</h2>
             </div>
             <div class="line"></div>
             <div class="desc-container"> <!-- text under line -->
@@ -64,18 +68,18 @@
     <div class="boat-type">
         <!-- description -->
         <div class="boat-intro">
-            <p class="boat-title">Discover our<br><span>vessel</span><br>families.</p>
+            <h2 class="boat-title">Discover our<br><span>vessel</span><br>families.</h2>
             <div class="line"></div>
             <p class="boat-desc">A perfect fit for your every need.<br>Take a look at our variety of vessels,<br>tailored to your specific requirements.</p>
         </div>
         <!-- description -->
         <!-- boat option  -->
         <div class="boat-text">
-            <button boat-name="tug">Tug Boats</button>
-            <button boat-name="oil">Oil Barge</button>
-            <button boat-name="deck">Deck Barge</button>
-            <button boat-name="nav&def">Navigation & Defense</button>
-            <button boat-name="passenger">Passenger Ship</button>
+            <button data-boat-name="tug">Tug Boats</button>
+            <button data-boat-name="oil">Oil Barge</button>
+            <button data-boat-name="deck">Deck Barge</button>
+            <button data-boat-name="nav&def">Navigation & Defense</button>
+            <button data-boat-name="passenger">Passenger Ship</button>
         </div>
         <!-- boat option  -->
     </div>
@@ -84,7 +88,7 @@
     <!-- boat images according to chosen option -->
     <div class="boat-gallery">
         <div class="image-desc">
-            <img id="boat1" src=""> <!-- image1 based on chosen option -->
+            <img id="boat1" src="" alt="" decoding="async" loading="lazy"> <!-- image1 based on chosen option -->
             <div class="showcase-title"> <!-- title -->
                 <div class="title">
                     <p><span>Vessel</span></p>
@@ -95,17 +99,17 @@
             </div>
         </div>
         <div class="boat-double-image">
-            <img id="boat2" src=""> <!-- image2 based on chosen option -->
-            <img id="boat3" src=""> <!-- image3 based on chosen option -->
+            <img id="boat2" src="" alt="" decoding="async" loading="lazy"> <!-- image2 based on chosen option -->
+            <img id="boat3" src="" alt="" decoding="async" loading="lazy"> <!-- image3 based on chosen option -->
         </div>
-        <img id="boat4" src=""> <!-- image4 based on chosen option -->
+        <img id="boat4" src="" alt="" decoding="async" loading="lazy"> <!-- image4 based on chosen option -->
     </div>
     <!-- boat images according to chosen option -->   
 
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png">
+                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
                         <p><span>Telephone</span>: +62 (0717) 4262 666 / 777, 435914</p>
@@ -131,6 +135,6 @@
     </footer>
     <button id="languageButton" class="floating-button">EN</button>
 </body>
-<script src="services.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 
 </html>

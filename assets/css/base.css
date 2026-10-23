@@ -1,0 +1,342 @@
+/* ============================================================
+   Pahala Harapan Lestari — base.css
+   Shared foundation linked by every page: design tokens, reset,
+   and the components common to all pages (navbar, hero scaffold,
+   footer, language toggle). Page-specific styles live in
+   /assets/css/<page>.css. See DESIGN.md for the token system.
+   ============================================================ */
+
+/* Archivo (industrial grotesque) is loaded via <link rel="preconnect"> +
+   <link rel="stylesheet"> in each page <head> so it fetches in parallel,
+   not via a render-blocking CSS @import waterfall. */
+
+:root {
+    /* Brand palette */
+    --deep-harbor-blue: #204782;
+    --harbor-depth: #0D2954;
+    --sea-mist: #CCD4E0;
+    --tidal-gray: #B7C2D4;
+    --dock-white: #F7F7F7;
+    --signal-white: #FFFFFF;
+    --hull-hairline: rgba(0, 0, 0, 0.2);
+
+    /* Signature treatment: a 20% black multiply over the navy */
+    --hull-shadow: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), var(--deep-harbor-blue);
+
+    /* Radius scale */
+    --r-micro: 2px;
+    --r-sm: 6px;
+    --r-pill: 100%;
+
+    /* Motion: natural deceleration, no bounce */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a { color: var(--signal-white); }
+
+html { background-color: var(--dock-white); }
+
+/* With intrinsic width/height attributes on <img> (for CLS), let height be
+   derived from the aspect ratio. Images with an explicit CSS height
+   (hero, gallery tiles) keep it via higher specificity. */
+img { height: auto; }
+
+/* Semantic headings inherit the surrounding styled context: tag swaps
+   (p/div -> h1..h3) carry meaning without changing a pixel. */
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+h1, h2, h3 { text-wrap: balance; }
+
+/* Hide a label visually while keeping it for screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Visible keyboard focus on every interactive control */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--harbor-depth);
+    outline-offset: 2px;
+}
+/* On navy surfaces the ring must be light to stay visible */
+.navbar a:focus-visible,
+.navbar .hamburger:focus-visible,
+.directory a:focus-visible,
+footer a:focus-visible,
+.floating-button:focus-visible {
+    outline-color: var(--signal-white);
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+    background: var(--hull-shadow);
+    height: 5.938rem;
+    width: 100%;
+    padding-left: 8%;
+    padding-right: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 2;
+    transition: top 0.3s;
+}
+
+.navbar img {
+    width: 21.25rem;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+.text {
+    color: var(--signal-white);
+    font-weight: 500;
+    font-size: 1.15rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 3.375vw;
+}
+
+.text a:hover { text-decoration: underline; }
+.text a:active { color: var(--signal-white); }
+.text a:visited { color: var(--signal-white); }
+
+.hamburger {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bar {
+    display: block;
+    border-radius: 0.1rem;
+    width: 1.2rem;
+    height: 2.7px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--signal-white);
+}
+
+/* ---------- Floating language toggle ---------- */
+.floating-button {
+    position: fixed;
+    bottom: max(0.5rem, env(safe-area-inset-bottom));
+    right: max(0.5rem, env(safe-area-inset-right));
+    background-color: var(--harbor-depth);
+    color: var(--signal-white);
+    font-size: 1rem;
+    padding: 1.5rem;
+    z-index: 5;
+    border-radius: var(--r-pill);
+    border-style: none;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.floating-button:hover { filter: brightness(1.2); }
+
+/* ---------- Hero scaffold (positioning lives in page CSS) ---------- */
+.landing-page { position: relative; overflow: hidden; }
+
+/* One signature entrance: the hero photo settles, the headline rises.
+   Slow and confident, never bouncy. Skipped entirely under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+    .landing-page img { animation: hero-settle 900ms var(--ease-out-expo) both; }
+    .landing-text { animation: hero-rise 800ms var(--ease-out-expo) 120ms both; }
+}
+@keyframes hero-settle {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1); }
+}
+@keyframes hero-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.landing-page img {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    object-fit: cover;
+    filter: brightness(75%);
+}
+
+.landing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    opacity: 0;
+    background-color: var(--dock-white);
+    pointer-events: none; /* never intercept interaction */
+    z-index: 1;
+}
+
+.landing-text {
+    color: var(--signal-white);
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+.landing-text span {
+    font-weight: 700;
+    font-size: 4rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background: var(--hull-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 4%;
+}
+
+footer img {
+    width: 27.5rem;
+    height: 3.438rem;
+    object-fit: contain;
+}
+
+.before-copyright {
+    display: flex;
+    justify-content: space-between;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+    background: var(--hull-shadow);
+}
+
+.footer-desc {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: first baseline;
+    justify-content: space-between;
+    color: var(--signal-white);
+    font-weight: 400;
+    font-size: 0.85rem;
+    gap: 1rem 1.5rem;
+    width: 38vw;
+    margin-top: 0.7rem;
+}
+
+.footer-desc span { font-weight: 700; }
+
+.directory {
+    color: var(--signal-white);
+    font-weight: 300;
+    font-size: 0.9rem;
+    margin-top: 2%;
+    margin-right: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.7vh;
+}
+
+.directory a:hover { text-decoration: underline; }
+.directory a:active { color: var(--signal-white); }
+.directory a:visited { color: var(--signal-white); }
+.directory span { font-weight: 900; font-size: 1.1rem; }
+
+.copyright {
+    text-align: center;
+    color: var(--signal-white);
+    font-weight: 500;
+    font-size: 0.8rem;
+    margin-bottom: 2%;
+    margin-top: 4%;
+    background: var(--hull-shadow);
+}
+
+/* ---------- Responsive (shared) ---------- */
+@media only screen and (max-width: 980px) {
+    .text {
+        position: fixed;
+        left: -100%;
+        top: 5rem;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        background: var(--hull-shadow);
+        padding-bottom: 1rem;
+    }
+
+    .text.active { left: 0; }
+
+    /* Full-width tappable rows in the slide-in menu */
+    .text a { display: block; padding: 0.85rem 1rem; }
+
+    .hamburger { display: flex; cursor: pointer; }
+
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(7.8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-7.8px) rotate(-45deg); }
+}
+
+@media only screen and (max-width: 780px) {
+    .directory { display: none; }
+    .landing-text { font-size: 1rem; }
+    .landing-text span { font-size: 3rem; }
+
+    /* Footer contact details: full width, stacked, legible */
+    .footer-desc {
+        width: 100%;
+        flex-direction: column;
+        gap: 1.25rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .navbar img { width: 55vw; height: 7vh; }
+    footer img { width: 70vw; height: 9vh; }
+}
+
+/* Honor the OS-level reduced-motion preference everywhere. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -3,15 +3,19 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Perbaikan</title>
     <link rel="icon" href="/assets/webicon.png">
-    <link rel="stylesheet" href="services.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/services.css">
 </head>
 <body>
     <!-- navigation bar -->
     <div class="navbar">
-        <a href="home.html"><img src="/assets/navbarlogo.png"></a>
+        <a href="home.html"><img src="/assets/navbarlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" width="624" height="81"></a>
         <div class="text">
             <a href="home.html">Beranda</a>
             <a href="vessels.html">Kapal</a>
@@ -29,12 +33,12 @@
 
     <!-- landing page section -->
     <div class="landing-page">
-        <img src="/assets/services/servicebg.jpeg">
+        <img src="/assets/services/servicebg.jpeg" alt="Pekerjaan reparasi kapal di galangan PT. Pahala Harapan Lestari" decoding="async" fetchpriority="high" width="1920" height="1080">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-tool">
             <div class="landing-text">
                 <p>Peralatan untuk Seluruh Kebutuhan</p>
-                <p><span>Perbaikan</span></p>
+                <h1><span>Perbaikan</span></h1>
             </div>
             <a href="contact.html"><div class="contact-us">
                 <p>Hubungi Kami</p>
@@ -47,7 +51,7 @@
     <div class="hero-desc">
         <div class="desc-container"> <!-- text above line -->
             <div class="desc-title">PENGUASA LAUTAN</div>
-            <div class="desc-title2">Keunggulan restorasi maritim.</div> <!-- Artinya Beneran ini? b-->
+            <h2 class="desc-title2">Keunggulan restorasi maritim.</h2> <!-- Artinya Beneran ini? b-->
             </div>
             <div class="line"></div>
             <div class="desc-container"> <!-- text under line -->
@@ -64,18 +68,18 @@
     <div class="boat-type">
         <!-- description -->
         <div class="boat-intro">
-            <p class="boat-title">Eksplorasi<br><span>kapal</span><br>customer kami.</p>
+            <h2 class="boat-title">Eksplorasi<br><span>kapal</span><br>customer kami.</h2>
             <div class="line"></div>
             <p class="boat-desc">Solusi sempurna untuk setiap kebutuhan Anda.<br>Lihatlah berbagai jenis kapal kami,<br>yang disesuaikan dengan kebutuhan spesifik Anda.</p>
         </div>
         <!-- description -->
         <!-- boat option  -->
         <div class="boat-text">
-            <button boat-name="tug">Kapal Tunda</button>
-            <button boat-name="oil">Tongkang Minyak</button>
-            <button boat-name="deck">Tongkang</button>
-            <button boat-name="nav&def">Navigasi & Pertahanan</button>
-            <button boat-name="passenger">Kapal Penumpang</button>
+            <button data-boat-name="tug">Kapal Tunda</button>
+            <button data-boat-name="oil">Tongkang Minyak</button>
+            <button data-boat-name="deck">Tongkang</button>
+            <button data-boat-name="nav&def">Navigasi & Pertahanan</button>
+            <button data-boat-name="passenger">Kapal Penumpang</button>
         </div>
         <!-- boat option  -->
     </div>
@@ -84,7 +88,7 @@
     <!-- boat images according to chosen option -->
     <div class="boat-gallery">
         <div class="image-desc">
-            <img id="boat1" src=""> <!-- image1 based on chosen option -->
+            <img id="boat1" src="" alt="" decoding="async" loading="lazy"> <!-- image1 based on chosen option -->
             <div class="showcase-title"> <!-- title -->
                 <div class="title">
                     <p><span>Galeri</span></p>
@@ -95,17 +99,17 @@
             </div>
         </div>
         <div class="boat-double-image">
-            <img id="boat2" src=""> <!-- image2 based on chosen option -->
-            <img id="boat3" src=""> <!-- image3 based on chosen option -->
+            <img id="boat2" src="" alt="" decoding="async" loading="lazy"> <!-- image2 based on chosen option -->
+            <img id="boat3" src="" alt="" decoding="async" loading="lazy"> <!-- image3 based on chosen option -->
         </div>
-        <img id="boat4" src=""> <!-- image4 based on chosen option -->
+        <img id="boat4" src="" alt="" decoding="async" loading="lazy"> <!-- image4 based on chosen option -->
     </div>
     <!-- boat images according to chosen option -->   
 
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
-                <img src="/assets/footerlogo.png">
+                <img src="/assets/footerlogo.png" alt="PT. Pahala Harapan Lestari" decoding="async" loading="lazy" width="624" height="92">
                 <div class="footer-desc">
                     <div class="desc"> <!-- left section of information -->
                         <p><span>Telepon</span>: +62 (0717) 4262 666 / 777, 435914</p>
@@ -131,6 +135,6 @@
     </footer>
     <button id="languageButton" class="floating-button">ID</button>
 </body>
-<script src="services.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 
 </html>
