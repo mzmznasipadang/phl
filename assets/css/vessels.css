@@ -24,13 +24,6 @@
     padding-right: 8%;
 }
 
-.desc-title {
-    color: var(--deep-harbor-blue);
-    font-size: 1.4rem;
-    text-align: center;
-    font-weight: 400;
-}
-
 .desc-title2 {
     font-size: var(--fs-title);
     text-align: center;

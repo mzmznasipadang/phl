@@ -8,37 +8,17 @@
   "use strict";
 
   const lang = document.documentElement.lang || "en";
-  const ui = {
-    en: { menu: "Toggle navigation menu", photo: function (label, n) { return label + " by PT. Pahala Harapan Lestari (" + n + " of 4)"; } },
-    id: { menu: "Buka atau tutup menu navigasi", photo: function (label, n) { return label + " oleh PT. Pahala Harapan Lestari (" + n + " dari 4)"; } },
-    zh: { menu: "打开或关闭导航菜单", photo: function (label, n) { return "PT. Pahala Harapan Lestari 的" + label + "（第 " + n + " 张，共 4 张）"; } }
-  };
-  const text = ui[lang] || ui.en;
 
-  /* ---------- Mobile menu toggle (keyboard accessible) ---------- */
+  /* ---------- Mobile menu toggle ----------
+     The toggle is a real <button> (aria-controls, localized label in the HTML),
+     so keyboard and screen-reader support come for free. */
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".text");
   if (hamburger && navLinks) {
-    // The markup is a <div>; give it real button semantics for keyboard + AT.
-    if (!navLinks.id) navLinks.id = "primary-nav";
-    hamburger.setAttribute("role", "button");
-    hamburger.setAttribute("tabindex", "0");
-    hamburger.setAttribute("aria-controls", navLinks.id);
-    hamburger.setAttribute("aria-expanded", "false");
-    hamburger.setAttribute("aria-label", text.menu);
-
-    const toggleMenu = function () {
+    hamburger.addEventListener("click", function () {
       const isOpen = hamburger.classList.toggle("active");
       navLinks.classList.toggle("active");
       hamburger.setAttribute("aria-expanded", String(isOpen));
-    };
-
-    hamburger.addEventListener("click", toggleMenu);
-    hamburger.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleMenu();
-      }
     });
   }
 
@@ -73,51 +53,6 @@
       // "" hands control back to the CSS (including its hover/focus pause)
       marquee.style.animationPlayState = entries[0].isIntersecting ? "" : "paused";
     }).observe(marquee.parentNode);
-  }
-
-  /* ---------- Repairs gallery tabs ---------- */
-  const galleryButtons = document.querySelectorAll(".boat-text button");
-  if (galleryButtons.length) {
-    const imgs = [1, 2, 3, 4].map(function (i) { return document.getElementById("boat" + i); });
-
-    const show = function (button, animate) {
-      const boat = button.getAttribute("data-boat-name");
-      const label = button.textContent.trim();
-      const srcs = imgs.map(function (_, i) { return "/assets/services/" + boat + "/" + (i + 1) + ".jpg"; });
-
-      galleryButtons.forEach(function (btn) {
-        btn.classList.toggle("focused", btn === button);
-        btn.setAttribute("aria-pressed", String(btn === button));
-      });
-
-      const swap = function () {
-        imgs.forEach(function (img, i) {
-          if (!img) return;
-          img.src = srcs[i];
-          img.alt = text.photo(label, i + 1);
-        });
-      };
-
-      if (!animate || !document.startViewTransition ||
-          window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        swap();
-        return;
-      }
-      // Decode the new photos first so the cross-fade never shows a blank frame
-      Promise.all(srcs.map(function (src) {
-        const pre = new Image();
-        pre.src = src;
-        return pre.decode().catch(function () {});
-      })).then(function () {
-        // A skipped transition (e.g. hidden tab) still runs swap; only silence its rejection
-        document.startViewTransition(swap).ready.catch(function () {});
-      });
-    };
-
-    galleryButtons.forEach(function (button) {
-      button.addEventListener("click", function () { show(this, true); });
-    });
-    show(document.querySelector('[data-boat-name="tug"]') || galleryButtons[0], false);
   }
 
   /* ---------- Contact form ----------

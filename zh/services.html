@@ -15,12 +15,13 @@
     <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
     <!-- navigation bar -->
-    <div class="navbar">
+    <header class="navbar">
         <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
-        <div class="text">
+        <nav class="text" id="primary-nav" aria-label="主导航">
             <a href="home.html">首页</a>
-            <a href="vessels.html">舰只</a>
+            <a href="vessels.html">船舶</a>
             <a href="">维修</a>
             <a href="about.html">关于Pahala船厂</a>
             <a href="contact.html">联系</a>
@@ -29,13 +30,14 @@
                 <a href="/id/services.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
                 <a href="/zh/services.html" hreflang="zh" lang="zh" aria-label="中文" aria-current="true">中文</a>
             </div>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="菜单">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
@@ -44,7 +46,7 @@
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-tool">
             <div class="landing-text">
-                <p>满足各种需求的工具</p>
+                <p>自1982年起提供船舶修理与坞修</p>
                 <h1><span>我们的服务</span></h1>
             </div>
             <a href="contact.html"><div class="contact-us">
@@ -57,14 +59,12 @@
     <!-- Hero Desc Section Starts-->
     <div class="hero-desc">
         <div class="desc-container"> <!-- text above line -->
-            <div class="desc-title">海洋征服者</div>
-            <h2 class="desc-title2">卓越的海事修复</h2>
+            <h2 class="desc-title2">在邦加槟港修船与坞修</h2>
             </div>
             <div class="line"></div>
             <div class="desc-container"> <!-- text under line -->
-            <div class="desc-text">Pahala Harapan Lestari 在海事领域航行了四十多年，已成为印度尼西亚修船和码头行业的领军力量。 现在，我们经过专业维修和停靠的船只活跃在印度尼西亚各地的港口和码头。
-                <br><br>
-                从在严格的拖曳任务后将坚固的拖船恢复到最佳状态,到改装特种船舶以适应不同的海洋功能,Pahala Harapan Lestari 优先考虑一流的维修和入坞服务,确保每艘船舶满足海事部门的多方面需求。
+            <div class="desc-text">除新造船外，PT. Pahala Harapan Lestari 还在船厂内承接船舶修理与坞修：完成高强度拖带作业的拖船、油驳船和甲板驳船、导航与防务船舶以及客船。修复后的船舶重返印度尼西亚各地的港口和码头。<br><br>
+                修理工程与新造船采用相同的质量、环境及职业健康安全管理体系，符合 ISO 9001、ISO 14001 和 ISO 45001 标准。
             </div>
         </div>
         <div class="line"></div>
@@ -75,43 +75,43 @@
     <div class="boat-type">
         <!-- description -->
         <div class="boat-intro">
-            <h2 class="boat-title">了解我们<br><span>的船舶</span><br>系列。</h2>
+            <h2 class="boat-title">我们修理的<br>船舶类型</h2>
             <div class="line"></div>
-            <p class="boat-desc">完美满足您的各种需求。<br>看看我们的各种船只，<br>根据您的具体要求量身定制。</p>
+            <p class="boat-desc">从完成高强度拖带作业的拖船<br>到特种船舶的改装。</p>
         </div>
         <!-- description -->
-        <!-- boat option  -->
-        <div class="boat-text">
-            <button data-boat-name="tug">拖船</button>
-            <button data-boat-name="oil">油驳船</button>
-            <button data-boat-name="deck">甲板驳船</button>
-            <button data-boat-name="nav&def">导航与防御</button>
-            <button data-boat-name="passenger">客船</button>
-        </div>
-        <!-- boat option  -->
+        <ul class="boat-text" aria-label="我们修理的船舶类型">
+            <li>拖船</li>
+            <li>油驳船</li>
+            <li>甲板驳船</li>
+            <li>导航与防务船舶</li>
+            <li>客船</li>
+        </ul>
     </div>
     <!-- boat type navigation -->
 
-    <!-- boat images according to chosen option -->
+    <!-- tug photo gallery -->
     <div class="boat-gallery">
         <div class="image-desc">
-            <img id="boat1" src="/assets/services/tug/1.jpg" alt="" decoding="async" loading="lazy"> <!-- image1 based on chosen option -->
+            <img id="boat1" src="/assets/services/tug/1.jpg" alt="拖船 OSEANIK 02 在水面航行" decoding="async" loading="lazy" width="1600" height="1066">
             <div class="showcase-title"> <!-- title -->
                 <div class="title">
-                    <p><span>舰只</span></p>
-                    <p><span>展示</span></p>
+                    <p><span>拖船</span></p>
+                    <p><span>图集</span></p>
                     <div class="line"></div>
-                    <p>我们最伟大的舰队的画廊，<br>精心打造，精益求精。<br>同类中的杰作。</p>
+                    <p>拖船完成高强度拖带作业后，<br>我们让它们恢复作业状态。</p>
                 </div>
             </div>
         </div>
         <div class="boat-double-image">
-            <img id="boat2" src="/assets/services/tug/2.jpg" alt="" decoding="async" loading="lazy"> <!-- image2 based on chosen option -->
-            <img id="boat3" src="/assets/services/tug/3.jpg" alt="" decoding="async" loading="lazy"> <!-- image3 based on chosen option -->
+            <img id="boat2" src="/assets/services/tug/2.jpg" alt="拖船 JKW PELITA 1 在海上航行" decoding="async" loading="lazy" width="1024" height="576">
+            <img id="boat3" src="/assets/services/tug/3.jpg" alt="拖船 MBP 2209 驶过沙洲" decoding="async" loading="lazy" width="1600" height="1066">
         </div>
-        <img id="boat4" src="/assets/services/tug/4.jpg" alt="" decoding="async" loading="lazy"> <!-- image4 based on chosen option -->
+        <img id="boat4" src="/assets/services/tug/4.jpg" alt="拖船 BAHAR 88 在水面航行" decoding="async" loading="lazy" width="1600" height="1066">
     </div>
-    <!-- boat images according to chosen option -->   
+    <!-- tug photo gallery -->   
+
+    </main>
 
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
@@ -132,7 +132,7 @@
             <div class="directory"> <!-- bottom navigation -->
                 <p><span>探索更多</span></p>
                 <a href="home.html">首页</a>
-                <a href="vessels.html">舰只</a>
+                <a href="vessels.html">船舶</a>
                 <a href="services.html">维修</a>
                 <a href="about.html">关于Pahala船厂</a>
                 <a href="contact.html">联系</a>

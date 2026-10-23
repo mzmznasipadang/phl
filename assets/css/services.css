@@ -23,13 +23,6 @@
     padding-right: 8%;
 }
 
-.desc-title {
-    color: var(--deep-harbor-blue);
-    font-size: 1.4rem;
-    text-align: center;
-    font-weight: 400;
-}
-
 .desc-title2 {
     font-size: var(--fs-title);
     text-align: center;
@@ -126,24 +119,16 @@ a:active .contact-us { transform: scale(0.97); }
     padding-right: 3rem;
 }
 
-.boat-text button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
+/* The vessel types PHL repairs: a plain list, not tabs (only tug photos exist) */
+.boat-text li {
     font-weight: 500;
     font-size: 1.4rem;
-    color: rgba(13, 41, 84, 0.72); /* Harbor Depth: white on Sea Mist failed AA */
+    line-height: 1.3;
+    color: var(--harbor-depth);
     padding: 0.5rem 0.25rem;
+    text-align: end;
 }
 
-.boat-text button {
-    background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
-    transition: background-size 0.35s var(--ease-out-quart), color 0.25s;
-}
-.boat-text button:hover,
-.boat-text button.focused { background-size: 100% 2px; }
-
-.boat-text button.focused { color: var(--deep-harbor-blue); font-weight: 650; }
 
 .image-desc {
     display: flex;
@@ -206,6 +191,7 @@ a:active .contact-us { transform: scale(0.97); }
     .boat-intro { width: 100%; padding-left: 2rem; }
     .boat-image { width: 80%; }
     .boat-text { align-items: center; width: 100%; }
+    .boat-text li { text-align: center; }
 }
 
 @media only screen and (max-width: 780px) {

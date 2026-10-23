@@ -15,10 +15,11 @@
     <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- navigation bar -->
-    <div class="navbar">
+    <header class="navbar">
         <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
-        <div class="text">
+        <nav class="text" id="primary-nav" aria-label="Main">
             <a href="">Home</a>
             <a href="vessels.html">Vessels</a>
             <a href="services.html">Repairs</a>
@@ -29,13 +30,14 @@
                 <a href="/id/home.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
                 <a href="/zh/home.html" hreflang="zh" lang="zh" aria-label="中文">中文</a>
             </div>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
@@ -69,7 +71,7 @@
 
     <!-- Desc Container Start -->
     <div class="desc-container">
-        <h2><span>Forging the Future, Mastery in Every Vessel</span></h2>
+        <h2><span>Over 100 vessels, one family yard, since 1982.</span></h2>
         <div class="brief-desc">
             <div class="tiles-border"> <!-- images container, 1 big (top) - 2 small (bottom)-->
                 <div class="tiles">
@@ -81,8 +83,8 @@
                 </div>
                 <div class="border"></div> <!-- line -->
             </div>
-            <p>Pahala Harapan Lestari stands proud as a national shipyard icon in Indonesia since 1982. Operating wherever there's a chance to refine, pioneer, or invest, Pahala Harapan Lestari values the voices of its clients.<br><br>
-                Our inclusive, cooperative mindset has been instrumental in shaping our service offerings. Surpassing your aspirations remains our paramount objective; because, ultimately, we're constructing your future.
+            <p>PT. Pahala Harapan Lestari is a family shipyard in Pangkalpinang, Bangka Belitung, building and repairing ships since 1982. More than 100 vessels later, we still build by standardization and serial production.<br><br>
+                Our clients include Pertamina, Pelindo, Adaro and Sinarmas. Our quality, environmental and safety management follows ISO 9001, ISO 14001 and ISO 45001, and in 2021 we received the Paramakarya award from the President of the Republic of Indonesia.
             </p>
         </div>
     </div>
@@ -108,6 +110,8 @@
         </div>
     </div>
     <!-- our customer section -->
+
+    </main>
 
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->

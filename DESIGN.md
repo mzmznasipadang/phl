@@ -117,7 +117,7 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 - **Harbor Depth** (#0D2954): The deepest navy, the natural ink color for text set on the pale blue-gray surfaces.
 
 ### Tertiary
-- **Sea Mist** (#CCD4E0): The lighter blue-gray surface. Backs the home description band, showcase title panels, and the vessels tab block. A calm, recessive ground that signals "supporting context" without competing with navy.
+- **Sea Mist** (#CCD4E0): The lighter blue-gray surface. Backs the home description band, showcase title panels, and the Repairs vessel-type list. A calm, recessive ground that signals "supporting context" without competing with navy.
 - **Tidal Gray** (#B7C2D4): The deeper blue-gray surface, used for the About section title blocks. One step more present than Sea Mist, for headings that need slightly more weight.
 
 ### Neutral
@@ -141,10 +141,10 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 
 ### Hierarchy
 - **Display** (700, clamp(3rem, 6vw, 4rem), line-height 1.05): The hero statement on each page's full-bleed image ("We Serve You.", "About PT. PHL"). Always Signal White over dimmed photography.
-- **Headline** (700, clamp(2.3rem, 5vw, 3.5rem), line-height 1.1): Major section title blocks set on Tidal Gray ("Craftsman in heart.", "Steadfast principles."). The heaviest type that appears on a light surface.
+- **Headline** (700, clamp(2.3rem, 5vw, 3.5rem), line-height 1.1): Major section title blocks set on Tidal Gray ("Craftsmen at heart.", "Steadfast principles."). The heaviest type that appears on a light surface.
 - **Title** (600, clamp(2rem, 3.5vw, 2.7rem), line-height 1.2): Subsection headings and band titles ("Our Customers", "Forging the Future").
 - **Body** (400, 1.2rem, line-height 1.6): Running prose. Hold to 65 to 75 characters per line; the current full-width paragraphs run long and should be constrained.
-- **Label** (500, 1.15rem, line-height 1.4): Navigation links, CTA labels, and the small navy eyebrow that introduces vessel and repair descriptions (the eyebrow runs at 400 weight in Deep Harbor Blue).
+- **Label** (500, 1.15rem, line-height 1.4): Navigation links and CTA labels.
 
 ### Named Rules
 
@@ -159,7 +159,7 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 - *Budget:* the customer logo loop pauses offscreen; never animate `left`/`top`/size.
 - *Reduced motion:* keyframe animations are opt-in under `no-preference`; under `reduce`, movement goes (navbar stays put, menu fades instead of sliding, no hover lifts) but colour, opacity and underline feedback stay. Do not add per-section entrance variety on top of this.
 
-**The Eyebrow Exception.** The site uses a small navy eyebrow above the vessels and repairs descriptions. This is a single, deliberate, named pattern, not section scaffolding. Do not multiply it into a tracked uppercase kicker above every section; that is the AI-grammar tell this brand avoids.
+**No Eyebrows.** No small uppercase label or kicker above a heading, anywhere. The heading carries its own weight. (The old "CONQUEROR OF THE SEAS" label was removed in the 2026 audit: it said nothing about either page it sat on.)
 
 ## 4. Elevation
 
@@ -181,7 +181,7 @@ For each component, the character line comes first, then shape, color, and state
 - **Primary CTA (`.contact-us`):** Deep Harbor Blue with the Hull Shadow treatment, Signal White label at weight 500, fixed footprint 10rem by 3rem, centered label. This is the page-level "Contact us" button on the Vessels and Repairs pages.
 - **Send button (form submit):** Same navy Hull Shadow fill, 6px radius. Currently undersized (about 3rem wide, 0.56rem type); it should be brought up to the primary CTA's weight and given a real hover and focus state.
 - **Language switch:** Plain text links in the navbar after Contact, behind a 1px hairline: EN · ID · 中文. Each goes straight to the same page in that language (no script). The current language is full Signal White with a short underline (`aria-current="true"`); the others sit at 72% white. On phones the row closes the menu panel under a hairline.
-- **Tab buttons (Vessels):** Transparent, Signal White label, underline on hover, Deep Harbor Blue when focused. Used to switch boat categories.
+- **Vessel-type list (Repairs):** A plain list of the vessel types PHL repairs, in Harbor Depth on Sea Mist. Not tabs: add a photo gallery per type only when real photos of that type exist.
 - **Hover / Focus:** Links and tabs underline on hover. Buttons currently lack a consistent hover and a visible focus ring; add a `:focus-visible` outline (2px Signal White or Deep Harbor Blue depending on background) across all interactive controls.
 
 ### Cards / Containers
@@ -222,4 +222,5 @@ A continuous horizontal auto-scroll of client logos (Pertamina, Pelindo, Adaro, 
 - **Don't** add a `box-shadow` to lift an element; use the Hull Shadow or a blue-gray ground instead.
 - **Don't** set body or structural text below ~0.85rem. The current footer text (0.7rem) and copyright (0.5rem, dropping to 0.3rem on mobile) fail WCAG AA and must be raised.
 - **Don't** use `background-clip: text` gradient headings, glassmorphism, or a `border-left` color stripe as an accent. None belong in this system.
-- **Don't** multiply the navy eyebrow into a tracked uppercase kicker above every section.
+- **Don't** put an eyebrow or kicker label above a heading.
+- **Don't** write in stock marketing phrasing: forging, mastery, conqueror, masterpiece, excellence, tailored, realm, paramount, journey, seamless, world-class, "for every need". Replace each with a fact the site can stand behind: a year, a vessel name, a client, a certificate, a capacity.

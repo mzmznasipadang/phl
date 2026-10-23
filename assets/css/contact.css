@@ -79,6 +79,11 @@
     width: 100%;
 }
 
+/* 16px text stops iOS zooming on focus; 44px rows are comfortable to tap */
+.form input,
+.form textarea { font-size: 1rem; font-family: inherit; }
+.form input { height: auto; min-height: 2.75rem; }
+
 .message textarea {
     padding-left: 0.625rem;
     padding-top: 0.5rem;
@@ -146,16 +151,21 @@
 @media only screen and (max-width: 780px) {
     .card {
         flex-direction: column;
+        align-items: stretch;
         gap: 1rem;
-        padding: 2rem;
+        padding: 1rem;
     }
-    .map { height: 100%; }
+    /* The card is content-height here, so give the map its own height */
+    .map { height: auto; }
+    .map iframe { min-height: 20rem; }
+    .form { padding: 0.5rem; }
+    .form form { width: 100%; }
+    .message textarea { height: 12rem; } /* 20 rows is a screen and a half on a phone */
     .send-button button { width: 100%; }
 }
 
 @media only screen and (max-width: 500px) {
-    .name-email input {
-        flex-direction: column;
-        width: 100%;
-    }
+    /* Stack Name and Email: the row is the flex container, not the inputs */
+    .name-email { flex-direction: column; align-items: stretch; }
+    .name-email input { width: 100%; }
 }

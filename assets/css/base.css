@@ -14,6 +14,7 @@
     /* Brand palette */
     --deep-harbor-blue: #204782;
     --harbor-depth: #0D2954;
+    --harbor-depth-rgb: 13 41 84; /* for translucent Harbor Depth: rgb(var(--harbor-depth-rgb) / .5) */
     --sea-mist: #CCD4E0;
     --tidal-gray: #B7C2D4;
     --dock-white: #F7F7F7;
@@ -149,6 +150,20 @@ footer a:focus-visible {
     outline-color: var(--signal-white);
 }
 
+/* Keyboard users can jump past the navigation; visible only when focused */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 30;
+    padding: 0.75rem 1rem;
+    background: var(--hull-shadow);
+    color: var(--signal-white);
+    font-weight: 600;
+    border-radius: var(--r-sm);
+}
+.skip-link:focus { top: 1rem; outline: 3px solid var(--signal-white); outline-offset: 2px; }
+
 /* ---------- Navbar ---------- */
 .navbar {
     background: var(--hull-shadow);
@@ -160,7 +175,7 @@ footer a:focus-visible {
     align-items: center;
     justify-content: space-between;
     position: fixed;
-    z-index: 2;
+    z-index: 20; /* above the hero layers (scrim 0, overlay 1, text 2) */
     transform: translateY(0);
     transition: transform 0.45s var(--ease-out-expo);
     view-transition-name: navbar; /* stays put while pages cross-fade */
@@ -204,6 +219,9 @@ footer a:focus-visible {
    onto the centre line, so they cross exactly into an X */
 .hamburger {
     display: none;
+    padding: 0;
+    border: 0;
+    background: none;
     width: 2.75rem;
     height: 2.75rem;
     flex-direction: column;
@@ -255,6 +273,25 @@ footer a:focus-visible {
     opacity: 0;
     pointer-events: none;
 }
+
+/* Legibility scrim: Harbor Depth at 50% through the band where hero text
+   sits (35–75% down), so white type holds 4.5:1 even over bright sky
+   (75% brightness + 50% navy keeps pure white below luminance 0.18). */
+.landing-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+        rgb(var(--harbor-depth-rgb) / 0.15) 0%,
+        rgb(var(--harbor-depth-rgb) / 0.5) 35%,
+        rgb(var(--harbor-depth-rgb) / 0.5) 75%,
+        rgb(var(--harbor-depth-rgb) / 0.2) 100%);
+}
+/* Hero text and CTA sit above the scrim */
+.landing-text,
+.landing-tool { z-index: 2; }
 
 @media (prefers-reduced-motion: no-preference) {
     .landing-page img { animation: hero-settle 1100ms var(--ease-out-expo) both; }

@@ -14,10 +14,11 @@
     <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Langsung ke konten</a>
     <!-- navigation bar -->
-    <div class="navbar">
+    <header class="navbar">
         <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
-        <div class="text">
+        <nav class="text" id="primary-nav" aria-label="Utama">
             <a href="home.html">Beranda</a>
             <a href="vessels.html">Kapal</a>
             <a href="services.html">Perbaikan</a>
@@ -28,13 +29,14 @@
                 <a href="/id/about.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia" aria-current="true">ID</a>
                 <a href="/zh/about.html" hreflang="zh" lang="zh" aria-label="中文">中文</a>
             </div>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
@@ -42,7 +44,7 @@
         <img src="/assets/about/aboutbg.jpg" alt="Galangan kapal PT. Pahala Harapan Lestari" decoding="async" fetchpriority="high" width="5472" height="3648">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-text">
-            <p>Memberikan yang terbaik sejak 1982.</p>
+            <p>Galangan kapal keluarga, Pangkalpinang, sejak 1982.</p>
             <h1><span>Tentang PT. PHL</span></h1>
         </div>
     </div>
@@ -60,8 +62,8 @@
             <div class="craftsman-top-content"> <!-- craftsman images top section -->
                 <img class="craftsman-image" src="/assets/about/craftsman/craftsmanportrait.jpeg" alt="" decoding="async" loading="lazy" width="793" height="1603"> <!-- left image -->
                 <div class="desc-image">
-                    <p>Pahala Harapan Lestari adalah perusahaan galangan kapal keluarga yang mendapat pengakuan nasional, berdiri di Indonesia sejak 1982. Sebagai spesialis dalam pembangunan dan perbaikan kapal, kami mewujudkan nilai-nilai kesatuan, keterampilan, inovasi, dan tanggung jawab. Untuk memanfaatkan potensi-potensi ini, kami menawarkan solusi maritim melalui keahlian kami dalam desain, pembangunan kapal, perbaikan kapal, dan layanan terkait.<br><br>
-                        Selama beberapa dekade terakhir, kami telah mengubah dunia pembangunan kapal dengan memperkenalkan standarisasi dan produksi serial. Saat ini, setelah merancang lebih dari 100 kapal, prinsip-prinsip inti ini tetap tidak berubah. Maju ke depan, kami bertujuan untuk menggabungkan teknik standarisasi yang sejalan dengan kemajuan digitalisasi, menempatkan diri kami sebagai pembuat kapal paling ramah lingkungan di Indonesia.
+                    <p>PT. Pahala Harapan Lestari adalah galangan kapal keluarga yang membangun dan memperbaiki kapal di Indonesia sejak 1982. Kami merancang, membangun, dan memperbaiki kapal, serta menyediakan layanan pendukungnya. Nilai-nilai kami adalah kesatuan, keterampilan, inovasi, dan tanggung jawab.<br><br>
+                        Kami menerapkan standardisasi dan produksi serial di galangan kami sejak beberapa dekade lalu, dan setelah lebih dari 100 kapal kami tetap membangun dengan cara itu. Langkah berikutnya, kami memadukan perangkat digital ke dalam proses yang sama, dengan tujuan menjadi galangan kapal paling ramah lingkungan di Indonesia.
                     </p>
                     <img src="/assets/about/craftsman/craftsmanland1.jpeg" alt="" decoding="async" loading="lazy" width="1600" height="900"> <!-- image under text -->
                 </div>
@@ -147,18 +149,20 @@
         <div class="outstanding-title">
             <div class="line"></div> <!-- trailing line to fill remaining space -->
             <div class="title-container">
-                <h2>Penghargaan Terbaik.</h2> <!-- title box -->
+                <h2>Penghargaan dan sertifikat.</h2> <!-- title box -->
             </div>
         </div>
         <div class="outstanding-content">
             <img src="/assets/about/certif&award/trophy.png" class="outstanding-image" title="Paramakarya Trophy" alt="Paramakarya Trophy" decoding="async" loading="lazy" width="375" height="666"> <!-- left image -->
             <div class="desc-award">
-                <p>PENGHARGAAN PARAMAKARYA TAHUN 2021 DENGAN KUALIFIKASI “PEMIMPIN DALAM INDUSTRI” DARI PRESIDEN REPUBLIK INDONESIA<br><br><br>
-                    PENGHARGAAN SIDHAKARYA TAHUN 2020 DALAM KATEGORI “EMERGING LEADER” DARI GUBERNUR KEP. BANGKA BELITUNG<br><br><br>
-                    PENGHARGAAN PROGRAM PENCEGAHAN DAN PENANGGULANGAN COVID-19 DARI KATEGORI “SILVER” KEMENTERIAN KETENAGAKERJAAN REPUBLIK INDONESIA<br><br><br>                    
-                    PENGHARGAAN DARI BIRO KLASIFIKASI INDONESIA DALAM KATEGORI KONTRIBUSI MITRA KERJA<br><br><br>
-                    PENGHARGAAN PROGRAM PENILAIAN PERINGKAT KINERJA PERUSAHAAN DALAM PENGELOLAAN LINGKUNGAN HIDUP (PROPER) TAHUN 2021 DENGAN KATEGORI “BIRU”<br><br><br>               
-                    PENGHARGAAAN PERUSAHAAN MANAJEMEN K3 TERBAIK DARI WALIKOTA PANGKALPINANG</p>
+                <ul class="award-list" lang="id">
+                    <li><strong>Penghargaan Paramakarya 2021</strong>, kualifikasi “Pemimpin dalam Industri” dari Presiden Republik Indonesia</li>
+                    <li><strong>Penghargaan Sidhakarya 2020</strong>, kategori “Emerging Leader” dari Gubernur Kepulauan Bangka Belitung</li>
+                    <li><strong>Penghargaan Program Pencegahan dan Penanggulangan COVID-19</strong>, kategori “Silver” dari Kementerian Ketenagakerjaan Republik Indonesia</li>
+                    <li><strong>Penghargaan Biro Klasifikasi Indonesia (BKI)</strong>, kategori Kontribusi Mitra Kerja</li>
+                    <li><strong>PROPER 2021</strong>, Program Penilaian Peringkat Kinerja Perusahaan dalam Pengelolaan Lingkungan Hidup, kategori “Biru”</li>
+                    <li><strong>Perusahaan Manajemen K3 Terbaik</strong>, dari Wali Kota Pangkalpinang</li>
+                </ul>
                 <div class="award"> <!-- award images under text -->
                     <img src="/assets/about/certif&award/isoukas.jpeg" alt="ISO certification (UKAS accredited)" decoding="async" loading="lazy" width="1024" height="768">
                     <img src="/assets/about/certif&award/paramakarya.png" alt="Paramakarya award" decoding="async" loading="lazy" width="357" height="409">
@@ -170,6 +174,8 @@
     </div>
     <!-- outstanding remarks section -->
 
+    </main>
+
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
@@ -178,7 +184,7 @@
                     <div class="desc"> <!-- left section of information -->
                         <p><span>Telepon</span>: <span class="data">+62 (0717) 4262 666 / 777, 435914</span></p>
                         <p><span>Alamat (Kantor Utama)</span>:<br>Jalan Pasir Ketapang No. 5,<br>Pangkalpinang - Kepulauan Bangka Belitung,<br>Indonesia</p>
-                        <p><span>Alamat (Kantor Cabang)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
+                        <p><span>Alamat (Kantor Perwakilan)</span>:<br>The Mansion Bougenville,<br>Tower Fontana Unit BF 33I1,<br>Jakarta Utara, 14410</p>
                     </div>
                     <div class="desc"> <!-- right section of information -->
                         <p><span>Fax</span>: <span class="data">+62 (021) 439359, 4261743</span></p>

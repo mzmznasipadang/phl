@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Contact Us</title>
+    <title>联系我们 - PHL</title>
     <link rel="icon" href="/assets/webicon.png">
     <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,12 +14,13 @@
     <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
     <!-- navigation bar -->
-    <div class="navbar">
+    <header class="navbar">
         <a href="home.html"><img src="/assets/logo-header.svg" alt="PT. Pahala Harapan Lestari" decoding="async" width="293" height="58"></a>
-        <div class="text">
+        <nav class="text" id="primary-nav" aria-label="主导航">
             <a href="home.html">首页</a>
-            <a href="vessels.html">舰只</a>
+            <a href="vessels.html">船舶</a>
             <a href="services.html">维修</a>
             <a href="about.html">关于Pahala船厂</a>
             <a href="#">联系</a>
@@ -28,13 +29,14 @@
                 <a href="/id/contact.html" hreflang="id" lang="id" aria-label="Bahasa Indonesia">ID</a>
                 <a href="/zh/contact.html" hreflang="zh" lang="zh" aria-label="中文" aria-current="true">中文</a>
             </div>
-        </div>
-        <div class="hamburger"> <!-- hamburger for mobile version -->
+        </nav>
+        <button class="hamburger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="菜单">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-    </div>
+        </button>
+    </header>
+    <main id="main">
     <!-- navigation bar -->
 
     <!-- landing page section -->
@@ -42,17 +44,17 @@
         <img src="/assets/contact/contactbg.jpg" alt="从水面看 PT. Pahala Harapan Lestari 船厂" decoding="async" fetchpriority="high" width="2973" height="1964">
         <div class="landing-overlay"></div> <!-- The white overlay, white transition -->
         <div class="landing-text">
-            <p>随时准备起航</p>
+            <p>总部位于邦加槟港，代表处位于雅加达</p>
             <h1><span>联系我们</span></h1>
         </div>
     </div>
     <!-- landing page section -->
 
-    <h2 class="heading">来自你，为你</h2>
+    <h2 class="heading">欢迎来信咨询</h2>
     <!-- contact form -->
     <div class="card">
         <div class="map"> <!-- map -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.144613767445!2d106.1398239!3d-2.0976943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e22c061c0b07c15%3A0x555948479ddeebdb!2sPT.%20Pahala%20Harapan%20Lestari%20Shipyard!5e0!3m2!1sen!2sid!4v1691746119952!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe title="地图：PT. Pahala Harapan Lestari 船厂，槟港" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.144613767445!2d106.1398239!3d-2.0976943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e22c061c0b07c15%3A0x555948479ddeebdb!2sPT.%20Pahala%20Harapan%20Lestari%20Shipyard!5e0!3m2!1sen!2sid!4v1691746119952!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="form">
             <form method="post" name="contact-form" action="" aria-label="联系表单"> <!-- submitted via POST, recorded in Google Sheets -->
@@ -82,6 +84,8 @@
     </div>
     <!-- contact form -->
 
+    </main>
+
     <footer>
         <div class="before-copyright"> <!-- everything but copyright section -->
             <div class="logo-desc">
@@ -101,7 +105,7 @@
             <div class="directory"> <!-- bottom navigation -->
                 <p><span>探索更多</span></p>
                 <a href="home.html">首页</a>
-                <a href="vessels.html">舰只</a>
+                <a href="vessels.html">船舶</a>
                 <a href="services.html">维修</a>
                 <a href="about.html">关于Pahala船厂</a>
                 <a href="#">联系</a>
