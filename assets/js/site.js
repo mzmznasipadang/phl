@@ -46,6 +46,23 @@
   /* The hero overlay fade and section reveals are scroll-linked CSS
      (base.css); the customer marquee is a CSS animation (home.css). */
 
+  /* ---------- GSAP layer (motion.js) ----------
+     About 46 KB compressed, so it loads only where CSS cannot do the job:
+     browsers without scroll-driven animations, and the pinned vessel
+     showcase on desktop. Never with reduced motion. */
+  const motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+  const needsFallback = !CSS.supports("animation-timeline: view()");
+  // shortcut: width is read once at load, so a narrow window widened later keeps the static showcase
+  const wantsPin = document.querySelector(".showcase-title > img") && window.matchMedia("(min-width: 981px)").matches;
+  if (motionOK && (needsFallback || wantsPin)) {
+    ["vendor/gsap.min.js", "vendor/ScrollTrigger.min.js", "motion.js"].forEach(function (file) {
+      const script = document.createElement("script");
+      script.src = "/assets/js/" + file;
+      script.async = false; // run in order: GSAP, its plugin, then motion.js
+      document.head.appendChild(script);
+    });
+  }
+
   /* ---------- Pause the customer logo loop while it is offscreen ---------- */
   const marquee = document.querySelector(".marquee-images");
   if (marquee && "IntersectionObserver" in window) {

@@ -569,8 +569,15 @@ footer img {
    One signature: evidence surfaces from the waterline. Photographs rise
    into view through a clip from below as they scroll in, and the navy
    accent bars draw across. Pages cross-fade with the navbar held still.
-   Everything is scroll-linked CSS (no JS) and visible by default where
-   unsupported or when the visitor prefers reduced motion. */
+   Everything is scroll-linked CSS and visible by default when the visitor
+   prefers reduced motion. Browsers without scroll-driven animations get
+   the same reveals from motion.js (GSAP), loaded by site.js. */
+/* Bars grow out of their title block (CSS and GSAP alike) */
+.craftsman-title .line,
+.outstanding-title .line { transform-origin: right center; }
+.steadfast-title .line { transform-origin: left center; }
+.border { transform-origin: center top; }
+
 @media (prefers-reduced-motion: no-preference) {
     @view-transition { navigation: auto; }
     ::view-transition-old(root) { animation: 200ms var(--ease-out-quart) both vt-fade-out; }
@@ -598,11 +605,7 @@ footer img {
             animation-timeline: view();
             animation-range: entry 10% cover 35%;
         }
-        /* Bars grow out of their title block */
-        .craftsman-title .line,
-        .outstanding-title .line { transform-origin: right center; }
-        .steadfast-title .line { transform-origin: left center; }
-        .border { animation-name: bar-draw-down; transform-origin: center top; }
+        .border { animation-name: bar-draw-down; }
     }
 
     @supports (animation-timeline: scroll()) {
