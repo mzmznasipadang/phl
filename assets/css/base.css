@@ -6,7 +6,7 @@
    /assets/css/<page>.css. See DESIGN.md for the token system.
    ============================================================ */
 
-/* Archivo (industrial grotesque) is loaded via <link rel="preconnect"> +
+/* Mona Sans (neo-grotesk) is loaded via <link rel="preconnect"> +
    <link rel="stylesheet"> in each page <head> so it fetches in parallel,
    not via a render-blocking CSS @import waterfall. */
 
@@ -32,20 +32,22 @@
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-    /* Type: one family (Archivo, variable wdth 62-125). Headings run
+    /* Type: Mona Sans (variable wdth 75-125). Headings run
        condensed, like a stencilled hull marking; body stays at normal width. */
-    --font-sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-    --stretch-display: 78%;
-    --stretch-headline: 86%;
+    --font-sans: 'Mona Sans', 'Helvetica Neue', Arial, sans-serif;
+    /* Data voice: only for engineering figures (specs, phone/fax numbers) */
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --stretch-display: 80%;
+    --stretch-headline: 88%;
     --fs-display: clamp(3.25rem, 1.6rem + 5.2vw, 6rem);
     --fs-headline: clamp(2.3rem, 1.5rem + 2.8vw, 3.75rem);
     --fs-title: clamp(2rem, 1.5rem + 1.6vw, 2.9rem);
 }
 
-/* Archivo has no CJK glyphs: name the platform Chinese faces explicitly so
+/* Mona Sans has no CJK glyphs: name the platform Chinese faces explicitly so
    zh pages get a deliberate fallback instead of whatever the OS picks. */
 :root:lang(zh) {
-    --font-sans: 'Archivo', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    --font-sans: 'Mona Sans', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
 }
 
 * {
@@ -344,6 +346,11 @@ footer img {
 }
 
 .footer-desc span { font-weight: 700; }
+.footer-desc .data {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.92em; /* mono runs wide: keeps the phone line on one line */
+}
 
 .directory {
     color: var(--signal-white);

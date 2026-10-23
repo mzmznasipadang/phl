@@ -11,34 +11,40 @@ colors:
   hull-hairline: "#00000033"
 typography:
   display:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "clamp(3rem, 6vw, 4rem)"
     fontWeight: 700
     lineHeight: 1.05
     letterSpacing: "-0.01em"
   headline:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "clamp(2.3rem, 5vw, 3.5rem)"
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: "-0.005em"
   title:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "clamp(2rem, 3.5vw, 2.7rem)"
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "normal"
   body:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "1.2rem"
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
   label:
-    fontFamily: "'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    fontFamily: "'Mona Sans', 'Helvetica Neue', Arial, sans-serif"
     fontSize: "1.15rem"
     fontWeight: 500
     lineHeight: 1.4
+    letterSpacing: "normal"
+  data:
+    fontFamily: "'IBM Plex Mono', ui-monospace, Menlo, monospace"
+    fontSize: "0.92rem"
+    fontWeight: 500
+    lineHeight: 1.5
     letterSpacing: "normal"
 rounded:
   sharp: "0"
@@ -88,7 +94,7 @@ components:
 
 **Creative North Star: "The Harbor at Anchor"**
 
-This is the visual language of a yard that has been building and repairing ships since 1982. It should feel steady, weighty, and dependable, the way a large vessel sits at anchor in deep water: settled, unhurried, in no danger of drifting. The whole system orbits one deep maritime navy, set against a near-white dock and carried by a single industrial-grotesque voice with real heft. Nothing here is trying to look new. It is trying to look like it will still be standing in twenty years.
+This is the visual language of a yard that has been building and repairing ships since 1982. It should feel steady, weighty, and dependable, the way a large vessel sits at anchor in deep water: settled, unhurried, in no danger of drifting. The whole system orbits one deep maritime navy, set against a near-white dock and carried by one neo-grotesk voice with real heft, plus a quiet mono for engineering figures. Nothing here is trying to look new. It is trying to look like it will still be standing in twenty years.
 
 Authority comes from evidence, not decoration. Full-bleed photographs of real hulls, real cranes, and real launches do the talking; the chrome stays out of the way. Sections announce themselves with a solid navy accent bar and a blue-gray title block, a quiet, repeatable rhythm rather than a parade of effects. The industrial grotesque gives every heading a stamped, structural weight that reads as engineering rather than fashion.
 
@@ -96,7 +102,7 @@ This system explicitly rejects four things, carried directly from the brand's an
 
 **Key Characteristics:**
 - One deep navy carries the brand; everything else supports it.
-- A single industrial grotesque (Archivo) across the whole site, working through weight contrast.
+- One neo-grotesk (Mona Sans) for every word, working through weight and width; IBM Plex Mono only for engineering figures.
 - Flat surfaces. Depth comes from imagery and tonal layering, never from shadow.
 - Full-bleed 100vh hero photography on every page, dimmed so type can sit on it.
 - Asymmetric image showcases, not uniform card grids.
@@ -129,11 +135,11 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 
 ## 3. Typography
 
-**Display Font:** Archivo (with Helvetica Neue, then Arial / system sans fallback)
-**Body Font:** Archivo (same family)
-**Label/Mono Font:** none; the system is single-family
+**Display Font:** Mona Sans (with Helvetica Neue, then Arial / system sans fallback)
+**Body Font:** Mona Sans (same family)
+**Data Font:** IBM Plex Mono, for engineering figures only (vessel specs, phone and fax numbers)
 
-**Character:** One industrial grotesque, top to bottom, working entirely through weight. Archivo's rational, mechanical letterforms give headings a stamped, structural authority, like an engineering nameplate or a stencilled hull marking, while its regular weight stays plain and legible for long Indonesian, English, and Chinese passages. The personality is the weight jump from 400 to 700, not a second typeface.
+**Character:** One neo-grotesk, top to bottom, in the quiet-authority tradition of Neue Haas Grotesk (the face of Damen, PHL's closest peer: a family-owned yard). Condensed and bold, Mona Sans gives headings a stamped, structural authority, like an engineering nameplate or a stencilled hull marking; at regular weight and normal width it stays plain and legible for long Indonesian, English, and Chinese passages. IBM Plex Mono is the data voice: it marks a figure as measured fact, the way a spec sheet or a builder's plate does.
 
 ### Hierarchy
 - **Display** (700, clamp(3rem, 6vw, 4rem), line-height 1.05): The hero statement on each page's full-bleed image ("We Serve You.", "About PT. PHL"). Always Signal White over dimmed photography.
@@ -144,9 +150,9 @@ A committed maritime palette: one deep navy doing the heavy lifting, two blue-gr
 
 ### Named Rules
 
-**The Weight-Not-Family Rule.** Hierarchy is built from Archivo's weight range (400 to 700), never from a second typeface. If a heading needs more presence, go heavier or larger, do not reach for a display face.
+**The Words-Versus-Figures Rule.** Every word is Mona Sans: headings, body, labels, navigation, vessel names. IBM Plex Mono is reserved for engineering figures (spec values, phone and fax numbers), never for headings, labels, prose or decoration. In a spec list the label (LOA, Beam) stays in Mona Sans and only the value is mono. Hierarchy comes from Mona Sans weight and width, never from a display face.
 
-**The Stencil Width Rule.** Archivo is loaded as a variable font (`wdth` 62–125, `wght` 300–900). Page-level headings run condensed (`font-stretch: 86%`, hero display `78%`, tracking -0.01em, leading ~1.0), like a stencilled hull marking; body, labels and navigation stay at normal width. Width is the second lever after weight, still one family. Sizes come from the fluid tokens `--fs-display`, `--fs-headline`, `--fs-title` in base.css. Chinese pages fall back to PingFang SC / Noto Sans SC / Microsoft YaHei by name (`:root:lang(zh)`), since Archivo has no CJK glyphs.
+**The Stencil Width Rule.** Mona Sans is loaded as a variable font (`wdth` 75–125, `wght` 200–900). Page-level headings run condensed (`font-stretch: 88%`, hero display `80%`, tracking -0.01em, leading ~1.0), like a stencilled hull marking; body, labels and navigation stay at normal width. Width is the second lever after weight, still one family. Sizes come from the fluid tokens `--fs-display`, `--fs-headline`, `--fs-title` in base.css. Chinese pages fall back to PingFang SC / Noto Sans SC / Microsoft YaHei by name (`:root:lang(zh)`), since Mona Sans has no CJK glyphs.
 
 **The Waterline Motion Rule.** Motion has one signature: photographs rise into view through a clip that clears from the bottom, and the navy accent bars draw out of their title blocks, both scroll-linked in CSS (`animation-timeline: view()`). Pages cross-fade (`@view-transition`) with the navbar held still; the Repairs gallery cross-fades between categories. Everything is visible by default where unsupported and switched off under `prefers-reduced-motion`. Do not add per-section entrance variety on top of this.
 
@@ -197,7 +203,7 @@ A continuous horizontal auto-scroll of client logos (Pertamina, Pelindo, Adaro, 
 
 ### Do:
 - **Do** carry the navy **Hull Shadow** treatment (`linear-gradient(0deg, rgba(0,0,0,0.20), rgba(0,0,0,0.20)), #204782`) on every navy surface. It is the brand signature.
-- **Do** build type hierarchy from Archivo weight alone (400 to 700). One family, top to bottom.
+- **Do** set every word in Mona Sans and only engineering figures in IBM Plex Mono.
 - **Do** keep surfaces flat and earn depth from full-bleed photography and the two blue-grays.
 - **Do** lead with real evidence: actual vessels, real client logos, the awards, the ISO certifications. Proof over adjectives.
 - **Do** hold body copy to 65 to 75 characters per line and set a visible `:focus-visible` ring on every interactive control (the WCAG 2.1 AA bar).

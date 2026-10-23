@@ -123,6 +123,55 @@ a:hover .contact-us { filter: brightness(1.12); }
     margin-bottom: 3rem;
 }
 
+/* Vessel caption: name in the display voice, figures in the data voice */
+.vessel-caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--deep-harbor-blue);
+}
+
+.vessel-name {
+    font-size: var(--fs-title);
+    font-weight: 700;
+    font-stretch: var(--stretch-headline);
+    line-height: 1;
+    letter-spacing: -0.01em;
+}
+
+.vessel-type {
+    font-size: 1.1rem;
+    color: var(--deep-harbor-blue);
+}
+
+.vessel-specs {
+    flex-basis: 100%;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.3rem 1.25rem;
+    margin-top: 0.5rem;
+}
+.vessel-specs[hidden] { display: none; }
+
+.vessel-specs dt {
+    align-self: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--deep-harbor-blue);
+}
+
+.vessel-specs dd {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
+}
+
 .long { width: 55%; }
 .short { width: 40%; }
 

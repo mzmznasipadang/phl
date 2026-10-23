@@ -39,6 +39,7 @@ Welcome to the official website repository of PT. Pahala Harapan Lestari, a reno
 
 - **Contact records:** the contact form writes to a Google Sheet through a Google Apps Script. Keep the sheet link out of this repo (the repo and the web host are public). Records can be cleared, but the first row must not change: the script maps form fields to it by name. Do not rename the sheet's page or title.
 - **"Services" vs "Repairs":** the Services page is shown to visitors as "Repairs" (Perbaikan / 维修), but file and asset names still say `services`.
+- **Vessel specs:** each vessel caption on `vessels.html` (all three languages) has a hidden spec list. Fill in the empty `<dd>` values, then delete `hidden` from the `<dl>` to show it. Spec values are set in IBM Plex Mono automatically.
 - **Images:** photos are JPEGs at most ~2400px wide. Shrink large new photos before adding them, e.g. `sips -s format jpeg -s formatOptions 50 -Z 1800 in.jpg --out out.jpg` (leave out `-Z` for photos already smaller than that; it also enlarges).
 
 ---
